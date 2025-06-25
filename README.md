@@ -8,3 +8,6 @@ autonomous code engineering tool. Currently the project includes:
   sample `EchoAIProvider`.
 
 Run `dotnet build` on each project to compile (requires the .NET SDK).
+
+Initial structure for the autonomous polyglot code engineering system.
+

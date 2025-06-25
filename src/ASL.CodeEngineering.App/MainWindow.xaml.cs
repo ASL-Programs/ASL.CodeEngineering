@@ -2,16 +2,22 @@ using System.Threading;
 using System.Windows;
 using ASL.CodeEngineering.AI;
 
+using System.Windows;
+
+
 namespace ASL.CodeEngineering
 {
     public partial class MainWindow : Window
     {
+
         private readonly IAIProvider _aiProvider = new EchoAIProvider();
+
 
         public MainWindow()
         {
             InitializeComponent();
         }
+
 
         private async void SendButton_Click(object sender, RoutedEventArgs e)
         {
