@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASL.CodeEngineering.AI", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASL.CodeEngineering.App", "src/ASL.CodeEngineering.App/ASL.CodeEngineering.App.csproj", "{6be541d5-19ec-4c77-bbf5-d936dbe9e7dd}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASL.CodeEngineering.Tests", "tests/ASL.CodeEngineering.Tests/ASL.CodeEngineering.Tests.csproj", "{1faf4202-08b4-488c-ab29-4860d2ac80ff}"
+EndProject
 Global
     GlobalSection(SolutionConfigurationPlatforms) = preSolution
         Debug|Any CPU = Debug|Any CPU
@@ -20,5 +22,9 @@ Global
         {6be541d5-19ec-4c77-bbf5-d936dbe9e7dd}.Debug|Any CPU.Build.0 = Debug|Any CPU
         {6be541d5-19ec-4c77-bbf5-d936dbe9e7dd}.Release|Any CPU.ActiveCfg = Release|Any CPU
         {6be541d5-19ec-4c77-bbf5-d936dbe9e7dd}.Release|Any CPU.Build.0 = Release|Any CPU
+        {1faf4202-08b4-488c-ab29-4860d2ac80ff}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {1faf4202-08b4-488c-ab29-4860d2ac80ff}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {1faf4202-08b4-488c-ab29-4860d2ac80ff}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {1faf4202-08b4-488c-ab29-4860d2ac80ff}.Release|Any CPU.Build.0 = Release|Any CPU
     EndGlobalSection
 EndGlobal
