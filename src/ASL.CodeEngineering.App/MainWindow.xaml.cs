@@ -2,9 +2,6 @@ using System.Threading;
 using System.Windows;
 using ASL.CodeEngineering.AI;
 
-using System.Windows;
-
-
 namespace ASL.CodeEngineering
 {
     public partial class MainWindow : Window
