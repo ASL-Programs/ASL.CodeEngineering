@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Windows;
 using ASL.CodeEngineering.AI;
@@ -22,9 +23,24 @@ namespace ASL.CodeEngineering
             if (string.IsNullOrWhiteSpace(prompt))
                 return;
 
-            ResponseTextBox.Text = "Sending...";
-            string response = await _aiProvider.SendChatAsync(prompt, CancellationToken.None);
-            ResponseTextBox.Text = response;
+            SendButton.IsEnabled = false;
+            StatusTextBlock.Text = "Sending...";
+
+            try
+            {
+                string response = await _aiProvider.SendChatAsync(prompt, CancellationToken.None);
+                ResponseTextBox.Text = response;
+                StatusTextBlock.Text = "Done";
+            }
+            catch (Exception ex)
+            {
+                ResponseTextBox.Text = ex.Message;
+                StatusTextBlock.Text = "Error";
+            }
+            finally
+            {
+                SendButton.IsEnabled = true;
+            }
         }
     }
 }
