@@ -35,6 +35,13 @@ Providers must implement the `IAIProvider` interface defined in
 `OpenAIProvider` reads its API key from the `OPENAI_API_KEY` environment
 variable or a local `openai_api_key.txt` file.
 
+### Security and privacy
+
+Providers such as `OpenAIProvider` communicate with external services over the
+internet. Prompts and responses are transmitted to those providers, so avoid
+sending confidential or sensitive information. API keys can be stored locally in
+`openai_api_key.txt` if you prefer not to set environment variables.
+
 ## Roadmap
 
 The project aims to become a self‑improving polyglot engineer capable of using
