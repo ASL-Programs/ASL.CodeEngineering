@@ -15,6 +15,9 @@ public static class PluginLoader
     public static IDictionary<string, Func<ICodeRunnerPlugin>> LoadRunners(string? baseDirectory = null)
         => LoadPlugins<ICodeRunnerPlugin>(baseDirectory);
 
+    public static IDictionary<string, Func<IBuildTestRunner>> LoadBuildTestRunners(string? baseDirectory = null)
+        => LoadPlugins<IBuildTestRunner>(baseDirectory);
+
     private static IDictionary<string, Func<T>> LoadPlugins<T>(string? baseDirectory)
     {
         baseDirectory ??= AppContext.BaseDirectory;

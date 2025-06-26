@@ -26,8 +26,10 @@ public class PluginLoaderTests
     {
         var analyzers = PluginLoader.LoadAnalyzers(_fixture.BaseDirectory);
         var runners = PluginLoader.LoadRunners(_fixture.BaseDirectory);
+        var buildTest = PluginLoader.LoadBuildTestRunners(_fixture.BaseDirectory);
         Assert.Contains("DummyAnalyzer", analyzers.Keys);
         Assert.Contains("DummyRunner", runners.Keys);
+        Assert.Contains("DummyBuildTestRunner", buildTest.Keys);
     }
 
     [StaFact]
@@ -36,22 +38,30 @@ public class PluginLoaderTests
         var window = new MainWindow();
         var analyzers = PluginLoader.LoadAnalyzers(_fixture.BaseDirectory);
         var runners = PluginLoader.LoadRunners(_fixture.BaseDirectory);
+        var buildTest = PluginLoader.LoadBuildTestRunners(_fixture.BaseDirectory);
 
         var fieldA = typeof(MainWindow).GetField("_analyzerFactories", BindingFlags.NonPublic | BindingFlags.Instance)!;
         var fieldR = typeof(MainWindow).GetField("_runnerFactories", BindingFlags.NonPublic | BindingFlags.Instance)!;
+        var fieldB = typeof(MainWindow).GetField("_buildTestRunnerFactories", BindingFlags.NonPublic | BindingFlags.Instance)!;
         var analyzerFactories = (Dictionary<string, Func<IAnalyzerPlugin>>)fieldA.GetValue(window)!;
         var runnerFactories = (Dictionary<string, Func<ICodeRunnerPlugin>>)fieldR.GetValue(window)!;
+        var buildTestFactories = (Dictionary<string, Func<IBuildTestRunner>>)fieldB.GetValue(window)!;
         foreach (var pair in analyzers)
             if (!analyzerFactories.ContainsKey(pair.Key))
                 analyzerFactories[pair.Key] = pair.Value;
         foreach (var pair in runners)
             if (!runnerFactories.ContainsKey(pair.Key))
                 runnerFactories[pair.Key] = pair.Value;
+        foreach (var pair in buildTest)
+            if (!buildTestFactories.ContainsKey(pair.Key))
+                buildTestFactories[pair.Key] = pair.Value;
         window.AnalyzerComboBox.ItemsSource = analyzerFactories.Keys;
         window.RunnerComboBox.ItemsSource = runnerFactories.Keys;
+        window.BuildTestRunnerComboBox.ItemsSource = buildTestFactories.Keys;
 
         Assert.Contains("DummyAnalyzer", window.AnalyzerComboBox.Items.OfType<string>());
         Assert.Contains("DummyRunner", window.RunnerComboBox.Items.OfType<string>());
+        Assert.Contains("DummyBuildTestRunner", window.BuildTestRunnerComboBox.Items.OfType<string>());
         window.Close();
     }
 }
