@@ -41,3 +41,8 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Run `dotnet test`
 - [x] Document workflow files in README
 - [x] Run `dotnet test`
+
+- [x] Update PythonBuildTestRunner to respect LOGS_DIR
+- [x] Adjust PythonBuildTestRunnerTests for new log directory
+- [x] Document new reference in REFERENCE_FILES
+- [x] Run `dotnet test`

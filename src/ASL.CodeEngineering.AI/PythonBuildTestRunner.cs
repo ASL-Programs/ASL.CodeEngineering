@@ -50,7 +50,8 @@ public class PythonBuildTestRunner : IBuildTestRunner
 
     private static void Log(string operation, string content)
     {
-        var logsDir = Path.Combine(AppContext.BaseDirectory, "logs");
+        var logsDir = Environment.GetEnvironmentVariable("LOGS_DIR") ??
+                      Path.Combine(AppContext.BaseDirectory, "logs");
         Directory.CreateDirectory(logsDir);
         var file = Path.Combine(logsDir, $"{operation}_{DateTime.UtcNow:yyyyMMdd_HHmmss}.log");
         File.WriteAllText(file, content);
