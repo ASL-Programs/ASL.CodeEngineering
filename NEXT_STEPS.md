@@ -23,3 +23,7 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Document test environment requirements in README
 - [x] Add example READMEs in `ai_providers/` and `plugins/` describing how to build and drop DLLs
 - [x] Mark completed roadmap items in `AGENTS.md`
+
+- [x] Log loader failures to `logs` directory
+- [x] Add tests for loader logging
+- [x] Run `dotnet test`
