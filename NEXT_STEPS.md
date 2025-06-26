@@ -13,3 +13,8 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [ ] Add AIProvider abstraction
 - [ ] Document reference files
 ```
+
+## Current Session
+- [x] Update loaders to detect duplicate plugins/providers and throw descriptive exceptions
+- [x] Add unit tests verifying duplicate detection
+- [x] Run `dotnet test`

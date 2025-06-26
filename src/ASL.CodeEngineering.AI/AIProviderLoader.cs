@@ -69,8 +69,7 @@ public static class AIProviderLoader
                     {
                         var message = $"Duplicate AI provider name '{name}' found in '{file}'. " +
                                        $"Original provider from '{sourceFiles[name]}'.";
-                        Debug.WriteLine(message);
-                        continue;
+                        throw new InvalidOperationException(message);
                     }
 
                     providers[name] = () => (IAIProvider)Activator.CreateInstance(type)!;
