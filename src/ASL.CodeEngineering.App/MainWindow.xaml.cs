@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -294,14 +295,14 @@ namespace ASL.CodeEngineering
 
         private void LoadDirectory(TreeViewItem parentItem, string path)
         {
-            foreach (var dir in Directory.GetDirectories(path))
+            foreach (var dir in Directory.GetDirectories(path).OrderBy(d => d, StringComparer.OrdinalIgnoreCase))
             {
                 var item = new TreeViewItem { Header = Path.GetFileName(dir), Tag = dir };
                 LoadDirectory(item, dir);
                 parentItem.Items.Add(item);
             }
 
-            foreach (var file in Directory.GetFiles(path))
+            foreach (var file in Directory.GetFiles(path).OrderBy(f => f, StringComparer.OrdinalIgnoreCase))
             {
                 parentItem.Items.Add(new TreeViewItem { Header = Path.GetFileName(file), Tag = file });
             }
