@@ -30,3 +30,4 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Create helper to sanitize provider names for file paths
 - [x] Use sanitized names for `data` and `knowledge_base` directories
 - [x] Document name sanitization requirement in `ai_providers/README.md`
+- [x] Add test verifying directories created for sanitized provider names
