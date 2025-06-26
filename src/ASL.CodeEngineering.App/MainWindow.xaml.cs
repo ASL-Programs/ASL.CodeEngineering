@@ -17,9 +17,11 @@ namespace ASL.CodeEngineering
         private readonly Dictionary<string, Func<IAIProvider>> _providerFactories = new();
         private readonly Dictionary<string, Func<IAnalyzerPlugin>> _analyzerFactories = new();
         private readonly Dictionary<string, Func<ICodeRunnerPlugin>> _runnerFactories = new();
+        private readonly Dictionary<string, Func<IBuildTestRunner>> _buildTestRunnerFactories = new();
         private IAIProvider _aiProvider = new EchoAIProvider();
         private IAnalyzerPlugin? _analyzer;
         private ICodeRunnerPlugin? _runner;
+        private IBuildTestRunner? _buildTestRunner;
         private string _projectRoot = AppContext.BaseDirectory;
 
 
@@ -32,6 +34,8 @@ namespace ASL.CodeEngineering
 
             _analyzerFactories["Todo"] = () => new TodoAnalyzer();
             _runnerFactories["DotnetVersion"] = () => new DotnetVersionRunner();
+            _buildTestRunnerFactories["Dotnet"] = () => new DotnetBuildTestRunner();
+            _buildTestRunnerFactories["Python"] = () => new PythonBuildTestRunner();
 
             foreach (var pair in AIProviderLoader.LoadProviders(AppContext.BaseDirectory))
             {
@@ -51,12 +55,20 @@ namespace ASL.CodeEngineering
                     _runnerFactories[pair.Key] = pair.Value;
             }
 
+            foreach (var pair in PluginLoader.LoadBuildTestRunners(AppContext.BaseDirectory))
+            {
+                if (!_buildTestRunnerFactories.ContainsKey(pair.Key))
+                    _buildTestRunnerFactories[pair.Key] = pair.Value;
+            }
+
             ProviderComboBox.ItemsSource = _providerFactories.Keys;
             ProviderComboBox.SelectedIndex = 0;
             AnalyzerComboBox.ItemsSource = _analyzerFactories.Keys;
             AnalyzerComboBox.SelectedIndex = _analyzerFactories.Count > 0 ? 0 : -1;
             RunnerComboBox.ItemsSource = _runnerFactories.Keys;
             RunnerComboBox.SelectedIndex = _runnerFactories.Count > 0 ? 0 : -1;
+            BuildTestRunnerComboBox.ItemsSource = _buildTestRunnerFactories.Keys;
+            BuildTestRunnerComboBox.SelectedIndex = _buildTestRunnerFactories.Count > 0 ? 0 : -1;
 
             LoadProjectTree(_projectRoot);
         }
@@ -85,6 +97,15 @@ namespace ASL.CodeEngineering
                 _runnerFactories.TryGetValue(key, out var factory))
             {
                 _runner = factory();
+            }
+        }
+
+        private void BuildTestRunnerComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (BuildTestRunnerComboBox.SelectedItem is string key &&
+                _buildTestRunnerFactories.TryGetValue(key, out var factory))
+            {
+                _buildTestRunner = factory();
             }
         }
 
@@ -173,6 +194,54 @@ namespace ASL.CodeEngineering
             finally
             {
                 RunButton.IsEnabled = true;
+            }
+        }
+
+        private async void BuildButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_buildTestRunner is null)
+                return;
+
+            BuildButton.IsEnabled = false;
+            StatusTextBlock.Text = "Building...";
+            try
+            {
+                var result = await _buildTestRunner.BuildAsync(_projectRoot, CancellationToken.None);
+                ResponseTextBox.Text = result;
+                StatusTextBlock.Text = "Done";
+            }
+            catch (Exception ex)
+            {
+                ResponseTextBox.Text = ex.Message;
+                StatusTextBlock.Text = "Error";
+            }
+            finally
+            {
+                BuildButton.IsEnabled = true;
+            }
+        }
+
+        private async void TestButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_buildTestRunner is null)
+                return;
+
+            TestButton.IsEnabled = false;
+            StatusTextBlock.Text = "Testing...";
+            try
+            {
+                var result = await _buildTestRunner.TestAsync(_projectRoot, CancellationToken.None);
+                ResponseTextBox.Text = result;
+                StatusTextBlock.Text = "Done";
+            }
+            catch (Exception ex)
+            {
+                ResponseTextBox.Text = ex.Message;
+                StatusTextBlock.Text = "Error";
+            }
+            finally
+            {
+                TestButton.IsEnabled = true;
             }
         }
 

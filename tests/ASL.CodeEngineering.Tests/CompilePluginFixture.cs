@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
@@ -17,6 +18,7 @@ public class CompilePluginFixture : IDisposable
         Directory.CreateDirectory(Path.Combine(BaseDirectory, "plugins"));
         CompileAnalyzer();
         CompileRunner();
+        CompileBuildTestRunner();
     }
 
     private void CompileAnalyzer()
@@ -53,15 +55,36 @@ public class DummyRunner : ICodeRunnerPlugin
         Compile(code, "DummyRunner.dll");
     }
 
-    private void Compile(string source, string fileName)
+    private void CompileBuildTestRunner()
+    {
+        const string code = """
+using System.Threading;
+using System.Threading.Tasks;
+using ASL.CodeEngineering.AI;
+
+public class DummyBuildTestRunner : IBuildTestRunner
+{
+    public string Name => \"DummyBuildTestRunner\";
+    public Task<string> BuildAsync(string path, CancellationToken cancellationToken = default)
+        => Task.FromResult(\"built:\" + path);
+    public Task<string> TestAsync(string path, CancellationToken cancellationToken = default)
+        => Task.FromResult(\"tested:\" + path);
+}
+""";
+        Compile(code, "DummyBuildTestRunner.dll", typeof(IBuildTestRunner));
+    }
+
+    private void Compile(string source, string fileName, Type? interfaceType = null)
     {
         var syntax = CSharpSyntaxTree.ParseText(source);
-        var references = new[]
+        var references = new List<MetadataReference>
         {
             MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
             MetadataReference.CreateFromFile(typeof(Task).Assembly.Location),
             MetadataReference.CreateFromFile(typeof(IAnalyzerPlugin).Assembly.Location)
         };
+        if (interfaceType != null)
+            references.Add(MetadataReference.CreateFromFile(interfaceType.Assembly.Location));
 
         var compilation = CSharpCompilation.Create(
             Path.GetFileNameWithoutExtension(fileName),
