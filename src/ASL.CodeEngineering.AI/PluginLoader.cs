@@ -72,8 +72,7 @@ public static class PluginLoader
                     if (plugins.ContainsKey(name!))
                     {
                         var message = $"Duplicate plugin name '{name}' found in '{file}'. Original from '{sources[name!]}'";
-                        Debug.WriteLine(message);
-                        continue;
+                        throw new InvalidOperationException(message);
                     }
                     plugins[name!] = () => (T)Activator.CreateInstance(type)!;
                     sources[name!] = file;
