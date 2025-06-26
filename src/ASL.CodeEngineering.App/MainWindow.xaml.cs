@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 using ASL.CodeEngineering.AI;
 
 namespace ASL.CodeEngineering
@@ -8,12 +10,27 @@ namespace ASL.CodeEngineering
     public partial class MainWindow : Window
     {
 
-        private readonly IAIProvider _aiProvider = new EchoAIProvider();
+        private readonly Dictionary<string, Func<IAIProvider>> _providerFactories = new();
+        private IAIProvider _aiProvider = new EchoAIProvider();
 
 
         public MainWindow()
         {
             InitializeComponent();
+
+            _providerFactories["Echo"] = () => new EchoAIProvider();
+            _providerFactories["OpenAI"] = () => new OpenAIProvider();
+            ProviderComboBox.ItemsSource = _providerFactories.Keys;
+            ProviderComboBox.SelectedIndex = 0;
+        }
+
+        private void ProviderComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ProviderComboBox.SelectedItem is string key &&
+                _providerFactories.TryGetValue(key, out var factory))
+            {
+                _aiProvider = factory();
+            }
         }
 
 
