@@ -223,7 +223,7 @@ namespace ASL.CodeEngineering
             StatusTextBlock.Text = "Running...";
             try
             {
-                var result = await _runner.RunAsync(AppContext.BaseDirectory, CancellationToken.None);
+                var result = await _runner.RunAsync(_projectRoot, CancellationToken.None);
                 ResponseTextBox.Text = result;
                 StatusTextBlock.Text = "Done";
             }
