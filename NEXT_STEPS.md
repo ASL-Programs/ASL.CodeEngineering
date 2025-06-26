@@ -39,3 +39,5 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Wrap `File.AppendAllText` operations in `SendButton_Click` with try/catch
 - [x] Add test for logging when `DATA_DIR` is read-only
 - [x] Run `dotnet test`
+- [x] Document workflow files in README
+- [x] Run `dotnet test`

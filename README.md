@@ -94,3 +94,19 @@ the best language or tool for each task. Future updates will integrate more AI
 providers, support plugins for new languages, and add automated learning loops
 to continuously refine its own code base.
 
+## Workflow files
+
+Several markdown files capture the project's rules and decisions. Make sure to
+review and update them as part of your development process:
+
+- `AGENTS.md` – overarching roadmap and guidelines. Mark items complete here.
+- `NEXT_STEPS.md` – running log of planned actions. Keep this file current as
+  tasks progress.
+- `REFERENCE_FILES.md` – list of documents or configs worth revisiting. Add
+  entries whenever new references are created.
+- `LANGUAGE_DECISIONS.md` – explains why each programming language or tool is
+  used. Update it after significant changes.
+
+Always consult these files before you start work and amend them whenever your
+contributions affect the workflow.
+
