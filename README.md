@@ -9,7 +9,9 @@ To launch the WPF application, run `dotnet run --project src/ASL.CodeEngineering
 The UI uses WPF and therefore runs only on Windows systems.
 
 Tests can be run with `dotnet test` from the repository root. The .NET SDK must
-be installed and no additional setup is required.
+be installed and no additional setup is required. Because the test project
+targets `net7.0-windows` with WPF, `dotnet test` must be run on a Windows
+machine.
 
 Initial structure for the autonomous polyglot code engineering system.
 
