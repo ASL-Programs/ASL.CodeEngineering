@@ -46,3 +46,7 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Adjust PythonBuildTestRunnerTests for new log directory
 - [x] Document new reference in REFERENCE_FILES
 - [x] Run `dotnet test`
+
+- [x] Pass `_projectRoot` to runner in RunButton_Click
+- [x] Add MainWindowRunnerTests verifying RunButtonClick uses project root
+- [x] Run `dotnet test`
