@@ -1,4 +1,4 @@
-# AGENT.md - ASL.CodeEngineering  
+# AGENTS.md - ASL.CodeEngineering  
 ### Autonomous Polyglot AI Software Engineer for Windows (.exe)
 
 ---
@@ -7,9 +7,9 @@
 
 ### 1. Completed Tasks MUST Always Be Checked Off
 
-- **Every task or subtask that is completed MUST be checked in this TODO.md file. No exceptions!**
+- **Every task or subtask that is completed MUST be checked in this AGENTS.md file. No exceptions!**
     - The `[ ]` MUST be replaced with `[x]` immediately after completion.
-    - The system MUST NOT proceed if TODO.md is not up-to-date.
+    - The system MUST NOT proceed if AGENTS.md is not up-to-date.
 
 ---
 
@@ -44,7 +44,7 @@
 - **A dedicated file `LANGUAGE_DECISIONS.md` MUST be kept and updated, explaining:**
     - Which programming languages are used, for which modules.
     - *Why* each language/tech was chosen (performance, ecosystem, AI support, libraries, platform integration, etc.).
-    - This file must be re-examined and updated after *every* major change or after reading `Agent.md`.
+    - This file must be re-examined and updated after *every* major change or after reading `AGENTS.md`.
     - Example outline for the file:
         ```
         ## Language & Technology Decisions
@@ -68,11 +68,11 @@
 ### 5. Cross-Reference and Revisit Logic
 
 - **Whenever starting a new task, returning to a project, or troubleshooting, the AI (or user) MUST consult:**
-    - `TODO.md` (for current progress and what’s next)
+    - `AGENTS.md` (for current progress and what’s next)
     - `NEXT_STEPS.md` (for the precise step-by-step runbook)
     - `REFERENCE_FILES.md` (for what documents, configs, or artifacts might be needed)
     - `LANGUAGE_DECISIONS.md` (for language/tech choices and their justifications)
-    - `Agent.md` (for top-level agent rules and architecture)
+    - `AGENTS.md` (for top-level agent rules and architecture)
 - *Failure to do this review is considered a process violation and MUST be fixed before continuing.*
 
 ---
@@ -81,7 +81,7 @@
 
 - **Never skip these rule checks!**  
   This ensures all progress, decisions, references, and language choices are transparent, auditable, and always up-to-date.  
-  This rule set must appear at the very start of TODO.md and must be enforced by any AI or human contributor.
+  This rule set must appear at the very start of AGENTS.md and must be enforced by any AI or human contributor.
 
 ---
 
@@ -90,7 +90,7 @@
 > **ASL.CodeEngineering must be developed as a truly polyglot, self-improving autonomous software engineer for Windows:**
 > - All components must be written in the best-suited programming language and technology for their function (C#, Python, C++, Java, R, JavaScript, Bash, etc.).
 > - The application itself is a portable, local-first Windows executable (WPF-based .exe), with all data, logs, configs, models, and code stored ONLY in the project root directory.
-> - The system continuously learns, self-upgrades, and applies autonomous improvements—both to itself and to any user-given project or roadmap (TODO.md).
+> - The system continuously learns, self-upgrades, and applies autonomous improvements—both to itself and to any user-given project or roadmap (AGENTS.md).
 
 ---
 
@@ -132,7 +132,7 @@
     - On “Start Learning”, the agent continuously explores, learns, and self-upgrades using online sources, AI chats, open-source mining, and self-analysis
     - Seeks to produce and propose better versions of itself—algorithms, workflows, refactorings, and documentation
 - [ ] 3.2. **Task-Focused Conditional Learning Mode**
-    - On “Pause” (or when autonomous learning is disabled), focus solely on user-assigned tasks (e.g., provided TODO.md, code review, project improvements)
+    - On “Pause” (or when autonomous learning is disabled), focus solely on user-assigned tasks (e.g., provided AGENTS.md, code review, project improvements)
     - While working, all actions (build, test, fix, optimize) are logged as new learning episodes
     - **If a problem/error cannot be solved using the local knowledge base, the system automatically resumes online research and AI queries—once solved, returns to focused task mode**
     - Both learning layers (autonomous, task-focused) are logged and analyzed for future improvement
@@ -141,7 +141,7 @@
 
 ## 4. Autonomous Project Engineering & Refactoring
 
-- [ ] 4.1. Ingest and understand any roadmap (TODO.md), project folder, or legacy codebase (multi-language OK)
+- [ ] 4.1. Ingest and understand any roadmap (AGENTS.md), project folder, or legacy codebase (multi-language OK)
 - [ ] 4.2. Auto-plan project execution: break down tasks, select optimal language/tech per task, schedule build/test/integration
 - [ ] 4.3. For each module:
     - Generate code in the best-suited language
@@ -163,7 +163,7 @@
 
 ## 6. User Interaction & Control
 
-- [ ] 6.1. User can select/assign any folder as the project root (MCP), provide TODO.md or custom tasks
+- [ ] 6.1. User can select/assign any folder as the project root (MCP), provide AGENTS.md or custom tasks
 - [ ] 6.2. Show all learning, progress, and self-upgrade suggestions; user can accept/rollback any changes
 - [ ] 6.3. Option to pause/resume autonomous learning at any time
 - [ ] 6.4. All code, data, and models stay local in the project directory
