@@ -20,3 +20,4 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Run `dotnet test`
 - [x] Log SendChatAsync exceptions to `logs` directory
 - [x] Notify user when summary generation fails
+- [x] Document test environment requirements in README
