@@ -40,6 +40,10 @@ public class PythonBuildTestRunner : IBuildTestRunner
         var error = await process.StandardError.ReadToEndAsync();
         await process.WaitForExitAsync(ct);
         var result = string.IsNullOrWhiteSpace(error) ? output : output + Environment.NewLine + error;
+        if (process.ExitCode != 0)
+        {
+            result += Environment.NewLine + $"Exit code: {process.ExitCode}";
+        }
         Log(op, result);
         return result.Trim();
     }
