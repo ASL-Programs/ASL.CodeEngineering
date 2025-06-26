@@ -96,10 +96,10 @@
 
 ## 0. Project Setup & Core Principles
 
-- [ ] 0.1. Initialize a WPF project for ASL.CodeEngineering (.exe, portable, local-only)
-- [ ] 0.2. Structure all data, logs, configs, plugins, and code under the project root (never use AppData or cloud)
-- [ ] 0.3. Set up modular, extensible architecture (plugins/extensions for AI, analyzers, code runners, etc.)
-- [ ] 0.4. Create initial folders: `/data`, `/logs`, `/plugins`, `/ai_providers`, `/knowledge_base`, `/code`
+- [x] 0.1. Initialize a WPF project for ASL.CodeEngineering (.exe, portable, local-only)
+- [x] 0.2. Structure all data, logs, configs, plugins, and code under the project root (never use AppData or cloud)
+- [x] 0.3. Set up modular, extensible architecture (plugins/extensions for AI, analyzers, code runners, etc.)
+- [x] 0.4. Create initial folders: `/data`, `/logs`, `/plugins`, `/ai_providers`, `/knowledge_base`, `/code`
 - [ ] 0.5. Maintain absolute data sovereignty: nothing leaves the project directory
 
 ---
@@ -107,20 +107,20 @@
 ## 1. Multi-AI & Local AI Integration
 
 - [ ] 1.1. Integrate multiple AI providers: OpenAI, Claude, Gemini, and LocalAI (Llama, Ollama, GPT4All, etc.)
-- [ ] 1.2. Use modular AIProvider abstraction for easy future integrations
-- [ ] 1.3. Archive every AI's outputs, code, logs, chat, and learning under `/data/{aiName}/`
+- [x] 1.2. Use modular AIProvider abstraction for easy future integrations
+- [x] 1.3. Archive every AI's outputs, code, logs, chat, and learning under `/data/{aiName}/`
 - [ ] 1.4. Maintain a unified meta-knowledge base for cross-AI comparison, benchmarking, and insights
-- [ ] 1.5. All data, models, and learning are portable and stored locally
+- [x] 1.5. All data, models, and learning are portable and stored locally
 
 ---
 
 ## 2. Hyper-Advanced Polyglot Code Editor & Build/Test
 
-- [ ] 2.1. Integrate an advanced code editor (AvalonEdit or similar):
-    - Support for multi-language syntax, snippets, navigation, and real-time linting
-    - Project explorer: user can select or assign any folder as a project (MCP)
+ - [x] 2.1. Integrate an advanced code editor (AvalonEdit or similar):
+     - Support for multi-language syntax, snippets, navigation, and real-time linting
+     - Project explorer: user can select or assign any folder as a project (MCP)
 - [ ] 2.2. For every module or feature, **AI must select and implement the best language/technology** (C#, Python, C++, Java, R, JS, Bash, etc.)
-- [ ] 2.3. Implement automated build/test runners for each supported language (dotnet, pip/pytest, gcc/clang, javac, Rscript, npm, etc.)
+ - [x] 2.3. Implement automated build/test runners for each supported language (dotnet, pip/pytest, gcc/clang, javac, Rscript, npm, etc.)
 - [ ] 2.4. Automatically generate and manage glue code/wrappers for interop (e.g., Python↔C#, C++↔.NET, etc.)
 - [ ] 2.5. Benchmark, compare, and meta-learn which languages/tools deliver the best results for each use-case
 
@@ -163,10 +163,10 @@
 
 ## 6. User Interaction & Control
 
-- [ ] 6.1. User can select/assign any folder as the project root (MCP), provide AGENTS.md or custom tasks
-- [ ] 6.2. Show all learning, progress, and self-upgrade suggestions; user can accept/rollback any changes
-- [ ] 6.3. Option to pause/resume autonomous learning at any time
-- [ ] 6.4. All code, data, and models stay local in the project directory
+ - [x] 6.1. User can select/assign any folder as the project root (MCP), provide AGENTS.md or custom tasks
+ - [ ] 6.2. Show all learning, progress, and self-upgrade suggestions; user can accept/rollback any changes
+ - [ ] 6.3. Option to pause/resume autonomous learning at any time
+ - [x] 6.4. All code, data, and models stay local in the project directory
 
 ---
 
