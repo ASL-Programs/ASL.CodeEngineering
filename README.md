@@ -34,7 +34,9 @@ Initial structure for the autonomous polyglot code engineering system.
 
 Providers must implement the `IAIProvider` interface defined in
 `src/ASL.CodeEngineering.AI/IAIProvider.cs`. New providers can be placed under
-`ai_providers/` and referenced from the application. The example
+`ai_providers/` and the application will automatically scan this folder for
+provider assemblies at startup. Dropping a compiled DLL into the directory makes
+it appear in the provider list. The example
 `OpenAIProvider` reads its API key from the `OPENAI_API_KEY` environment
 variable or a local `openai_api_key.txt` file. When using the file approach,
 place `openai_api_key.txt` in the same directory as the built application

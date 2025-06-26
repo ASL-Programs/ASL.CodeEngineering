@@ -20,6 +20,13 @@ namespace ASL.CodeEngineering
 
             _providerFactories["Echo"] = () => new EchoAIProvider();
             _providerFactories["OpenAI"] = () => new OpenAIProvider();
+
+            foreach (var pair in AIProviderLoader.LoadProviders(AppContext.BaseDirectory))
+            {
+                if (!_providerFactories.ContainsKey(pair.Key))
+                    _providerFactories[pair.Key] = pair.Value;
+            }
+
             ProviderComboBox.ItemsSource = _providerFactories.Keys;
             ProviderComboBox.SelectedIndex = 0;
         }
