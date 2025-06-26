@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -17,6 +18,7 @@ public static class AIProviderLoader
     {
         baseDirectory ??= AppContext.BaseDirectory;
         var providers = new Dictionary<string, Func<IAIProvider>>();
+        var sourceFiles = new Dictionary<string, string>();
         var path = Path.Combine(baseDirectory, "ai_providers");
         if (!Directory.Exists(path))
             return providers;
@@ -56,8 +58,19 @@ public static class AIProviderLoader
                 {
                     var instance = (IAIProvider)Activator.CreateInstance(type)!;
                     var name = instance.Name;
-                    if (!string.IsNullOrWhiteSpace(name) && !providers.ContainsKey(name))
-                        providers[name] = () => (IAIProvider)Activator.CreateInstance(type)!;
+                    if (string.IsNullOrWhiteSpace(name))
+                        continue;
+
+                    if (providers.ContainsKey(name))
+                    {
+                        var message = $"Duplicate AI provider name '{name}' found in '{file}'. " +
+                                       $"Original provider from '{sourceFiles[name]}'.";
+                        Debug.WriteLine(message);
+                        continue;
+                    }
+
+                    providers[name] = () => (IAIProvider)Activator.CreateInstance(type)!;
+                    sourceFiles[name] = file;
                 }
                 catch
                 {
@@ -66,6 +79,8 @@ public static class AIProviderLoader
             }
         }
 
-        return providers;
+        return providers
+            .OrderBy(p => p.Key)
+            .ToDictionary(p => p.Key, p => p.Value);
     }
 }
