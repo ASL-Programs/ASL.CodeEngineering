@@ -132,6 +132,7 @@ namespace ASL.CodeEngineering
                 response = ex.Message;
                 ResponseTextBox.Text = ex.Message;
                 StatusTextBlock.Text = "Error";
+                LogError("SendChat", ex);
             }
 
             SendButton.IsEnabled = true;
@@ -154,6 +155,8 @@ namespace ASL.CodeEngineering
             catch (Exception ex)
             {
                 summary = $"[error: {ex.Message}]";
+                LogError("SummaryGeneration", ex);
+                StatusTextBlock.Text = "Summary Error";
             }
 
             string knowledgeDir = Path.Combine(AppContext.BaseDirectory, "knowledge_base", providerName);
@@ -306,6 +309,14 @@ namespace ASL.CodeEngineering
             {
                 parentItem.Items.Add(new TreeViewItem { Header = Path.GetFileName(file), Tag = file });
             }
+        }
+
+        private static void LogError(string operation, Exception ex)
+        {
+            var logsDir = Path.Combine(AppContext.BaseDirectory, "logs");
+            Directory.CreateDirectory(logsDir);
+            var file = Path.Combine(logsDir, $"{operation}_{DateTime.UtcNow:yyyyMMdd_HHmmss}.log");
+            File.WriteAllText(file, ex.ToString());
         }
     }
 }

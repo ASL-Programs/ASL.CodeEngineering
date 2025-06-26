@@ -18,3 +18,5 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Update loaders to detect duplicate plugins/providers and throw descriptive exceptions
 - [x] Add unit tests verifying duplicate detection
 - [x] Run `dotnet test`
+- [x] Log SendChatAsync exceptions to `logs` directory
+- [x] Notify user when summary generation fails
