@@ -30,7 +30,14 @@ Initial structure for the autonomous polyglot code engineering system.
 
 You can override the default locations of the `ai_providers` and `plugins`
 directories by setting the `AI_PROVIDERS_DIR` or `PLUGINS_DIR` environment
-variables.
+variables. The application also respects the following variables for runtime
+data and logs:
+
+- `DATA_DIR` – base directory for chat logs and provider data (defaults to
+  `data/` beside the executable).
+- `KB_DIR` – directory for generated summaries and other knowledge base
+  files (defaults to `knowledge_base/`).
+- `LOGS_DIR` – directory for diagnostic logs (defaults to `logs/`).
 - `tests/` – unit tests for the provider library.
 
 ## Extending AI providers

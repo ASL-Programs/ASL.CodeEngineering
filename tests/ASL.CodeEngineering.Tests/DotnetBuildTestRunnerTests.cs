@@ -20,7 +20,8 @@ public class DotnetBuildTestRunnerTests
         var temp = Directory.CreateTempSubdirectory();
         try
         {
-            var logsDir = Path.Combine(AppContext.BaseDirectory, "logs");
+            var logsDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Environment.SetEnvironmentVariable("LOGS_DIR", logsDir);
             Directory.CreateDirectory(logsDir);
             var before = Directory.GetFiles(logsDir);
 
@@ -35,6 +36,7 @@ public class DotnetBuildTestRunnerTests
         }
         finally
         {
+            Environment.SetEnvironmentVariable("LOGS_DIR", null);
             Directory.Delete(temp.FullName, true);
         }
     }

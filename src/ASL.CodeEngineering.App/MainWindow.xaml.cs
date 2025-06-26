@@ -138,7 +138,9 @@ namespace ASL.CodeEngineering
             SendButton.IsEnabled = true;
 
             string providerName = PathHelpers.SanitizeFileName(_aiProvider.Name);
-            string dataDir = Path.Combine(AppContext.BaseDirectory, "data", providerName);
+            string baseData = Environment.GetEnvironmentVariable("DATA_DIR") ??
+                              Path.Combine(AppContext.BaseDirectory, "data");
+            string dataDir = Path.Combine(baseData, providerName);
             Directory.CreateDirectory(dataDir);
             string chatPath = Path.Combine(dataDir, "chatlog.jsonl");
             var chatEntry = new { timestamp = DateTime.UtcNow, prompt, response };
@@ -159,7 +161,9 @@ namespace ASL.CodeEngineering
                 StatusTextBlock.Text = "Summary Error";
             }
 
-            string knowledgeDir = Path.Combine(AppContext.BaseDirectory, "knowledge_base", providerName);
+            string baseKb = Environment.GetEnvironmentVariable("KB_DIR") ??
+                            Path.Combine(AppContext.BaseDirectory, "knowledge_base");
+            string knowledgeDir = Path.Combine(baseKb, providerName);
             Directory.CreateDirectory(knowledgeDir);
             string summaryPath = Path.Combine(knowledgeDir, "summaries.jsonl");
             var summaryEntry = new { timestamp = DateTime.UtcNow, summary };
@@ -313,9 +317,10 @@ namespace ASL.CodeEngineering
 
         private static void LogError(string operation, Exception ex)
         {
-            var logsDir = Path.Combine(AppContext.BaseDirectory, "logs");
-            Directory.CreateDirectory(logsDir);
-            var file = Path.Combine(logsDir, $"{operation}_{DateTime.UtcNow:yyyyMMdd_HHmmss}.log");
+            string baseLogs = Environment.GetEnvironmentVariable("LOGS_DIR") ??
+                               Path.Combine(AppContext.BaseDirectory, "logs");
+            Directory.CreateDirectory(baseLogs);
+            var file = Path.Combine(baseLogs, $"{operation}_{DateTime.UtcNow:yyyyMMdd_HHmmss}.log");
             File.WriteAllText(file, ex.ToString());
         }
     }

@@ -31,3 +31,7 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Use sanitized names for `data` and `knowledge_base` directories
 - [x] Document name sanitization requirement in `ai_providers/README.md`
 - [x] Add test verifying directories created for sanitized provider names
+- [ ] Introduce DATA_DIR, LOGS_DIR and KB_DIR environment variables
+- [ ] Document variables in README and update REFERENCE_FILES
+- [ ] Add tests for environment variable output directories
+- [ ] Run `dotnet test`
