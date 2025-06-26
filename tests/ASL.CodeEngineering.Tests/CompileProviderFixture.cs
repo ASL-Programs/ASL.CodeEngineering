@@ -14,7 +14,8 @@ public class CompileProviderFixture : IDisposable
 
     public CompileProviderFixture()
     {
-        ProvidersDirectory = Path.Combine(AppContext.BaseDirectory, "ai_providers");
+        // create a unique temp directory for compiled provider assemblies
+        ProvidersDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
         Directory.CreateDirectory(ProvidersDirectory);
         CompileDummyProvider();
     }
