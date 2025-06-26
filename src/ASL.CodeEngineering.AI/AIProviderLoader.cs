@@ -17,9 +17,13 @@ public static class AIProviderLoader
     public static IDictionary<string, Func<IAIProvider>> LoadProviders(string? baseDirectory = null)
     {
         baseDirectory ??= AppContext.BaseDirectory;
+        var envPath = Environment.GetEnvironmentVariable("AI_PROVIDERS_DIR");
+
         var providers = new Dictionary<string, Func<IAIProvider>>();
         var sourceFiles = new Dictionary<string, string>();
-        var path = Path.Combine(baseDirectory, "ai_providers");
+        var path = string.IsNullOrWhiteSpace(envPath)
+            ? Path.Combine(baseDirectory, "ai_providers")
+            : envPath;
         if (!Directory.Exists(path))
             return providers;
 

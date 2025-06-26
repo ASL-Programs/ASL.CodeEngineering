@@ -28,6 +28,10 @@ Initial structure for the autonomous polyglot code engineering system.
   - `ASL.CodeEngineering.App` – WPF application hosting the UI.
   - `ASL.CodeEngineering.AI` – library with the `IAIProvider` abstraction and
     sample providers (`EchoAIProvider`, `OpenAIProvider`).
+
+You can override the default locations of the `ai_providers` and `plugins`
+directories by setting the `AI_PROVIDERS_DIR` or `PLUGINS_DIR` environment
+variables.
 - `tests/` – unit tests for the provider library.
 
 ## Extending AI providers
@@ -43,7 +47,8 @@ Providers must implement the `IAIProvider` interface defined in
 
 The application loads every provider assembly found in this folder automatically
 at startup, so simply dropping a compiled DLL here makes it appear in the
-provider list.
+provider list. You can override this search path by setting the
+`AI_PROVIDERS_DIR` environment variable to point to a different directory.
 
 The example `OpenAIProvider` reads its API key from the `OPENAI_API_KEY` environment
 variable or a local `openai_api_key.txt` file. When using the file approach,
@@ -58,7 +63,9 @@ Analyzer and code runner plugins work just like AI providers. Implement
 `IAnalyzerPlugin` or `ICodeRunnerPlugin` in a class library that references
 `ASL.CodeEngineering.AI`, build the assembly and drop the resulting DLL into
 the `plugins/` directory next to the application executable. The application
-automatically loads all plugins found in this folder at startup.
+automatically loads all plugins found in this folder at startup. Set the
+`PLUGINS_DIR` environment variable if your plugins are located in a custom
+directory.
 
 ## Choosing an AI provider
 
