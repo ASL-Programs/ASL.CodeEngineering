@@ -35,6 +35,13 @@ Providers must implement the `IAIProvider` interface defined in
 `OpenAIProvider` reads its API key from the `OPENAI_API_KEY` environment
 variable or a local `openai_api_key.txt` file.
 
+## Choosing an AI provider
+
+When the application starts, a dropdown appears at the top of the main window
+listing all available providers. Select a provider (e.g., **Echo** or
+**OpenAI**) before sending a prompt. The selection determines which
+`IAIProvider` implementation handles your chat messages.
+
 ### Security and privacy
 
 Providers such as `OpenAIProvider` communicate with external services over the
