@@ -50,3 +50,6 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Pass `_projectRoot` to runner in RunButton_Click
 - [x] Add MainWindowRunnerTests verifying RunButtonClick uses project root
 - [x] Run `dotnet test`
+
+- [x] Add MainWindowBuildTestRunnerTests verifying BuildButtonClick and TestButtonClick use project root
+- [x] Run `dotnet test`
