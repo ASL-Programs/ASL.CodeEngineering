@@ -5,6 +5,8 @@ using System.Text.Json;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using ICSharpCode.AvalonEdit.Highlighting;
+using Forms = System.Windows.Forms;
 using ASL.CodeEngineering.AI;
 
 namespace ASL.CodeEngineering
@@ -18,6 +20,7 @@ namespace ASL.CodeEngineering
         private IAIProvider _aiProvider = new EchoAIProvider();
         private IAnalyzerPlugin? _analyzer;
         private ICodeRunnerPlugin? _runner;
+        private string _projectRoot = AppContext.BaseDirectory;
 
 
         public MainWindow()
@@ -54,6 +57,8 @@ namespace ASL.CodeEngineering
             AnalyzerComboBox.SelectedIndex = _analyzerFactories.Count > 0 ? 0 : -1;
             RunnerComboBox.ItemsSource = _runnerFactories.Keys;
             RunnerComboBox.SelectedIndex = _runnerFactories.Count > 0 ? 0 : -1;
+
+            LoadProjectTree(_projectRoot);
         }
 
         private void ProviderComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -168,6 +173,51 @@ namespace ASL.CodeEngineering
             finally
             {
                 RunButton.IsEnabled = true;
+            }
+        }
+
+        private void OpenProjectButton_Click(object sender, RoutedEventArgs e)
+        {
+            using var dialog = new Forms.FolderBrowserDialog();
+            dialog.SelectedPath = _projectRoot;
+            if (dialog.ShowDialog() == Forms.DialogResult.OK)
+            {
+                _projectRoot = dialog.SelectedPath;
+                LoadProjectTree(_projectRoot);
+            }
+        }
+
+        private void ProjectTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (e.NewValue is TreeViewItem item && File.Exists(item.Tag?.ToString()))
+            {
+                string path = item.Tag!.ToString()!;
+                CodeEditor.Load(path);
+                CodeEditor.SyntaxHighlighting = HighlightingManager.Instance.GetDefinitionByExtension(Path.GetExtension(path)) ?? HighlightingManager.Instance.GetDefinition("Text");
+            }
+        }
+
+        private void LoadProjectTree(string root)
+        {
+            ProjectTreeView.Items.Clear();
+            var rootItem = new TreeViewItem { Header = Path.GetFileName(root), Tag = root };
+            LoadDirectory(rootItem, root);
+            ProjectTreeView.Items.Add(rootItem);
+            rootItem.IsExpanded = true;
+        }
+
+        private void LoadDirectory(TreeViewItem parentItem, string path)
+        {
+            foreach (var dir in Directory.GetDirectories(path))
+            {
+                var item = new TreeViewItem { Header = Path.GetFileName(dir), Tag = dir };
+                LoadDirectory(item, dir);
+                parentItem.Items.Add(item);
+            }
+
+            foreach (var file in Directory.GetFiles(path))
+            {
+                parentItem.Items.Add(new TreeViewItem { Header = Path.GetFileName(file), Tag = file });
             }
         }
     }
