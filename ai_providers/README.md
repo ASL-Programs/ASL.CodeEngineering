@@ -38,3 +38,5 @@ dotnet build
 ```
 
 Copy `bin/Debug/<framework>/MyProvider.dll` into this `ai_providers` folder (or set the `AI_PROVIDERS_DIR` environment variable to point elsewhere).
+
+The value returned from the `Name` property is used when creating directories under `data/` and `knowledge_base/`. If your provider name includes characters that are invalid for file paths, sanitize it using `PathHelpers.SanitizeFileName` from `ASL.CodeEngineering.AI`.
