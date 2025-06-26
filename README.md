@@ -36,7 +36,11 @@ Providers must implement the `IAIProvider` interface defined in
 `src/ASL.CodeEngineering.AI/IAIProvider.cs`. New providers can be placed under
 `ai_providers/` and referenced from the application. The example
 `OpenAIProvider` reads its API key from the `OPENAI_API_KEY` environment
-variable or a local `openai_api_key.txt` file.
+variable or a local `openai_api_key.txt` file. When using the file approach,
+place `openai_api_key.txt` in the same directory as the built application
+(for example `src/ASL.CodeEngineering.App/bin/Debug/net7.0-windows/`). The
+repository `.gitignore` already excludes this file so you do not accidentally
+commit your secret key.
 
 ## Choosing an AI provider
 
