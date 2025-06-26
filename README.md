@@ -8,10 +8,9 @@ Run `dotnet build ASL.CodeEngineering.sln` to build all projects (requires the .
 To launch the WPF application, run `dotnet run --project src/ASL.CodeEngineering.App`.
 The UI uses WPF and therefore runs only on Windows systems.
 
-Tests can be run with `dotnet test` from the repository root. The .NET SDK must
-be installed and no additional setup is required. Because the test project
-targets `net7.0-windows` with WPF, `dotnet test` must be run on a Windows
-machine.
+## Testing
+
+Unit tests are run with `dotnet test` from the repository root. You need a working .NET SDK and Python installation. Because the test project targets `net7.0-windows`, tests must run on Windows. Individual tests skip automatically when required tools such as `dotnet` or `python` are missing.
 
 Initial structure for the autonomous polyglot code engineering system.
 
