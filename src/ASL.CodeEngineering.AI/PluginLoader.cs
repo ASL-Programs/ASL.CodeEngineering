@@ -21,9 +21,13 @@ public static class PluginLoader
     private static IDictionary<string, Func<T>> LoadPlugins<T>(string? baseDirectory)
     {
         baseDirectory ??= AppContext.BaseDirectory;
+        var envPath = Environment.GetEnvironmentVariable("PLUGINS_DIR");
+
         var plugins = new Dictionary<string, Func<T>>();
         var sources = new Dictionary<string, string>();
-        var path = Path.Combine(baseDirectory, "plugins");
+        var path = string.IsNullOrWhiteSpace(envPath)
+            ? Path.Combine(baseDirectory, "plugins")
+            : envPath;
         if (!Directory.Exists(path))
             return plugins;
 
