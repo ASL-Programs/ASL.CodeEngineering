@@ -27,3 +27,6 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Log loader failures to `logs` directory
 - [x] Add tests for loader logging
 - [x] Run `dotnet test`
+- [x] Create helper to sanitize provider names for file paths
+- [x] Use sanitized names for `data` and `knowledge_base` directories
+- [x] Document name sanitization requirement in `ai_providers/README.md`

@@ -137,7 +137,7 @@ namespace ASL.CodeEngineering
 
             SendButton.IsEnabled = true;
 
-            string providerName = _aiProvider.Name;
+            string providerName = PathHelpers.SanitizeFileName(_aiProvider.Name);
             string dataDir = Path.Combine(AppContext.BaseDirectory, "data", providerName);
             Directory.CreateDirectory(dataDir);
             string chatPath = Path.Combine(dataDir, "chatlog.jsonl");
