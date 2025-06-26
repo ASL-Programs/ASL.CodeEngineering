@@ -98,7 +98,8 @@ public static class PluginLoader
         Debug.WriteLine($"{context}: {ex}");
         try
         {
-            var logsDir = Path.Combine(AppContext.BaseDirectory, "logs");
+            var logsDir = Environment.GetEnvironmentVariable("LOGS_DIR") ??
+                          Path.Combine(AppContext.BaseDirectory, "logs");
             Directory.CreateDirectory(logsDir);
             var file = Path.Combine(logsDir, $"{context}_{DateTime.UtcNow:yyyyMMdd_HHmmss}.log");
             File.WriteAllText(file, ex.ToString());
