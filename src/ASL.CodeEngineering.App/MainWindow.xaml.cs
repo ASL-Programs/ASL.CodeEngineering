@@ -132,18 +132,35 @@ namespace ASL.CodeEngineering
                 ResponseTextBox.Text = ex.Message;
                 StatusTextBlock.Text = "Error";
             }
-            finally
-            {
-                SendButton.IsEnabled = true;
 
-                string providerName = _aiProvider.Name;
-                string dir = Path.Combine(AppContext.BaseDirectory, "data", providerName);
-                Directory.CreateDirectory(dir);
-                string path = Path.Combine(dir, "chatlog.jsonl");
-                var entry = new { timestamp = DateTime.UtcNow, prompt, response };
-                string line = JsonSerializer.Serialize(entry);
-                File.AppendAllText(path, line + Environment.NewLine);
+            SendButton.IsEnabled = true;
+
+            string providerName = _aiProvider.Name;
+            string dataDir = Path.Combine(AppContext.BaseDirectory, "data", providerName);
+            Directory.CreateDirectory(dataDir);
+            string chatPath = Path.Combine(dataDir, "chatlog.jsonl");
+            var chatEntry = new { timestamp = DateTime.UtcNow, prompt, response };
+            string chatLine = JsonSerializer.Serialize(chatEntry);
+            File.AppendAllText(chatPath, chatLine + Environment.NewLine);
+
+            // Generate a brief summary using the active provider and store it in the knowledge base
+            string summary;
+            try
+            {
+                string summaryPrompt = $"Summarize the following conversation in one sentence. Prompt: {prompt} Response: {response}";
+                summary = await _aiProvider.SendChatAsync(summaryPrompt, CancellationToken.None);
             }
+            catch (Exception ex)
+            {
+                summary = $"[error: {ex.Message}]";
+            }
+
+            string knowledgeDir = Path.Combine(AppContext.BaseDirectory, "knowledge_base", providerName);
+            Directory.CreateDirectory(knowledgeDir);
+            string summaryPath = Path.Combine(knowledgeDir, "summaries.jsonl");
+            var summaryEntry = new { timestamp = DateTime.UtcNow, summary };
+            string summaryLine = JsonSerializer.Serialize(summaryEntry);
+            File.AppendAllText(summaryPath, summaryLine + Environment.NewLine);
         }
 
         private async void AnalyzeButton_Click(object sender, RoutedEventArgs e)
