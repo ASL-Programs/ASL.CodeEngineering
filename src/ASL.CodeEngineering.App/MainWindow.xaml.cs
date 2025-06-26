@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -50,20 +52,30 @@ namespace ASL.CodeEngineering
             SendButton.IsEnabled = false;
             StatusTextBlock.Text = "Sending...";
 
+            string response;
             try
             {
-                string response = await _aiProvider.SendChatAsync(prompt, CancellationToken.None);
+                response = await _aiProvider.SendChatAsync(prompt, CancellationToken.None);
                 ResponseTextBox.Text = response;
                 StatusTextBlock.Text = "Done";
             }
             catch (Exception ex)
             {
+                response = ex.Message;
                 ResponseTextBox.Text = ex.Message;
                 StatusTextBlock.Text = "Error";
             }
             finally
             {
                 SendButton.IsEnabled = true;
+
+                string providerName = _aiProvider.Name;
+                string dir = Path.Combine(AppContext.BaseDirectory, "data", providerName);
+                Directory.CreateDirectory(dir);
+                string path = Path.Combine(dir, "chatlog.jsonl");
+                var entry = new { timestamp = DateTime.UtcNow, prompt, response };
+                string line = JsonSerializer.Serialize(entry);
+                File.AppendAllText(path, line + Environment.NewLine);
             }
         }
     }
