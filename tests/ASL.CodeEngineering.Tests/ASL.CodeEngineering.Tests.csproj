@@ -1,6 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
     <IsPackable>false</IsPackable>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -9,8 +10,10 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5" />
+    <PackageReference Include="Xunit.StaFact" Version="1.0.55" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\ASL.CodeEngineering.AI\ASL.CodeEngineering.AI.csproj" />
+    <ProjectReference Include="..\src\ASL.CodeEngineering.App\ASL.CodeEngineering.App.csproj" />
   </ItemGroup>
 </Project>
