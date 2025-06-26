@@ -145,7 +145,15 @@ namespace ASL.CodeEngineering
             string chatPath = Path.Combine(dataDir, "chatlog.jsonl");
             var chatEntry = new { timestamp = DateTime.UtcNow, prompt, response };
             string chatLine = JsonSerializer.Serialize(chatEntry);
-            File.AppendAllText(chatPath, chatLine + Environment.NewLine);
+            try
+            {
+                File.AppendAllText(chatPath, chatLine + Environment.NewLine);
+            }
+            catch (Exception ex)
+            {
+                LogError("ChatLogWrite", ex);
+                StatusTextBlock.Text = "Log Error";
+            }
 
             // Generate a brief summary using the active provider and store it in the knowledge base
             string summary;
@@ -168,7 +176,15 @@ namespace ASL.CodeEngineering
             string summaryPath = Path.Combine(knowledgeDir, "summaries.jsonl");
             var summaryEntry = new { timestamp = DateTime.UtcNow, summary };
             string summaryLine = JsonSerializer.Serialize(summaryEntry);
-            File.AppendAllText(summaryPath, summaryLine + Environment.NewLine);
+            try
+            {
+                File.AppendAllText(summaryPath, summaryLine + Environment.NewLine);
+            }
+            catch (Exception ex)
+            {
+                LogError("SummaryWrite", ex);
+                StatusTextBlock.Text = "Log Error";
+            }
         }
 
         private async void AnalyzeButton_Click(object sender, RoutedEventArgs e)
