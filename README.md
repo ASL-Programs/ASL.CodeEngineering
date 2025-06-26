@@ -7,6 +7,9 @@ Run `dotnet build ASL.CodeEngineering.sln` to build all projects (requires the .
 
 To launch the WPF application, run `dotnet run --project src/ASL.CodeEngineering.App`.
 
+Tests can be run with `dotnet test` from the repository root. The .NET SDK must
+be installed and no additional setup is required.
+
 Initial structure for the autonomous polyglot code engineering system.
 
 ## Repository structure
