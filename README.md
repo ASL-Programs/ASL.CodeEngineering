@@ -52,6 +52,14 @@ place `openai_api_key.txt` in the same directory as the built application
 repository `.gitignore` already excludes this file so you do not accidentally
 commit your secret key.
 
+## Extending plugins
+
+Analyzer and code runner plugins work just like AI providers. Implement
+`IAnalyzerPlugin` or `ICodeRunnerPlugin` in a class library that references
+`ASL.CodeEngineering.AI`, build the assembly and drop the resulting DLL into
+the `plugins/` directory next to the application executable. The application
+automatically loads all plugins found in this folder at startup.
+
 ## Choosing an AI provider
 
 When the application starts, a dropdown appears at the top of the main window
