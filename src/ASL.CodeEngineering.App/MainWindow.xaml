@@ -4,18 +4,28 @@
         Title="ASL.CodeEngineering" Height="350" Width="525">
     <Grid Margin="10">
         <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <ComboBox x:Name="ProviderComboBox" Grid.Row="0" Margin="0 0 0 5" SelectionChanged="ProviderComboBox_SelectionChanged" />
-        <TextBox x:Name="PromptTextBox" Grid.Row="1" Margin="0 0 0 5" />
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <ComboBox x:Name="AnalyzerComboBox" Width="150" SelectionChanged="AnalyzerComboBox_SelectionChanged" />
+            <Button x:Name="AnalyzeButton" Content="Analyze" Width="75" Margin="5 0 0 0" Click="AnalyzeButton_Click" />
+        </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <ComboBox x:Name="RunnerComboBox" Width="150" SelectionChanged="RunnerComboBox_SelectionChanged" />
+            <Button x:Name="RunButton" Content="Run" Width="75" Margin="5 0 0 0" Click="RunButton_Click" />
+        </StackPanel>
+        <TextBox x:Name="PromptTextBox" Grid.Row="3" Margin="0 0 0 5" />
+        <StackPanel Grid.Row="4" Orientation="Horizontal">
             <Button x:Name="SendButton" Content="Send" Width="75" Click="SendButton_Click" />
             <TextBlock x:Name="StatusTextBlock" Margin="10 0" VerticalAlignment="Center" />
         </StackPanel>
-        <TextBox x:Name="ResponseTextBox" Grid.Row="3" Margin="0 5 0 0" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" />
+        <TextBox x:Name="ResponseTextBox" Grid.Row="5" Margin="0 5 0 0" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" />
 
     </Grid>
 </Window>
