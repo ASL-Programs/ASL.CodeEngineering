@@ -1,5 +1,87 @@
-# TODO.md - ASL.CodeEngineering
+# AGENT.md - ASL.CodeEngineering  
 ### Autonomous Polyglot AI Software Engineer for Windows (.exe)
+
+---
+
+## PROJECT EXECUTION RULES – CRITICAL (MUST READ & APPLY)
+
+### 1. Completed Tasks MUST Always Be Checked Off
+
+- **Every task or subtask that is completed MUST be checked in this TODO.md file. No exceptions!**
+    - The `[ ]` MUST be replaced with `[x]` immediately after completion.
+    - The system MUST NOT proceed if TODO.md is not up-to-date.
+
+---
+
+### 2. Step Tracking: Always Write the Next Steps to a Separate File
+
+- **For every session, the AI (or user) MUST write out the next set of intended steps into a dedicated file: `NEXT_STEPS.md`.**
+    - Every step, decision, or change in strategy MUST be reflected here before execution.
+    - All progress must be logged *at each stage* (not only at the end).
+    - This file serves as the real-time “work log” and “runbook” for what’s being done next.
+
+---
+
+### 3. Reference Files List: Always Maintain and Update
+
+- **If there are any files (e.g., reference docs, architectural decisions, code snippets, design diagrams, config files, knowledge base notes, etc.) that may need to be re-visited, re-used, or re-examined:**
+    - The AI (or user) MUST record the filename and its purpose in `REFERENCE_FILES.md`.
+    - This list MUST be kept up-to-date, with a short note for *why* each file might be needed again.
+    - Example entry:  
+        ```
+        | File                  | Purpose/When to Review                        |
+        |-----------------------|-----------------------------------------------|
+        | Agent.md              | Agent design, all high-level decision logic   |
+        | PolyglotInterop.md    | Explains how language interop is achieved     |
+        | plugin_structure.png  | Visual of plugin system; consult before new   |
+        | configs/appsettings.json | Main app config, always keep current        |
+        ```
+
+---
+
+### 4. Language/Technology Rationale: Maintain Full Polyglot Transparency
+
+- **A dedicated file `LANGUAGE_DECISIONS.md` MUST be kept and updated, explaining:**
+    - Which programming languages are used, for which modules.
+    - *Why* each language/tech was chosen (performance, ecosystem, AI support, libraries, platform integration, etc.).
+    - This file must be re-examined and updated after *every* major change or after reading `Agent.md`.
+    - Example outline for the file:
+        ```
+        ## Language & Technology Decisions
+
+        ### 1. Core UI (WPF): C#
+        - Reason: Native Windows integration, best for .exe.
+
+        ### 2. Data Analytics: R
+        - Reason: Superior statistical libraries.
+
+        ### 3. Glue Code: Python
+        - Reason: Best interop and scripting flexibility.
+
+        (etc.)
+        ```
+    - *After* reading `Agent.md`, the AI (or user) must review and, if needed, revise this file to match the best possible language/tool choices for each subtask.
+    - **Every coding or planning session must review both `Agent.md` and `LANGUAGE_DECISIONS.md` before proceeding.**
+
+---
+
+### 5. Cross-Reference and Revisit Logic
+
+- **Whenever starting a new task, returning to a project, or troubleshooting, the AI (or user) MUST consult:**
+    - `TODO.md` (for current progress and what’s next)
+    - `NEXT_STEPS.md` (for the precise step-by-step runbook)
+    - `REFERENCE_FILES.md` (for what documents, configs, or artifacts might be needed)
+    - `LANGUAGE_DECISIONS.md` (for language/tech choices and their justifications)
+    - `Agent.md` (for top-level agent rules and architecture)
+- *Failure to do this review is considered a process violation and MUST be fixed before continuing.*
+
+---
+
+## USAGE SUMMARY
+
+- **Never skip these rule checks!**  
+  This ensures all progress, decisions, references, and language choices are transparent, auditable, and always up-to-date.  
+  This rule set must appear at the very start of TODO.md and must be enforced by any AI or human contributor.
 
 ---
 
@@ -9,16 +91,6 @@
 > - All components must be written in the best-suited programming language and technology for their function (C#, Python, C++, Java, R, JavaScript, Bash, etc.).
 > - The application itself is a portable, local-first Windows executable (WPF-based .exe), with all data, logs, configs, models, and code stored ONLY in the project root directory.
 > - The system continuously learns, self-upgrades, and applies autonomous improvements—both to itself and to any user-given project or roadmap (TODO.md).
-
----
-
-## AI-Driven Polyglot Development Principles
-
-- **No single language or technology restriction:**  
-  - Each module, helper, or feature must be written in the most optimal language for its task.
-  - All components must be automatically integrated, with glue code or wrappers as needed (interop: e.g., C#↔Python, C++ for performance, R for analytics, JS for visualization).
-- **Codex (or any AI) must benchmark and meta-learn which tools/languages work best, refactor as needed, and always optimize for maintainability, efficiency, and performance.**
-- **Result:** A truly polyglot, modular, and self-optimizing engineering system—never locked to a single stack.
 
 ---
 
