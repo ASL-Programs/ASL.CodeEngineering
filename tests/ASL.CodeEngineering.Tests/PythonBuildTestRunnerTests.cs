@@ -21,7 +21,8 @@ public class PythonBuildTestRunnerTests
         try
         {
             File.WriteAllText(Path.Combine(temp.FullName, "bad.py"), "def f(:\n");
-            var logsDir = Path.Combine(AppContext.BaseDirectory, "logs");
+            var logsDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Environment.SetEnvironmentVariable("LOGS_DIR", logsDir);
             Directory.CreateDirectory(logsDir);
             var before = Directory.GetFiles(logsDir);
 
@@ -36,6 +37,7 @@ public class PythonBuildTestRunnerTests
         }
         finally
         {
+            Environment.SetEnvironmentVariable("LOGS_DIR", null);
             Directory.Delete(temp.FullName, true);
         }
     }

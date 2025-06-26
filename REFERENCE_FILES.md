@@ -13,5 +13,6 @@ This list tracks documents, config files and other resources that may need to be
 | `README.md` | Documented environment variables |
 | `src/ASL.CodeEngineering.AI/PathHelpers.cs` | Helper for sanitizing provider names |
 | `src/ASL.CodeEngineering.App/MainWindow.xaml.cs` | Paths respect DATA_DIR, KB_DIR and LOGS_DIR |
+| `src/ASL.CodeEngineering.AI/PythonBuildTestRunner.cs` | Logs to LOGS_DIR with fallback to executable directory |
 
 Add new entries in the table above with a short explanation of why the file might be needed again.
