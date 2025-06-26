@@ -34,8 +34,9 @@ public static class AIProviderLoader
             {
                 assembly = Assembly.LoadFrom(file);
             }
-            catch
+            catch (Exception ex)
             {
+                LogError("AIProviderLoader_Load", ex);
                 continue; // Skip invalid assemblies
             }
 
@@ -75,8 +76,13 @@ public static class AIProviderLoader
                     providers[name] = () => (IAIProvider)Activator.CreateInstance(type)!;
                     sourceFiles[name] = file;
                 }
-                catch
+                catch (InvalidOperationException)
                 {
+                    throw;
+                }
+                catch (Exception ex)
+                {
+                    LogError("AIProviderLoader_Create", ex);
                     // Ignore types that fail to instantiate
                 }
             }
@@ -85,5 +91,21 @@ public static class AIProviderLoader
         return providers
             .OrderBy(p => p.Key)
             .ToDictionary(p => p.Key, p => p.Value);
+    }
+
+    private static void LogError(string context, Exception ex)
+    {
+        Debug.WriteLine($"{context}: {ex}");
+        try
+        {
+            var logsDir = Path.Combine(AppContext.BaseDirectory, "logs");
+            Directory.CreateDirectory(logsDir);
+            var file = Path.Combine(logsDir, $"{context}_{DateTime.UtcNow:yyyyMMdd_HHmmss}.log");
+            File.WriteAllText(file, ex.ToString());
+        }
+        catch
+        {
+            // ignore logging failures
+        }
     }
 }
