@@ -94,3 +94,8 @@ This file captures the current and upcoming steps for the project. It acts as th
 
 - [x] Move `tests/` bullet from README environment variables to repository structure section
 - [x] Run `dotnet test`
+- [x] Implement LocalAIProvider and register in MainWindow
+- [x] Aggregate summaries into knowledge_base/meta
+- [x] Add tests for LocalAI provider and provider list
+- [x] Mark roadmap items 1.1 and 1.4 complete and update references
+- [x] Run `dotnet test`
