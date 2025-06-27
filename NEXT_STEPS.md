@@ -105,3 +105,6 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Document duplicate provider warning in `ai_providers/README.md`
 - [x] Document duplicate plugin warning in `plugins/README.md`
 - [x] Run `dotnet test`
+
+- [x] Mention LocalAIProvider and Local provider in README
+- [x] Run `dotnet test`
