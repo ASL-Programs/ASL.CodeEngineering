@@ -107,4 +107,5 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Run `dotnet test`
 - [x] Update loaders to log and skip duplicate providers/plugins
 - [x] Update duplicate loader tests
+- [x] Mention LocalAIProvider and Local provider in README
 - [x] Run `dotnet test`

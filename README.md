@@ -26,7 +26,7 @@ Initial structure for the autonomous polyglot code engineering system.
 - `src/` – .NET source projects:
   - `ASL.CodeEngineering.App` – WPF application hosting the UI.
   - `ASL.CodeEngineering.AI` – library with the `IAIProvider` abstraction and
-    sample providers (`EchoAIProvider`, `ReverseAIProvider`, `OpenAIProvider`).
+    sample providers (`EchoAIProvider`, `ReverseAIProvider`, `OpenAIProvider`, `LocalAIProvider`).
 - `tests/` – unit tests for the provider library.
 - `.editorconfig` – formatting rules for C#, Markdown and other files. Visual
   Studio and `dotnet format` automatically apply these settings.
@@ -88,7 +88,7 @@ the duplicate is ignored and a warning is logged.
 
 When the application starts, a dropdown appears at the top of the main window
 listing all available providers. Select a provider (for example **Echo**,
-**Reverse**, or **OpenAI**) before sending a prompt. The selection determines
+**Reverse**, **Local**, or **OpenAI**) before sending a prompt. The selection determines
 which `IAIProvider` implementation handles your chat messages. If
 `DISABLE_NETWORK_PROVIDERS` is enabled, only local providers such as **Echo** and
 **Reverse** are available.
