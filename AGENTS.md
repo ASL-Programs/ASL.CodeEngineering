@@ -31,7 +31,7 @@
         ```
         | File                  | Purpose/When to Review                        |
         |-----------------------|-----------------------------------------------|
-        | Agent.md              | Agent design, all high-level decision logic   |
+        | AGENTS.md              | Agent design, all high-level decision logic   |
         | PolyglotInterop.md    | Explains how language interop is achieved     |
         | plugin_structure.png  | Visual of plugin system; consult before new   |
         | configs/appsettings.json | Main app config, always keep current        |
@@ -60,7 +60,7 @@
 
         (etc.)
         ```
-    - *After* reading `Agent.md`, the AI (or user) must review and, if needed, revise this file to match the best possible language/tool choices for each subtask.
+    - *After* reading `AGENTS.md`, the AI (or user) must review and, if needed, revise this file to match the best possible language/tool choices for each subtask.
     - **Every coding or planning session must review both `Agent.md` and `LANGUAGE_DECISIONS.md` before proceeding.**
 
 ---
