@@ -103,6 +103,17 @@ string path = InteropGenerator.CreateNodeWrapper("MyWrapper", outputDir);
 This produces `outputDir/MyWrapper/` with `MyWrapper.csproj`, `Program.cs` and `script.js`. Build it with `dotnet build` or the `DotnetBuildTestRunner`.
 
 
+## Analyzing feature requests
+
+Use `FeatureLanguageAnalyzer.Recommend` to choose a language for new features or plugins:
+
+```csharp
+string lang = FeatureLanguageAnalyzer.Recommend("Add statistical charts");
+```
+
+Run `BenchmarkHarness.RunAsync()` to gather build timings for supported languages. Results are stored in `knowledge_base/benchmarks/benchmarks.jsonl`.
+
+
 ## Choosing an AI provider
 
 When the application starts, a dropdown appears at the top of the main window
