@@ -11,11 +11,14 @@ namespace ASL.CodeEngineering.Tests;
 public class AIProviderLoaderDuplicateTests : IDisposable
 {
     private readonly string _dir;
+    private readonly string _logsDir;
 
     public AIProviderLoaderDuplicateTests()
     {
         _dir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
         Directory.CreateDirectory(Path.Combine(_dir, "ai_providers"));
+        _logsDir = Path.Combine(_dir, "logs");
+        Directory.CreateDirectory(_logsDir);
         CompileDuplicates();
     }
 
@@ -64,14 +67,22 @@ public class SecondProvider : IAIProvider
     }
 
     [Fact]
-    public void LoadProviders_DuplicateNameThrows()
+    public void LoadProviders_DuplicateNameLogsAndSkips()
     {
-        var ex = Assert.Throws<InvalidOperationException>(() => AIProviderLoader.LoadProviders(_dir));
-        Assert.Contains("Duplicate AI provider name 'Dup'", ex.Message);
+        Environment.SetEnvironmentVariable("LOGS_DIR", _logsDir);
+        var before = Directory.GetFiles(_logsDir);
+
+        var providers = AIProviderLoader.LoadProviders(_dir);
+
+        var after = Directory.GetFiles(_logsDir);
+        Assert.True(after.Length > before.Length);
+        Assert.Single(providers);
+        Environment.SetEnvironmentVariable("LOGS_DIR", null);
     }
 
     public void Dispose()
     {
+        Environment.SetEnvironmentVariable("LOGS_DIR", null);
         if (Directory.Exists(_dir))
             Directory.Delete(_dir, true);
     }

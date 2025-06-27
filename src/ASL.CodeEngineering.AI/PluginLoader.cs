@@ -73,14 +73,11 @@ public static class PluginLoader
                     if (plugins.ContainsKey(name!))
                     {
                         var message = $"Duplicate plugin name '{name}' found in '{file}'. Original from '{sources[name!]}'";
-                        throw new InvalidOperationException(message);
+                        LogError("PluginLoader_Duplicate", new InvalidOperationException(message));
+                        continue;
                     }
                     plugins[name!] = () => (T)Activator.CreateInstance(type)!;
                     sources[name!] = file;
-                }
-                catch (InvalidOperationException)
-                {
-                    throw;
                 }
                 catch (Exception ex)
                 {
