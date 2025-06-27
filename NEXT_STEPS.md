@@ -9,9 +9,9 @@ This file captures the current and upcoming steps for the project. It acts as th
 
 ### Example template
 ```
-- [ ] Set up initial project folders
-- [ ] Add AIProvider abstraction
-- [ ] Document reference files
+# - Set up initial project folders
+# - Add AIProvider abstraction
+# - Document reference files
 ```
 
 ## Current Session
