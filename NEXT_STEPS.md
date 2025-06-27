@@ -65,4 +65,7 @@ This file captures the current and upcoming steps for the project. It acts as th
 
 - [x] Create .github/labeler.yml for labeling paths
 - [x] Update REFERENCE_FILES with labeler configuration
+- [x] Update CodeQL workflow to set build-mode manual
+- [x] Add dotnet build step before analysis
 - [x] Run `dotnet test`
+- [x] Document workflow update in REFERENCE_FILES

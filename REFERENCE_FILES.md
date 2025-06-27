@@ -16,5 +16,6 @@ This list tracks documents, config files and other resources that may need to be
 | `src/ASL.CodeEngineering.AI/PythonBuildTestRunner.cs` | Logs to LOGS_DIR with fallback to executable directory |
 | `src/ASL.CodeEngineering.AI/ProcessRunner.cs` | Helper to execute processes and write logs respecting LOGS_DIR |
 | `.github/labeler.yml` | Label definitions applied by Labeler workflow |
+| `.github/workflows/codeql.yml` | CodeQL analysis workflow |
 
 Add new entries in the table above with a short explanation of why the file might be needed again.
