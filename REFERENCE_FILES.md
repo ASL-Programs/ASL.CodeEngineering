@@ -1,5 +1,6 @@
 # REFERENCE_FILES.md
 
+
 This list tracks documents, config files and other resources that may need to be revisited. Update it whenever a new reference becomes important as required by `AGENTS.md`.
 
 | File | Purpose / When to Review |
@@ -13,6 +14,8 @@ This list tracks documents, config files and other resources that may need to be
 | `src/ASL.CodeEngineering.App/MainWindow.xaml.cs` | Paths respect environment directories; duplicate plugin/provider names log warnings; handles log write errors; offline mode filter; writes shared summaries |
 | `src/ASL.CodeEngineering.AI/PythonBuildTestRunner.cs` | Logs to LOGS_DIR with fallback to executable directory |
 | `src/ASL.CodeEngineering.AI/ProcessRunner.cs` | Helper to execute processes and write logs respecting LOGS_DIR; handles log write errors |
+| `src/ASL.CodeEngineering.AI/AIProviderLoader.cs` | Loads AI providers and logs duplicate names |
+| `src/ASL.CodeEngineering.AI/PluginLoader.cs` | Loads plugins and logs duplicate names |
 | `.github/labeler.yml` | Label definitions applied by Labeler workflow |
 | `.github/workflows/codeql.yml` | CodeQL analysis workflow |
 | `.github/workflows/label.yml` | Handles PR labeling |

@@ -11,11 +11,14 @@ namespace ASL.CodeEngineering.Tests;
 public class PluginLoaderDuplicateTests : IDisposable
 {
     private readonly string _dir;
+    private readonly string _logsDir;
 
     public PluginLoaderDuplicateTests()
     {
         _dir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
         Directory.CreateDirectory(Path.Combine(_dir, "plugins"));
+        _logsDir = Path.Combine(_dir, "logs");
+        Directory.CreateDirectory(_logsDir);
         CompileDuplicates();
     }
 
@@ -62,14 +65,22 @@ public class SecondPlugin : IAnalyzerPlugin
     }
 
     [Fact]
-    public void LoadAnalyzers_DuplicateNameThrows()
+    public void LoadAnalyzers_DuplicateNameLogsAndSkips()
     {
-        var ex = Assert.Throws<InvalidOperationException>(() => PluginLoader.LoadAnalyzers(_dir));
-        Assert.Contains("Duplicate plugin name 'DupPlugin'", ex.Message);
+        Environment.SetEnvironmentVariable("LOGS_DIR", _logsDir);
+        var before = Directory.GetFiles(_logsDir);
+
+        var plugins = PluginLoader.LoadAnalyzers(_dir);
+
+        var after = Directory.GetFiles(_logsDir);
+        Assert.True(after.Length > before.Length);
+        Assert.Single(plugins);
+        Environment.SetEnvironmentVariable("LOGS_DIR", null);
     }
 
     public void Dispose()
     {
+        Environment.SetEnvironmentVariable("LOGS_DIR", null);
         if (Directory.Exists(_dir))
             Directory.Delete(_dir, true);
     }
