@@ -4,7 +4,7 @@ This list tracks documents, config files and other resources that may need to be
 
 | File | Purpose / When to Review |
 |------|--------------------------|
-| `Agent.md` | Agent design, all high-level decision logic |
+| `AGENTS.md` | Agent design, all high-level decision logic |
 | `PolyglotInterop.md` | Explains how language interop is achieved |
 | `plugin_structure.png` | Visual overview of plugin system |
 | `configs/appsettings.json` | Main app configuration; always keep current |
