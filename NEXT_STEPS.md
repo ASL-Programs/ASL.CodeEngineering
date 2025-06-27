@@ -111,3 +111,6 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Update duplicate loader tests
 - [x] Mention LocalAIProvider and Local provider in README
 - [x] Run `dotnet test`
+- [x] Document aggregator location in README
+- [x] Add `knowledge_base/meta/summaries.jsonl` to `REFERENCE_FILES.md`
+- [x] Run `dotnet test`
