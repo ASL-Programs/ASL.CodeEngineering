@@ -37,8 +37,10 @@ data and logs:
   `data/` beside the executable).
 - `KB_DIR` – directory for generated summaries and other knowledge base
   files (defaults to `knowledge_base/`).
-- `LOGS_DIR` – directory for diagnostic logs (defaults to `logs/`).
-- `DISABLE_NETWORK_PROVIDERS` – set to `1` or `true` to remove providers that
+ - `LOGS_DIR` – directory for diagnostic logs (defaults to `logs/`). When this
+   directory cannot be written to, logs fall back to a `logs/` folder located
+   beside the executable.
+ - `DISABLE_NETWORK_PROVIDERS` – set to `1` or `true` to remove providers that
   require internet access from the dropdown. Use this to enforce a fully offline
   workflow where all prompts stay inside the project directory.
 - `tests/` – unit tests for the provider library.
