@@ -27,6 +27,7 @@ Initial structure for the autonomous polyglot code engineering system.
   - `ASL.CodeEngineering.App` – WPF application hosting the UI.
   - `ASL.CodeEngineering.AI` – library with the `IAIProvider` abstraction and
     sample providers (`EchoAIProvider`, `ReverseAIProvider`, `OpenAIProvider`).
+- `tests/` – unit tests for the provider library.
 
 You can override the default locations of the `ai_providers` and `plugins`
 directories by setting the `AI_PROVIDERS_DIR` or `PLUGINS_DIR` environment
@@ -43,7 +44,6 @@ data and logs:
  - `DISABLE_NETWORK_PROVIDERS` – set to `1` or `true` to remove providers that
   require internet access from the dropdown. Use this to enforce a fully offline
   workflow where all prompts stay inside the project directory.
-- `tests/` – unit tests for the provider library.
 
 ## Extending AI providers
 
