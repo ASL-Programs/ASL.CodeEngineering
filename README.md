@@ -68,11 +68,11 @@ If two providers share the same `Name` value, the duplicate is ignored and a war
 is logged at startup.
 
 The example `OpenAIProvider` reads its API key from the `OPENAI_API_KEY` environment
-variable or a local `openai_api_key.txt` file. When using the file approach,
-place `openai_api_key.txt` in the same directory as the built application
-(for example `src/ASL.CodeEngineering.App/bin/Debug/net7.0-windows/`). The
-repository `.gitignore` already excludes this file so you do not accidentally
-commit your secret key.
+variable or a local `openai_api_key.txt` file. It also respects an optional
+`OPENAI_API_URL` variable to target a custom endpoint; when this variable is
+empty, the provider defaults to `https://api.openai.com/v1/chat/completions`.
+When using the file approach, place `openai_api_key.txt` in the same directory as the built application (for example `src/ASL.CodeEngineering.App/bin/Debug/net7.0-windows/`).
+The repository `.gitignore` already excludes this file so you do not accidentally commit your secret key.
 
 ## Extending plugins
 

@@ -119,3 +119,7 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Document wrapper usage in README
 - [x] Mark roadmap item 2.4 complete and update REFERENCE_FILES
 - [x] Run `dotnet test`
+- [x] Add OPENAI_API_URL environment variable to OpenAIProvider
+- [x] Default to https://api.openai.com/v1/chat/completions when URL is empty
+- [x] Document OPENAI_API_URL in README
+- [x] Run dotnet test
