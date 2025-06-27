@@ -100,7 +100,7 @@
 - [x] 0.2. Structure all data, logs, configs, plugins, and code under the project root (never use AppData or cloud)
 - [x] 0.3. Set up modular, extensible architecture (plugins/extensions for AI, analyzers, code runners, etc.)
 - [x] 0.4. Create initial folders: `/data`, `/logs`, `/plugins`, `/ai_providers`, `/knowledge_base`, `/code`
-- [ ] 0.5. Maintain absolute data sovereignty: nothing leaves the project directory
+- [x] 0.5. Maintain absolute data sovereignty: nothing leaves the project directory
 
 ---
 
@@ -167,6 +167,8 @@
  - [ ] 6.2. Show all learning, progress, and self-upgrade suggestions; user can accept/rollback any changes
  - [ ] 6.3. Option to pause/resume autonomous learning at any time
  - [x] 6.4. All code, data, and models stay local in the project directory
+ - [x] 6.5. Setting `DISABLE_NETWORK_PROVIDERS` removes online providers so
+       prompts never leave the project root
 
 ---
 

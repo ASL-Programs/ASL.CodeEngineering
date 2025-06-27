@@ -15,6 +15,7 @@ public class MainWindowSanitizationTests
     private class BadNameProvider : IAIProvider
     {
         public string Name => "Bad:Name";
+        public bool RequiresNetwork => false;
         public Task<string> SendChatAsync(string prompt, CancellationToken cancellationToken = default)
             => Task.FromResult("response");
     }

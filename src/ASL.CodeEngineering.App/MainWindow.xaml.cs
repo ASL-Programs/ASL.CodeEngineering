@@ -31,6 +31,7 @@ namespace ASL.CodeEngineering
             InitializeComponent();
 
             _providerFactories["Echo"] = () => new EchoAIProvider();
+            _providerFactories["Reverse"] = () => new ReverseAIProvider();
             _providerFactories["OpenAI"] = () => new OpenAIProvider();
 
             _analyzerFactories["Todo"] = () => new TodoAnalyzer();
@@ -87,6 +88,19 @@ namespace ASL.CodeEngineering
                 else
                 {
                     _buildTestRunnerFactories[pair.Key] = pair.Value;
+                }
+            }
+
+            string? disableNet = Environment.GetEnvironmentVariable("DISABLE_NETWORK_PROVIDERS");
+            bool offline = !string.IsNullOrWhiteSpace(disableNet) &&
+                           (disableNet == "1" || disableNet.Equals("true", StringComparison.OrdinalIgnoreCase));
+            if (offline)
+            {
+                foreach (var key in _providerFactories.Keys.ToList())
+                {
+                    var provider = _providerFactories[key]();
+                    if (provider.RequiresNetwork)
+                        _providerFactories.Remove(key);
                 }
             }
 

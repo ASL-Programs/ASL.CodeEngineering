@@ -14,6 +14,7 @@ public class OpenAIProvider : IAIProvider
     private readonly string? _apiKey;
 
     public string Name => "OpenAI";
+    public bool RequiresNetwork => true;
 
     public OpenAIProvider()
     {

@@ -16,6 +16,7 @@ public class MainWindowSummaryLoggingTests : IDisposable
     {
         private int _count;
         public string Name => "TwoCall";
+        public bool RequiresNetwork => false;
         public Task<string> SendChatAsync(string prompt, CancellationToken cancellationToken = default)
         {
             _count++;

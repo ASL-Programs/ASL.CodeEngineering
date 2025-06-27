@@ -77,3 +77,7 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [ ] Add tests for read-only `LOGS_DIR` ensuring no exceptions
 - [ ] Update `REFERENCE_FILES.md`
 - [ ] Run `dotnet test`
+ - [x] Document offline mode variable in README and AGENTS
+ - [x] Add ReverseAIProvider and offline filtering logic
+ - [x] Update tests for new interface and offline mode
+ - [x] Run `dotnet test`

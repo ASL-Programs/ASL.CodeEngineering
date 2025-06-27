@@ -26,7 +26,7 @@ Initial structure for the autonomous polyglot code engineering system.
 - `src/` – .NET source projects:
   - `ASL.CodeEngineering.App` – WPF application hosting the UI.
   - `ASL.CodeEngineering.AI` – library with the `IAIProvider` abstraction and
-    sample providers (`EchoAIProvider`, `OpenAIProvider`).
+    sample providers (`EchoAIProvider`, `ReverseAIProvider`, `OpenAIProvider`).
 
 You can override the default locations of the `ai_providers` and `plugins`
 directories by setting the `AI_PROVIDERS_DIR` or `PLUGINS_DIR` environment
@@ -38,6 +38,9 @@ data and logs:
 - `KB_DIR` – directory for generated summaries and other knowledge base
   files (defaults to `knowledge_base/`).
 - `LOGS_DIR` – directory for diagnostic logs (defaults to `logs/`).
+- `DISABLE_NETWORK_PROVIDERS` – set to `1` or `true` to remove providers that
+  require internet access from the dropdown. Use this to enforce a fully offline
+  workflow where all prompts stay inside the project directory.
 - `tests/` – unit tests for the provider library.
 
 ## Extending AI providers
@@ -80,9 +83,11 @@ the duplicate is ignored and a warning is logged.
 ## Choosing an AI provider
 
 When the application starts, a dropdown appears at the top of the main window
-listing all available providers. Select a provider (e.g., **Echo** or
-**OpenAI**) before sending a prompt. The selection determines which
-`IAIProvider` implementation handles your chat messages.
+listing all available providers. Select a provider (for example **Echo**,
+**Reverse**, or **OpenAI**) before sending a prompt. The selection determines
+which `IAIProvider` implementation handles your chat messages. If
+`DISABLE_NETWORK_PROVIDERS` is enabled, only local providers such as **Echo** and
+**Reverse** are available.
 
 ### Security and privacy
 
@@ -90,6 +95,9 @@ Providers such as `OpenAIProvider` communicate with external services over the
 internet. Prompts and responses are transmitted to those providers, so avoid
 sending confidential or sensitive information. API keys can be stored locally in
 `openai_api_key.txt` if you prefer not to set environment variables.
+Enable `DISABLE_NETWORK_PROVIDERS` to force the application into an offline
+mode where only local providers are available and all data remains within the
+project directory.
 
 ## Roadmap
 

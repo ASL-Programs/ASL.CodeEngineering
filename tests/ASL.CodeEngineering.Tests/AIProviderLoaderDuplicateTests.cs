@@ -46,6 +46,7 @@ using ASL.CodeEngineering.AI;
 public class FirstProvider : IAIProvider
 {
     public string Name => \"Dup\";
+    public bool RequiresNetwork => false;
     public Task<string> SendChatAsync(string prompt, CancellationToken cancellationToken = default) => Task.FromResult(prompt);
 }";
         const string code2 = @"
@@ -55,6 +56,7 @@ using ASL.CodeEngineering.AI;
 public class SecondProvider : IAIProvider
 {
     public string Name => \"Dup\";
+    public bool RequiresNetwork => false;
     public Task<string> SendChatAsync(string prompt, CancellationToken cancellationToken = default) => Task.FromResult(prompt);
 }";
         Compile(code1, "First.dll");

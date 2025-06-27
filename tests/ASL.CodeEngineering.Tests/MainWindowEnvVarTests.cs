@@ -14,6 +14,7 @@ public class MainWindowEnvVarTests : IDisposable
     private class FailingProvider : IAIProvider
     {
         public string Name => "Failing";
+        public bool RequiresNetwork => false;
         public Task<string> SendChatAsync(string prompt, System.Threading.CancellationToken cancellationToken = default)
             => throw new Exception("fail");
     }
