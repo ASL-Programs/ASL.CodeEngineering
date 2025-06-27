@@ -62,3 +62,7 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Refactor DotnetBuildTestRunner and PythonBuildTestRunner to use helper
 - [x] Update REFERENCE_FILES with new helper
 - [x] Run `dotnet test`
+
+- [x] Create .github/labeler.yml for labeling paths
+- [x] Update REFERENCE_FILES with labeler configuration
+- [x] Run `dotnet test`
