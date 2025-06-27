@@ -72,11 +72,11 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Add MainWindowSummaryLoggingTests verifying summary failure logs
 - [x] Run `dotnet test`
 
-- [ ] Wrap file writes in `MainWindow.LogError` and `ProcessRunner.Log` with try/catch
-- [ ] On failure, fall back to default directory or ignore
-- [ ] Add tests for read-only `LOGS_DIR` ensuring no exceptions
-- [ ] Update `REFERENCE_FILES.md`
-- [ ] Run `dotnet test`
+- [x] Wrap file writes in `MainWindow.LogError` and `ProcessRunner.Log` with try/catch
+- [x] On failure, fall back to default directory or ignore
+- [x] Add tests for read-only `LOGS_DIR` ensuring no exceptions
+- [x] Update `REFERENCE_FILES.md`
+- [x] Run `dotnet test`
  - [x] Document offline mode variable in README and AGENTS
  - [x] Add ReverseAIProvider and offline filtering logic
  - [x] Update tests for new interface and offline mode
