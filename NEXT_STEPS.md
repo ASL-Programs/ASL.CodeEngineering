@@ -58,3 +58,7 @@ This file captures the current and upcoming steps for the project. It acts as th
  - [x] Document duplicate warning behavior
  - [x] Add unit test for duplicate plugin warning
  - [x] Run `dotnet test`
+- [x] Introduce ProcessRunner helper for executing processes and logging
+- [x] Refactor DotnetBuildTestRunner and PythonBuildTestRunner to use helper
+- [x] Update REFERENCE_FILES with new helper
+- [x] Run `dotnet test`
