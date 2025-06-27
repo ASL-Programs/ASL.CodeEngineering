@@ -119,10 +119,10 @@
  - [x] 2.1. Integrate an advanced code editor (AvalonEdit or similar):
      - Support for multi-language syntax, snippets, navigation, and real-time linting
      - Project explorer: user can select or assign any folder as a project (MCP)
-- [ ] 2.2. For every module or feature, **AI must select and implement the best language/technology** (C#, Python, C++, Java, R, JS, Bash, etc.)
+ - [x] 2.2. For every module or feature, **AI must select and implement the best language/technology** (C#, Python, C++, Java, R, JS, Bash, etc.)
  - [x] 2.3. Implement automated build/test runners for each supported language (dotnet, pip/pytest, gcc/clang, javac, Rscript, npm, etc.)
 - [x] 2.4. Automatically generate and manage glue code/wrappers for interop (e.g., Python↔C#, C++↔.NET, etc.)
-- [ ] 2.5. Benchmark, compare, and meta-learn which languages/tools deliver the best results for each use-case
+ - [x] 2.5. Benchmark, compare, and meta-learn which languages/tools deliver the best results for each use-case
 
 ---
 

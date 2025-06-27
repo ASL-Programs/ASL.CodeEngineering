@@ -19,4 +19,9 @@ This document explains which programming languages and technologies are used acr
 ### 4. JavaScript Interop Wrappers: Node.js
 - Reason: Node.js is leveraged for lightweight script execution when a task is best served with JavaScript tooling.
 
+### 5. Language Selection & Benchmarking
+- The `FeatureLanguageAnalyzer` module inspects feature requests and suggests the best language based on keywords.
+- `BenchmarkHarness` builds sample projects with each runner and stores timing results in `knowledge_base/benchmarks/benchmarks.jsonl`.
+- Initial runs show simple .NET and Python builds complete in under a second on the test machine.
+
 Add additional sections here whenever new languages or tools are adopted or plans change.

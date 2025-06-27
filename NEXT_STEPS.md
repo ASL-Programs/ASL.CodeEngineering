@@ -130,3 +130,9 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Run `dotnet test`
 - [x] Add Build/Test runner plugin example to plugins README
 - [x] Run `dotnet test`
+- [x] Implement FeatureLanguageAnalyzer for recommending languages
+- [x] Add BenchmarkHarness storing results under knowledge_base/benchmarks
+- [x] Write unit tests for analyzer and harness
+- [x] Update README and reference files
+- [x] Mark roadmap items 2.2 and 2.5 complete
+- [x] Run `dotnet test`

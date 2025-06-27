@@ -25,5 +25,8 @@ This list tracks documents, config files and other resources that may need to be
 | `.editorconfig` | Formatting rules consumed by Visual Studio and dotnet format |
 | `src/ASL.CodeEngineering.AI/Interop/InteropGenerator.cs` | Generates wrapper projects for language interop |
 | `knowledge_base/meta/summaries.jsonl` | Aggregated summaries from all providers |
+| `src/ASL.CodeEngineering.AI/FeatureLanguageAnalyzer.cs` | Recommends languages for new features |
+| `src/ASL.CodeEngineering.AI/BenchmarkHarness.cs` | Builds sample projects and records performance |
+| `knowledge_base/benchmarks/benchmarks.jsonl` | Timing results from benchmark harness |
 
 Add new entries in the table above with a short explanation of why the file might be needed again.
