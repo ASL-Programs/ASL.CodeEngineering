@@ -89,3 +89,5 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Add `data/` and `knowledge_base/` to .gitignore
 - [x] Update `REFERENCE_FILES.md` with `.gitignore`
 - [x] Run `dotnet test`
+- [x] Append `.github/workflows/label.yml` reference to `REFERENCE_FILES.md`
+- [x] Run `dotnet test`

@@ -14,6 +14,7 @@ This list tracks documents, config files and other resources that may need to be
 | `src/ASL.CodeEngineering.AI/ProcessRunner.cs` | Helper to execute processes and write logs respecting LOGS_DIR; handles log write errors |
 | `.github/labeler.yml` | Label definitions applied by Labeler workflow |
 | `.github/workflows/codeql.yml` | CodeQL analysis workflow |
+| `.github/workflows/label.yml` | Handles PR labeling |
 | `tests/ASL.CodeEngineering.Tests/LogWriteErrorTests.cs` | Ensures log writes fall back or ignore when directory is read-only |
 | `.gitignore` | Excludes generated data and knowledge base content |
 
