@@ -81,3 +81,4 @@ This file captures the current and upcoming steps for the project. It acts as th
  - [x] Add ReverseAIProvider and offline filtering logic
  - [x] Update tests for new interface and offline mode
  - [x] Run `dotnet test`
+- [x] Document LOGS_DIR fallback behavior in README
