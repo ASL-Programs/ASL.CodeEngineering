@@ -5,9 +5,6 @@ This list tracks documents, config files and other resources that may need to be
 | File | Purpose / When to Review |
 |------|--------------------------|
 | `AGENTS.md` | Agent design, all high-level decision logic |
-| `PolyglotInterop.md` | Explains how language interop is achieved |
-| `plugin_structure.png` | Visual overview of plugin system |
-| `configs/appsettings.json` | Main app configuration; always keep current |
 | `ai_providers/README.md` | Quick reference for building custom providers |
 | `plugins/README.md` | Quick reference for building plugins |
 | `README.md` | Environment variables and duplicate name warnings |

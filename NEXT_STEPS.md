@@ -82,3 +82,7 @@ This file captures the current and upcoming steps for the project. It acts as th
  - [x] Update tests for new interface and offline mode
  - [x] Run `dotnet test`
 - [x] Document LOGS_DIR fallback behavior in README
+
+- [x] Verify existence of PolyglotInterop.md, plugin_structure.png and configs/appsettings.json
+- [x] Remove missing references from `REFERENCE_FILES.md`
+- [x] Run `dotnet test`
