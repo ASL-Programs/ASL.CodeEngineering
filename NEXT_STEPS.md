@@ -91,3 +91,6 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Run `dotnet test`
 - [x] Append `.github/workflows/label.yml` reference to `REFERENCE_FILES.md`
 - [x] Run `dotnet test`
+
+- [x] Move `tests/` bullet from README environment variables to repository structure section
+- [x] Run `dotnet test`
