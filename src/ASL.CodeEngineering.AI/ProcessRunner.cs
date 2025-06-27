@@ -35,8 +35,27 @@ public static class ProcessRunner
     {
         var logsDir = Environment.GetEnvironmentVariable("LOGS_DIR") ??
                       Path.Combine(AppContext.BaseDirectory, "logs");
-        Directory.CreateDirectory(logsDir);
-        var file = Path.Combine(logsDir, $"{prefix}_{DateTime.UtcNow:yyyyMMdd_HHmmss}.log");
-        File.WriteAllText(file, content);
+
+        if (!TryWrite(logsDir))
+        {
+            var fallback = Path.Combine(AppContext.BaseDirectory, "logs");
+            if (fallback != logsDir)
+                TryWrite(fallback);
+        }
+
+        bool TryWrite(string dir)
+        {
+            try
+            {
+                Directory.CreateDirectory(dir);
+                var file = Path.Combine(dir, $"{prefix}_{DateTime.UtcNow:yyyyMMdd_HHmmss}.log");
+                File.WriteAllText(file, content);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
