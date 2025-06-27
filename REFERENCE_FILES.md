@@ -15,5 +15,6 @@ This list tracks documents, config files and other resources that may need to be
 | `.github/labeler.yml` | Label definitions applied by Labeler workflow |
 | `.github/workflows/codeql.yml` | CodeQL analysis workflow |
 | `tests/ASL.CodeEngineering.Tests/LogWriteErrorTests.cs` | Ensures log writes fall back or ignore when directory is read-only |
+| `.gitignore` | Excludes generated data and knowledge base content |
 
 Add new entries in the table above with a short explanation of why the file might be needed again.
