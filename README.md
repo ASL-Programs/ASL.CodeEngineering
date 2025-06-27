@@ -28,6 +28,8 @@ Initial structure for the autonomous polyglot code engineering system.
   - `ASL.CodeEngineering.AI` – library with the `IAIProvider` abstraction and
     sample providers (`EchoAIProvider`, `ReverseAIProvider`, `OpenAIProvider`).
 - `tests/` – unit tests for the provider library.
+- `.editorconfig` – formatting rules for C#, Markdown and other files. Visual
+  Studio and `dotnet format` automatically apply these settings.
 
 You can override the default locations of the `ai_providers` and `plugins`
 directories by setting the `AI_PROVIDERS_DIR` or `PLUGINS_DIR` environment

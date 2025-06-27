@@ -99,3 +99,6 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Add tests for LocalAI provider and provider list
 - [x] Mark roadmap items 1.1 and 1.4 complete and update references
 - [x] Run `dotnet test`
+- [x] Add `.editorconfig` with C#, Markdown and general formatting rules
+- [x] Reference `.editorconfig` in README and REFERENCE_FILES
+- [x] Run `dotnet test`
