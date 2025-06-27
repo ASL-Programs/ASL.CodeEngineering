@@ -10,7 +10,7 @@ The UI uses WPF and therefore runs only on Windows systems.
 
 ## Testing
 
-Unit tests are run with `dotnet test` from the repository root. You need a working .NET SDK and Python installation. Because the test project targets `net7.0-windows`, tests must run on Windows. Individual tests skip automatically when required tools such as `dotnet` or `python` are missing.
+Unit tests are run with `dotnet test` from the repository root. You need a working .NET SDK, Python and Node.js installation. Because the test project targets `net7.0-windows`, tests must run on Windows. Individual tests skip automatically when required tools such as `dotnet`, `python` or `node` are missing.
 
 Initial structure for the autonomous polyglot code engineering system.
 
@@ -93,6 +93,14 @@ string path = InteropGenerator.CreatePythonWrapper("MyWrapper", outputDir);
 ```
 
 The method creates `outputDir/MyWrapper/` with `MyWrapper.csproj`, `Program.cs` and `script.py`. Build it using `dotnet build` or the `DotnetBuildTestRunner`.
+
+To create a wrapper that executes a Node.js script:
+
+```csharp
+string path = InteropGenerator.CreateNodeWrapper("MyWrapper", outputDir);
+```
+
+This produces `outputDir/MyWrapper/` with `MyWrapper.csproj`, `Program.cs` and `script.js`. Build it with `dotnet build` or the `DotnetBuildTestRunner`.
 
 
 ## Choosing an AI provider

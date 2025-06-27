@@ -16,4 +16,7 @@ This document explains which programming languages and technologies are used acr
 ### 3. Data Analytics: R
 - Reason: Provides strong statistical libraries.
 
+### 4. JavaScript Interop Wrappers: Node.js
+- Reason: Node.js is leveraged for lightweight script execution when a task is best served with JavaScript tooling.
+
 Add additional sections here whenever new languages or tools are adopted or plans change.
