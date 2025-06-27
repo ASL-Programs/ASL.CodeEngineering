@@ -86,3 +86,6 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Verify existence of PolyglotInterop.md, plugin_structure.png and configs/appsettings.json
 - [x] Remove missing references from `REFERENCE_FILES.md`
 - [x] Run `dotnet test`
+- [x] Add `data/` and `knowledge_base/` to .gitignore
+- [x] Update `REFERENCE_FILES.md` with `.gitignore`
+- [x] Run `dotnet test`
