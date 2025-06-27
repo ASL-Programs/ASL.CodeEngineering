@@ -123,3 +123,8 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Default to https://api.openai.com/v1/chat/completions when URL is empty
 - [x] Document OPENAI_API_URL in README
 - [x] Run dotnet test
+- [x] Extend InteropGenerator with Node wrapper
+- [x] Add InteropGenerator Node wrapper tests
+- [x] Document Node requirement in README
+- [x] Update LANGUAGE_DECISIONS with Node.js section
+- [x] Run `dotnet test`
