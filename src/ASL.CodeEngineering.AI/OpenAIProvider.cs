@@ -9,9 +9,10 @@ namespace ASL.CodeEngineering.AI;
 
 public class OpenAIProvider : IAIProvider
 {
-    private const string ApiUrl = "https://api.openai.com/v1/chat/completions";
+    private const string DefaultApiUrl = "https://api.openai.com/v1/chat/completions";
     private static readonly HttpClient HttpClient = new();
     private readonly string? _apiKey;
+    private readonly string _apiUrl;
 
     public string Name => "OpenAI";
     public bool RequiresNetwork => true;
@@ -20,6 +21,9 @@ public class OpenAIProvider : IAIProvider
     {
         _apiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY") ??
                   ReadApiKeyFromFile();
+        _apiUrl = Environment.GetEnvironmentVariable("OPENAI_API_URL");
+        if (string.IsNullOrWhiteSpace(_apiUrl))
+            _apiUrl = DefaultApiUrl;
     }
 
     public async Task<string> SendChatAsync(string prompt, CancellationToken cancellationToken = default)
@@ -36,7 +40,7 @@ public class OpenAIProvider : IAIProvider
             messages = new[] { new { role = "user", content = prompt } }
         };
 
-        using var request = new HttpRequestMessage(HttpMethod.Post, ApiUrl)
+        using var request = new HttpRequestMessage(HttpMethod.Post, _apiUrl)
         {
             Content = new StringContent(JsonSerializer.Serialize(requestBody), Encoding.UTF8, "application/json")
         };
