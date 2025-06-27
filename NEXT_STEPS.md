@@ -114,3 +114,8 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Document aggregator location in README
 - [x] Add `knowledge_base/meta/summaries.jsonl` to `REFERENCE_FILES.md`
 - [x] Run `dotnet test`
+- [x] Add InteropGenerator module to scaffold wrappers
+- [x] Write InteropGeneratorTests verifying Python wrapper builds
+- [x] Document wrapper usage in README
+- [x] Mark roadmap item 2.4 complete and update REFERENCE_FILES
+- [x] Run `dotnet test`
