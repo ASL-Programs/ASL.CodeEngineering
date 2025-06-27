@@ -4,13 +4,16 @@ This document explains which programming languages and technologies are used acr
 
 ## Language & Technology Decisions
 
-### 1. Core UI (WPF): C#
-- Reason: Native Windows integration, best for generating a portable `.exe`.
+### 1. Main Application & AI Providers: C#
+- Reason: The WPF UI and the `IAIProvider` implementations are written in C#.
+  This provides deep Windows integration and leverages the rich .NET tooling.
 
-### 2. Data Analytics: R
+### 2. Glue Code & Build/Test Runners: Python
+- Reason: Flexible scripting and excellent interoperability. Python is used
+  both for cross-language glue code and to implement build and test runners for
+  non‑.NET languages.
+
+### 3. Data Analytics: R
 - Reason: Provides strong statistical libraries.
-
-### 3. Glue Code: Python
-- Reason: Flexible scripting and excellent interoperability.
 
 Add additional sections here whenever new languages or tools are adopted or plans change.

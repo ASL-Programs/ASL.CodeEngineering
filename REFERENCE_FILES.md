@@ -8,6 +8,7 @@ This list tracks documents, config files and other resources that may need to be
 | `ai_providers/README.md` | Quick reference for building custom providers |
 | `plugins/README.md` | Quick reference for building plugins |
 | `README.md` | Environment variables and duplicate name warnings |
+| `LANGUAGE_DECISIONS.md` | Overview of language choices and rationale |
 | `src/ASL.CodeEngineering.AI/PathHelpers.cs` | Helper for sanitizing provider names |
 | `src/ASL.CodeEngineering.AI/LocalAIProvider.cs` | Lightweight offline provider used in tests |
 | `src/ASL.CodeEngineering.App/MainWindow.xaml.cs` | Paths respect environment directories; duplicate plugin/provider names log warnings; handles log write errors; offline mode filter; writes shared summaries |
