@@ -361,11 +361,30 @@ namespace ASL.CodeEngineering
 
         private static void LogError(string operation, Exception ex)
         {
-            string baseLogs = Environment.GetEnvironmentVariable("LOGS_DIR") ??
-                               Path.Combine(AppContext.BaseDirectory, "logs");
-            Directory.CreateDirectory(baseLogs);
-            var file = Path.Combine(baseLogs, $"{operation}_{DateTime.UtcNow:yyyyMMdd_HHmmss}.log");
-            File.WriteAllText(file, ex.ToString());
+            string logsDir = Environment.GetEnvironmentVariable("LOGS_DIR") ??
+                              Path.Combine(AppContext.BaseDirectory, "logs");
+
+            if (!TryWrite(logsDir))
+            {
+                string fallback = Path.Combine(AppContext.BaseDirectory, "logs");
+                if (fallback != logsDir)
+                    TryWrite(fallback);
+            }
+
+            bool TryWrite(string dir)
+            {
+                try
+                {
+                    Directory.CreateDirectory(dir);
+                    var file = Path.Combine(dir, $"{operation}_{DateTime.UtcNow:yyyyMMdd_HHmmss}.log");
+                    File.WriteAllText(file, ex.ToString());
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
         }
     }
 }
