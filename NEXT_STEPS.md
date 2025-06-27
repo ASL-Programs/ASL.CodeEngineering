@@ -128,3 +128,5 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Document Node requirement in README
 - [x] Update LANGUAGE_DECISIONS with Node.js section
 - [x] Run `dotnet test`
+- [x] Add Build/Test runner plugin example to plugins README
+- [x] Run `dotnet test`

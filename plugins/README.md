@@ -28,3 +28,38 @@ public class HelloAnalyzer : IAnalyzerPlugin
 ```
 
 Build with `dotnet build` and copy `bin/Debug/<framework>/HelloAnalyzer.dll` into this folder. Set `PLUGINS_DIR` to use a custom directory.
+
+## Build/Test runner example
+
+Create a new class library that references `ASL.CodeEngineering.AI`:
+
+```bash
+dotnet new classlib -n MyRunner
+cd MyRunner
+dotnet add reference ../../src/ASL.CodeEngineering.AI/ASL.CodeEngineering.AI.csproj
+```
+
+Implement `IBuildTestRunner`:
+
+```csharp
+using ASL.CodeEngineering.AI;
+
+public class MyRunner : IBuildTestRunner
+{
+    public string Name => "MyRunner";
+
+    public Task<string> BuildAsync(string projectPath, CancellationToken cancellationToken = default)
+    {
+        // replace with real build logic
+        return Task.FromResult("Build succeeded");
+    }
+
+    public Task<string> TestAsync(string projectPath, CancellationToken cancellationToken = default)
+    {
+        // replace with real test logic
+        return Task.FromResult("Tests passed");
+    }
+}
+```
+
+Build the project and copy `bin/Debug/<framework>/MyRunner.dll` into this folder. Set `PLUGINS_DIR` if your plugins live elsewhere. If a plugin uses the same `Name` as another plugin or a built-in component, the duplicate is ignored and a warning is logged at startup.
