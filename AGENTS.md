@@ -61,7 +61,7 @@
         (etc.)
         ```
     - *After* reading `AGENTS.md`, the AI (or user) must review and, if needed, revise this file to match the best possible language/tool choices for each subtask.
-    - **Every coding or planning session must review both `Agent.md` and `LANGUAGE_DECISIONS.md` before proceeding.**
+    - **Every coding or planning session must review both `AGENTS.md` and `LANGUAGE_DECISIONS.md` before proceeding.**
 
 ---
 
@@ -72,7 +72,7 @@
     - `NEXT_STEPS.md` (for the precise step-by-step runbook)
     - `REFERENCE_FILES.md` (for what documents, configs, or artifacts might be needed)
     - `LANGUAGE_DECISIONS.md` (for language/tech choices and their justifications)
-    - `AGENTS.md` (for top-level agent rules and architecture)
+    - `AGENTS.md` (for top-level agents rules and architecture)
 - *Failure to do this review is considered a process violation and MUST be fixed before continuing.*
 
 ---
