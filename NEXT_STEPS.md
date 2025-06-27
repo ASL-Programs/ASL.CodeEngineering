@@ -69,3 +69,5 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Add dotnet build step before analysis
 - [x] Run `dotnet test`
 - [x] Document workflow update in REFERENCE_FILES
+- [x] Add MainWindowSummaryLoggingTests verifying summary failure logs
+- [x] Run `dotnet test`
