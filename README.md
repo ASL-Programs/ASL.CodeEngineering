@@ -56,6 +56,9 @@ at startup, so simply dropping a compiled DLL here makes it appear in the
 provider list. You can override this search path by setting the
 `AI_PROVIDERS_DIR` environment variable to point to a different directory.
 
+If two providers share the same `Name` value, the duplicate is ignored and a warning
+is logged at startup.
+
 The example `OpenAIProvider` reads its API key from the `OPENAI_API_KEY` environment
 variable or a local `openai_api_key.txt` file. When using the file approach,
 place `openai_api_key.txt` in the same directory as the built application
@@ -71,7 +74,8 @@ Analyzer and code runner plugins work just like AI providers. Implement
 the `plugins/` directory next to the application executable. The application
 automatically loads all plugins found in this folder at startup. Set the
 `PLUGINS_DIR` environment variable if your plugins are located in a custom
-directory.
+directory. If a plugin uses the same name as a built-in component or another plugin,
+the duplicate is ignored and a warning is logged.
 
 ## Choosing an AI provider
 
