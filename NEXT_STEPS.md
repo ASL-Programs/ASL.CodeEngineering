@@ -105,6 +105,8 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Document duplicate provider warning in `ai_providers/README.md`
 - [x] Document duplicate plugin warning in `plugins/README.md`
 - [x] Run `dotnet test`
+- [x] Clarify language choices in `LANGUAGE_DECISIONS.md`
+- [x] Add `LANGUAGE_DECISIONS.md` to `REFERENCE_FILES.md`
 - [x] Update loaders to log and skip duplicate providers/plugins
 - [x] Update duplicate loader tests
 - [x] Mention LocalAIProvider and Local provider in README
