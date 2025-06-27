@@ -40,26 +40,54 @@ namespace ASL.CodeEngineering
 
             foreach (var pair in AIProviderLoader.LoadProviders(AppContext.BaseDirectory))
             {
-                if (!_providerFactories.ContainsKey(pair.Key))
+                if (_providerFactories.ContainsKey(pair.Key))
+                {
+                    StatusTextBlock.Text = $"Duplicate provider: {pair.Key}";
+                    LogError("DuplicateProvider", new InvalidOperationException($"Duplicate provider name '{pair.Key}'"));
+                }
+                else
+                {
                     _providerFactories[pair.Key] = pair.Value;
+                }
             }
 
             foreach (var pair in PluginLoader.LoadAnalyzers(AppContext.BaseDirectory))
             {
-                if (!_analyzerFactories.ContainsKey(pair.Key))
+                if (_analyzerFactories.ContainsKey(pair.Key))
+                {
+                    StatusTextBlock.Text = $"Duplicate analyzer: {pair.Key}";
+                    LogError("DuplicateAnalyzer", new InvalidOperationException($"Duplicate analyzer name '{pair.Key}'"));
+                }
+                else
+                {
                     _analyzerFactories[pair.Key] = pair.Value;
+                }
             }
 
             foreach (var pair in PluginLoader.LoadRunners(AppContext.BaseDirectory))
             {
-                if (!_runnerFactories.ContainsKey(pair.Key))
+                if (_runnerFactories.ContainsKey(pair.Key))
+                {
+                    StatusTextBlock.Text = $"Duplicate runner: {pair.Key}";
+                    LogError("DuplicateRunner", new InvalidOperationException($"Duplicate runner name '{pair.Key}'"));
+                }
+                else
+                {
                     _runnerFactories[pair.Key] = pair.Value;
+                }
             }
 
             foreach (var pair in PluginLoader.LoadBuildTestRunners(AppContext.BaseDirectory))
             {
-                if (!_buildTestRunnerFactories.ContainsKey(pair.Key))
+                if (_buildTestRunnerFactories.ContainsKey(pair.Key))
+                {
+                    StatusTextBlock.Text = $"Duplicate build/test runner: {pair.Key}";
+                    LogError("DuplicateBuildTestRunner", new InvalidOperationException($"Duplicate build/test runner name '{pair.Key}'"));
+                }
+                else
+                {
                     _buildTestRunnerFactories[pair.Key] = pair.Value;
+                }
             }
 
             ProviderComboBox.ItemsSource = _providerFactories.Keys;
