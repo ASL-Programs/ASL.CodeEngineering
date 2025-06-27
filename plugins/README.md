@@ -3,6 +3,7 @@
 Assemblies in this directory extend the application. A plugin implements `IAnalyzerPlugin`, `ICodeRunnerPlugin`, or `IBuildTestRunner` from `ASL.CodeEngineering.AI`.
 
 The loader scans this folder on startup and registers every plugin found here.
+If a plugin uses the same name as a built-in component or another plugin, the duplicate is ignored and a warning is logged.
 
 ## Minimal analyzer example
 

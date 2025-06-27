@@ -102,3 +102,6 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Add `.editorconfig` with C#, Markdown and general formatting rules
 - [x] Reference `.editorconfig` in README and REFERENCE_FILES
 - [x] Run `dotnet test`
+- [x] Document duplicate provider warning in `ai_providers/README.md`
+- [x] Document duplicate plugin warning in `plugins/README.md`
+- [x] Run `dotnet test`

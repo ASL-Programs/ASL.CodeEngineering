@@ -3,6 +3,7 @@
 This directory contains additional AI provider assemblies. Each provider implements `IAIProvider` from the `ASL.CodeEngineering.AI` project.
 
 The application scans this folder at startup. Any `*.dll` dropped here becomes available in the provider list automatically.
+If two providers share the same `Name` value, the duplicate is ignored and a warning is logged at startup.
 
 ## Minimal example
 
