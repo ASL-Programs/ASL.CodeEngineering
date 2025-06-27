@@ -32,6 +32,7 @@ namespace ASL.CodeEngineering
 
             _providerFactories["Echo"] = () => new EchoAIProvider();
             _providerFactories["Reverse"] = () => new ReverseAIProvider();
+            _providerFactories["Local"] = () => new LocalAIProvider();
             _providerFactories["OpenAI"] = () => new OpenAIProvider();
 
             _analyzerFactories["Todo"] = () => new TodoAnalyzer();
@@ -218,9 +219,16 @@ namespace ASL.CodeEngineering
             string summaryPath = Path.Combine(knowledgeDir, "summaries.jsonl");
             var summaryEntry = new { timestamp = DateTime.UtcNow, summary };
             string summaryLine = JsonSerializer.Serialize(summaryEntry);
+
+            string metaDir = Path.Combine(baseKb, "meta");
+            Directory.CreateDirectory(metaDir);
+            string metaPath = Path.Combine(metaDir, "summaries.jsonl");
+            var metaEntry = new { timestamp = DateTime.UtcNow, provider = providerName, summary };
+            string metaLine = JsonSerializer.Serialize(metaEntry);
             try
             {
                 File.AppendAllText(summaryPath, summaryLine + Environment.NewLine);
+                File.AppendAllText(metaPath, metaLine + Environment.NewLine);
             }
             catch (Exception ex)
             {
