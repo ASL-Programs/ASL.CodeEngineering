@@ -84,6 +84,16 @@ automatically loads all plugins found in this folder at startup. Set the
 `PLUGINS_DIR` environment variable if your plugins are located in a custom
 directory. If a plugin uses the same name as a built-in component or another plugin,
 the duplicate is ignored and a warning is logged.
+## Generating interop wrappers
+
+Use `InteropGenerator` to scaffold small cross-language projects. To create a .NET wrapper that executes a Python script:
+
+```csharp
+string path = InteropGenerator.CreatePythonWrapper("MyWrapper", outputDir);
+```
+
+The method creates `outputDir/MyWrapper/` with `MyWrapper.csproj`, `Program.cs` and `script.py`. Build it using `dotnet build` or the `DotnetBuildTestRunner`.
+
 
 ## Choosing an AI provider
 
