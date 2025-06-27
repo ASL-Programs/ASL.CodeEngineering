@@ -30,6 +30,7 @@ using ASL.CodeEngineering.AI;
 public class DummyProvider : IAIProvider
 {
     public string Name => "Dummy";
+    public bool RequiresNetwork => false;
     public Task<string> SendChatAsync(string prompt, CancellationToken cancellationToken = default)
         => Task.FromResult("dummy:" + prompt);
 }
