@@ -28,7 +28,7 @@ This list tracks documents, config files and other resources that may need to be
 | `src/ASL.CodeEngineering.AI/FeatureLanguageAnalyzer.cs` | Recommends languages for new features |
 | `src/ASL.CodeEngineering.AI/BenchmarkHarness.cs` | Builds sample projects and records performance |
 | `knowledge_base/benchmarks/benchmarks.jsonl` | Timing results from benchmark harness |
-| `src/ASL.CodeEngineering.AI/AutonomousLearningEngine.cs` | Background loop storing self-improvement suggestions |
+| `src/ASL.CodeEngineering.AI/AutonomousLearningEngine.cs` | Background loop storing self-improvement suggestions; loads `knowledge_base/packages` |
 | `src/ASL.CodeEngineering.AI/ProjectPlanner.cs` | Generates module plans from AGENTS.md and runs builds/tests |
 | `knowledge_base/plans/plans.json` | Auto-generated per-module plan output |
 | `src/ASL.CodeEngineering.AI/DocumentationCrawler.cs` | Fetches docs and stores code snippets |
@@ -38,4 +38,5 @@ This list tracks documents, config files and other resources that may need to be
 | `src/ASL.CodeEngineering.AI/VersionManager.cs` | Saves and restores versions under `data/versions` |
 | `src/ASL.CodeEngineering.AI/MetaAnalyzer.cs` | Generates `language_insights.json` from benchmarks |
 | `src/ASL.CodeEngineering.App/MainWindow.xaml.cs` | Shows learning suggestions and persistent toggle |
+| `knowledge_base/packages/` | Markdown guides read by the learning engine |
 Add new entries in the table above with a short explanation of why the file might be needed again.
