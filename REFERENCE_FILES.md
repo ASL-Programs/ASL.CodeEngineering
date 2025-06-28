@@ -39,4 +39,7 @@ This list tracks documents, config files and other resources that may need to be
 | `src/ASL.CodeEngineering.AI/MetaAnalyzer.cs` | Generates `language_insights.json` from benchmarks |
 | `src/ASL.CodeEngineering.App/MainWindow.xaml.cs` | Shows learning suggestions and persistent toggle |
 | `knowledge_base/packages/` | Markdown guides read by the learning engine |
+| `src/ASL.CodeEngineering.AI/OfflineLearning/ModelLoader.cs` | Loads and saves simple `.pt` and `.onnx` models |
+| `src/ASL.CodeEngineering.AI/OfflineLearning/GradientTrainer.cs` | Performs basic gradient descent training |
+| `src/ASL.CodeEngineering.AI/OfflineLearning/ModelVersionManager.cs` | Archives trained models under `data/models` |
 Add new entries in the table above with a short explanation of why the file might be needed again.

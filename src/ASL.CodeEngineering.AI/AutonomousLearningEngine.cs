@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using ASL.CodeEngineering.AI.OfflineLearning;
 
 namespace ASL.CodeEngineering.AI;
 
@@ -15,7 +16,8 @@ namespace ASL.CodeEngineering.AI;
 /// </summary>
 public static class AutonomousLearningEngine
 {
-    public static async Task RunAsync(Func<IAIProvider> getProvider, CancellationToken token)
+    public static async Task RunAsync(Func<IAIProvider> getProvider, CancellationToken token,
+                                      OfflineLearning.OfflineModel? model = null, string? modelPath = null)
     {
         string baseKb = Environment.GetEnvironmentVariable("KB_DIR") ??
                          Path.Combine(AppContext.BaseDirectory, "knowledge_base");
@@ -58,6 +60,25 @@ public static class AutonomousLearningEngine
             catch
             {
                 // ignore log failures
+            }
+
+            if (model != null)
+            {
+                try
+                {
+                    var inputs = new List<double[]> { new[] { (double)result.Length } };
+                    var targets = new List<double> { result.Length };
+                    OfflineLearning.GradientTrainer.Train(model, inputs, targets, 0.001, 1);
+                    if (modelPath != null)
+                    {
+                        OfflineLearning.ModelLoader.SavePt(model, modelPath);
+                        OfflineLearning.ModelVersionManager.SaveVersion(AppContext.BaseDirectory, modelPath);
+                    }
+                }
+                catch
+                {
+                    // ignore training failures
+                }
             }
 
             try
