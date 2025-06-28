@@ -141,14 +141,14 @@
 
 ## 4. Autonomous Project Engineering & Refactoring
 
-- [ ] 4.1. Ingest and understand any roadmap (AGENTS.md), project folder, or legacy codebase (multi-language OK)
-- [ ] 4.2. Auto-plan project execution: break down tasks, select optimal language/tech per task, schedule build/test/integration
-- [ ] 4.3. For each module:
+- [x] 4.1. Ingest and understand any roadmap (AGENTS.md), project folder, or legacy codebase (multi-language OK)
+- [x] 4.2. Auto-plan project execution: break down tasks, select optimal language/tech per task, schedule build/test/integration
+- [x] 4.3. For each module:
     - Generate code in the best-suited language
     - Integrate modules, generate required glue code
     - Auto-build/test, self-fix errors/warnings, repeat until successful
-- [ ] 4.4. For existing projects: analyze code, find bugs/smells/anti-patterns, propose or auto-apply improvements/refactors (multi-language OK)
-- [ ] 4.5. Every change, fix, or upgrade is versioned and user-reviewable
+- [x] 4.4. For existing projects: analyze code, find bugs/smells/anti-patterns, propose or auto-apply improvements/refactors (multi-language OK)
+- [x] 4.5. Every change, fix, or upgrade is versioned and user-reviewable
 
 ---
 

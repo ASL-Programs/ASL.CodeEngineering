@@ -29,5 +29,7 @@ This list tracks documents, config files and other resources that may need to be
 | `src/ASL.CodeEngineering.AI/BenchmarkHarness.cs` | Builds sample projects and records performance |
 | `knowledge_base/benchmarks/benchmarks.jsonl` | Timing results from benchmark harness |
 | `src/ASL.CodeEngineering.AI/AutonomousLearningEngine.cs` | Background loop storing self-improvement suggestions |
+| `src/ASL.CodeEngineering.AI/ProjectPlanner.cs` | Generates module plans from AGENTS.md and runs builds/tests |
+| `knowledge_base/plans/plans.json` | Auto-generated per-module plan output |
 
 Add new entries in the table above with a short explanation of why the file might be needed again.

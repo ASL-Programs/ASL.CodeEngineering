@@ -29,6 +29,8 @@ Initial structure for the autonomous polyglot code engineering system.
   - `ASL.CodeEngineering.AI` – library with the `IAIProvider` abstraction and
     sample providers (`EchoAIProvider`, `ReverseAIProvider`, `OpenAIProvider`, `LocalAIProvider`).
 - `tests/` – unit tests for the provider library.
+- `knowledge_base/plans/` – outputs from `ProjectPlanner` that map open roadmap
+  tasks to modules.
 - `.editorconfig` – formatting rules for C#, Markdown and other files. Visual
   Studio and `dotnet format` automatically apply these settings.
 
