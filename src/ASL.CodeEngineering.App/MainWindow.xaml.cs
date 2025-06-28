@@ -365,6 +365,13 @@ namespace ASL.CodeEngineering
             StatusTextBlock.Text = "Learning...";
         }
 
+        private void DashboardButton_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new DashboardWindow(_projectRoot);
+            window.Owner = this;
+            window.Show();
+        }
+
         private void OpenProjectButton_Click(object sender, RoutedEventArgs e)
         {
             using var dialog = new Forms.FolderBrowserDialog();

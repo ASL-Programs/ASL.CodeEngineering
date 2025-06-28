@@ -25,6 +25,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
@@ -53,8 +54,9 @@
                 <Button x:Name="PauseLearningButton" Content="Pause" Width="75" Margin="5 0 0 0" Click="PauseLearningButton_Click" />
                 <Button x:Name="ResumeLearningButton" Content="Resume" Width="75" Margin="5 0 0 0" Click="ResumeLearningButton_Click" />
             </StackPanel>
-            <TextBox x:Name="ResponseTextBox" Grid.Row="7" Margin="0 5 0 0" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" />
-            <avalonedit:TextEditor x:Name="CodeEditor" Grid.Row="8" ShowLineNumbers="True" SyntaxHighlighting="C#"/>
+            <Button x:Name="DashboardButton" Content="Dashboard" Grid.Row="7" Width="90" Click="DashboardButton_Click" />
+            <TextBox x:Name="ResponseTextBox" Grid.Row="8" Margin="0 5 0 0" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" />
+            <avalonedit:TextEditor x:Name="CodeEditor" Grid.Row="9" ShowLineNumbers="True" SyntaxHighlighting="C#"/>
         </Grid>
 
     </Grid>
