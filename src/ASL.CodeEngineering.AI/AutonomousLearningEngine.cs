@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,6 +23,8 @@ public static class AutonomousLearningEngine
         Directory.CreateDirectory(autoDir);
         string logPath = Path.Combine(autoDir, "auto.jsonl");
 
+        string packageText = LoadPackages(baseKb);
+
         int counter = 0;
         while (!token.IsCancellationRequested)
         {
@@ -30,6 +33,10 @@ public static class AutonomousLearningEngine
             try
             {
                 string prompt = "Suggest an improvement to this autonomous code engineer and cite any useful online resources.";
+                if (!string.IsNullOrWhiteSpace(packageText))
+                {
+                    prompt += "\n\n" + packageText;
+                }
                 result = await provider.SendChatAsync(prompt, token);
             }
             catch (Exception ex)
@@ -74,6 +81,33 @@ public static class AutonomousLearningEngine
                     // ignore analysis failures
                 }
             }
+        }
+    }
+
+    private static string LoadPackages(string baseKb)
+    {
+        try
+        {
+            string dir = Path.Combine(baseKb, "packages");
+            if (!Directory.Exists(dir))
+                return string.Empty;
+            var files = Directory.GetFiles(dir, "*", SearchOption.AllDirectories);
+            var contents = new List<string>();
+            foreach (var f in files)
+            {
+                try
+                {
+                    contents.Add(File.ReadAllText(f));
+                }
+                catch
+                {
+                }
+            }
+            return string.Join("\n\n", contents);
+        }
+        catch
+        {
+            return string.Empty;
         }
     }
 }

@@ -34,7 +34,12 @@ bld/
 [Ll]og/
 [Ll]ogs/
 data/
-knowledge_base/
+knowledge_base/*
+!knowledge_base/.gitkeep
+!knowledge_base/benchmarks/
+!knowledge_base/benchmarks/.gitkeep
+!knowledge_base/packages/
+!knowledge_base/packages/**
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -207,6 +212,8 @@ PublishScripts/
 **/[Pp]ackages/*
 # except build/, which is used as an MSBuild target.
 !**/[Pp]ackages/build/
+!knowledge_base/packages/
+!knowledge_base/packages/**
 # Uncomment if necessary however generally it will be regenerated when needed
 #!**/[Pp]ackages/repositories.config
 # NuGet v3's project.json files produces more ignorable files
