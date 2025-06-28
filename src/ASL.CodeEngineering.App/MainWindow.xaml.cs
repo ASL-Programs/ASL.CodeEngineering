@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Text.Json;
 using System.Linq;
@@ -27,11 +28,18 @@ namespace ASL.CodeEngineering
         private string _projectRoot = AppContext.BaseDirectory;
         private CancellationTokenSource? _learningCts;
         private Task? _learningTask;
+        private CancellationTokenSource? _monitorCts;
+        private Task? _monitorTask;
+        private readonly ObservableCollection<LearningEntry> _learningEntries = new();
+        private readonly string _learningStatePath;
 
 
         public MainWindow()
         {
             InitializeComponent();
+
+            LearningGrid.ItemsSource = _learningEntries;
+            _learningStatePath = Path.Combine(AppContext.BaseDirectory, "data", "learning_enabled.txt");
 
             _providerFactories["Echo"] = () => new EchoAIProvider();
             _providerFactories["Reverse"] = () => new ReverseAIProvider();
@@ -118,6 +126,12 @@ namespace ASL.CodeEngineering
             BuildTestRunnerComboBox.SelectedIndex = _buildTestRunnerFactories.Count > 0 ? 0 : -1;
 
             LoadProjectTree(_projectRoot);
+
+            if (File.Exists(_learningStatePath) && File.ReadAllText(_learningStatePath).Trim() == "1")
+            {
+                LearningEnabledCheckBox.IsChecked = true;
+                StartLearningLoop();
+            }
         }
 
         private void ProviderComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -341,28 +355,17 @@ namespace ASL.CodeEngineering
 
         private void StartLearningButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_learningTask is not null && !_learningTask.IsCompleted)
-                return;
-
-            _learningCts = new CancellationTokenSource();
-            _learningTask = Task.Run(() => AutonomousLearningEngine.RunAsync(() => _aiProvider, _learningCts.Token));
-            StatusTextBlock.Text = "Learning...";
+            StartLearningLoop();
         }
 
         private void PauseLearningButton_Click(object sender, RoutedEventArgs e)
         {
-            _learningCts?.Cancel();
-            StatusTextBlock.Text = "Paused";
+            PauseLearningLoop();
         }
 
         private void ResumeLearningButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_learningTask is not null && !_learningTask.IsCompleted)
-                return;
-
-            _learningCts = new CancellationTokenSource();
-            _learningTask = Task.Run(() => AutonomousLearningEngine.RunAsync(() => _aiProvider, _learningCts.Token));
-            StatusTextBlock.Text = "Learning...";
+            StartLearningLoop();
         }
 
         private void DashboardButton_Click(object sender, RoutedEventArgs e)
@@ -417,6 +420,102 @@ namespace ASL.CodeEngineering
             }
         }
 
+        private void StartLearningLoop()
+        {
+            if (_learningTask is not null && !_learningTask.IsCompleted)
+                return;
+
+            _learningCts = new CancellationTokenSource();
+            _learningTask = Task.Run(() => AutonomousLearningEngine.RunAsync(() => _aiProvider, _learningCts.Token));
+            StartMonitor();
+            StatusTextBlock.Text = "Learning...";
+        }
+
+        private void PauseLearningLoop()
+        {
+            _learningCts?.Cancel();
+            _monitorCts?.Cancel();
+            StatusTextBlock.Text = "Paused";
+        }
+
+        private void StartMonitor()
+        {
+            _monitorCts?.Cancel();
+            _monitorCts = new CancellationTokenSource();
+            string baseKb = Environment.GetEnvironmentVariable("KB_DIR") ?? Path.Combine(AppContext.BaseDirectory, "knowledge_base");
+            string logPath = Path.Combine(baseKb, "auto", "auto.jsonl");
+            _monitorTask = Task.Run(() => MonitorLogAsync(logPath, _monitorCts.Token));
+        }
+
+        private async Task MonitorLogAsync(string path, CancellationToken token)
+        {
+            while (!token.IsCancellationRequested)
+            {
+                try
+                {
+                    if (File.Exists(path))
+                    {
+                        var lines = File.ReadAllLines(path);
+                        var items = new List<LearningEntry>();
+                        foreach (var line in lines)
+                        {
+                            try
+                            {
+                                var entry = JsonSerializer.Deserialize<LearningEntry>(line);
+                                if (entry != null)
+                                    items.Add(entry);
+                            }
+                            catch { }
+                        }
+                        await Dispatcher.InvokeAsync(() =>
+                        {
+                            _learningEntries.Clear();
+                            foreach (var item in items)
+                                _learningEntries.Add(item);
+                        });
+                    }
+                    await Task.Delay(2000, token);
+                }
+                catch (TaskCanceledException)
+                {
+                    break;
+                }
+                catch
+                {
+                }
+            }
+        }
+
+        private void AcceptSuggestionButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (LearningGrid.SelectedItem is LearningEntry entry)
+            {
+                VersionManager.SaveVersion(_projectRoot);
+                string metaDir = Path.Combine(AppContext.BaseDirectory, "knowledge_base", "meta");
+                Directory.CreateDirectory(metaDir);
+                string path = Path.Combine(metaDir, "accepted.jsonl");
+                File.AppendAllText(path, JsonSerializer.Serialize(entry) + Environment.NewLine);
+            }
+        }
+
+        private void RollbackSuggestionButton_Click(object sender, RoutedEventArgs e)
+        {
+            VersionManager.RestoreLatest(_projectRoot);
+            LoadProjectTree(_projectRoot);
+        }
+
+        private void LearningEnabledCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            File.WriteAllText(_learningStatePath, "1");
+            StartLearningLoop();
+        }
+
+        private void LearningEnabledCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            File.WriteAllText(_learningStatePath, "0");
+            PauseLearningLoop();
+        }
+
         private static void LogError(string operation, Exception ex)
         {
             string logsDir = Environment.GetEnvironmentVariable("LOGS_DIR") ??
@@ -444,5 +543,12 @@ namespace ASL.CodeEngineering
                 }
             }
         }
+    }
+
+    public class LearningEntry
+    {
+        public DateTime Timestamp { get; set; }
+        public string Provider { get; set; } = string.Empty;
+        public string Result { get; set; } = string.Empty;
     }
 }

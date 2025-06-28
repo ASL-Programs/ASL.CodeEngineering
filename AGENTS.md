@@ -164,8 +164,8 @@
 ## 6. User Interaction & Control
 
  - [x] 6.1. User can select/assign any folder as the project root (MCP), provide AGENTS.md or custom tasks
- - [ ] 6.2. Show all learning, progress, and self-upgrade suggestions; user can accept/rollback any changes
- - [ ] 6.3. Option to pause/resume autonomous learning at any time
+ - [x] 6.2. Show all learning, progress, and self-upgrade suggestions; user can accept/rollback any changes
+ - [x] 6.3. Option to pause/resume autonomous learning at any time
  - [x] 6.4. All code, data, and models stay local in the project directory
  - [x] 6.5. Setting `DISABLE_NETWORK_PROVIDERS` removes online providers so
        prompts never leave the project root
@@ -174,9 +174,9 @@
 
 ## 7. Continuous Self-Upgrade & Meta-Learning
 
-- [ ] 7.1. At every learning cycle, the system must seek to create and propose an improved version of itself—algorithms, code, workflows, knowledge structures, and tools
-- [ ] 7.2. Archive all previous versions/experiments for user review/comparison
-- [ ] 7.3. Meta-analyze which languages, tools, AIs, or strategies produce the best results, and update future learning accordingly
+ - [x] 7.1. At every learning cycle, the system must seek to create and propose an improved version of itself—algorithms, code, workflows, knowledge structures, and tools
+ - [x] 7.2. Archive all previous versions/experiments for user review/comparison
+ - [x] 7.3. Meta-analyze which languages, tools, AIs, or strategies produce the best results, and update future learning accordingly
 
 ---
 

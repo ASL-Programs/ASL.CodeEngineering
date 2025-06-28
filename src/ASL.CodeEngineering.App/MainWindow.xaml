@@ -28,6 +28,8 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <ComboBox x:Name="ProviderComboBox" Grid.Row="0" Margin="0 0 0 5" SelectionChanged="ProviderComboBox_SelectionChanged" />
@@ -57,6 +59,18 @@
             <Button x:Name="DashboardButton" Content="Dashboard" Grid.Row="7" Width="90" Click="DashboardButton_Click" />
             <TextBox x:Name="ResponseTextBox" Grid.Row="8" Margin="0 5 0 0" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" />
             <avalonedit:TextEditor x:Name="CodeEditor" Grid.Row="9" ShowLineNumbers="True" SyntaxHighlighting="C#"/>
+            <DataGrid x:Name="LearningGrid" Grid.Row="10" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Time" Binding="{Binding Timestamp}" Width="120" />
+                    <DataGridTextColumn Header="Provider" Binding="{Binding Provider}" Width="80" />
+                    <DataGridTextColumn Header="Suggestion" Binding="{Binding Result}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Grid.Row="11" Orientation="Horizontal">
+                <Button x:Name="AcceptSuggestionButton" Content="Accept" Width="75" Click="AcceptSuggestionButton_Click" />
+                <Button x:Name="RollbackSuggestionButton" Content="Rollback" Width="75" Margin="5 0 0 0" Click="RollbackSuggestionButton_Click" />
+                <CheckBox x:Name="LearningEnabledCheckBox" Content="Learning On" Margin="10 0" Checked="LearningEnabledCheckBox_Checked" Unchecked="LearningEnabledCheckBox_Unchecked" />
+            </StackPanel>
         </Grid>
 
     </Grid>

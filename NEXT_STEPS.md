@@ -145,3 +145,9 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [ ] Generate Markdown summaries from crawler output
 - [ ] Add DashboardWindow displaying knowledge graphs
 - [ ] Run `dotnet test`
+- [x] Extend UI with learning progress grid and accept/rollback buttons
+- [x] Add persistent autonomous learning switch
+- [x] Implement VersionManager storing copies under data/versions
+- [x] Periodically analyze benchmarks via MetaAnalyzer
+- [x] Mark roadmap items 6.2, 6.3 and 7 complete
+- [x] Run `dotnet test`
