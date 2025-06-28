@@ -128,6 +128,14 @@ The `knowledge_base/packages/` directory holds curated guides used by the
 The contents of these packages are appended to the self-improvement prompt each
 time the learning engine runs.
 
+## Offline learning
+
+The `OfflineLearning` module provides lightweight tensor operations and a
+gradient descent trainer. Models can be loaded from or saved to `.pt` or `.onnx`
+files and versions are archived under `data/models/`. Passing an
+`OfflineLearning.OfflineModel` instance to `AutonomousLearningEngine.RunAsync`
+will update the model with harmonized data during each cycle.
+
 
 ## Choosing an AI provider
 
