@@ -22,6 +22,7 @@ public static class AutonomousLearningEngine
         Directory.CreateDirectory(autoDir);
         string logPath = Path.Combine(autoDir, "auto.jsonl");
 
+        int counter = 0;
         while (!token.IsCancellationRequested)
         {
             var provider = getProvider();
@@ -59,6 +60,19 @@ public static class AutonomousLearningEngine
             catch (TaskCanceledException)
             {
                 break;
+            }
+
+            counter++;
+            if (counter % 5 == 0)
+            {
+                try
+                {
+                    MetaAnalyzer.Analyze(AppContext.BaseDirectory);
+                }
+                catch
+                {
+                    // ignore analysis failures
+                }
             }
         }
     }
