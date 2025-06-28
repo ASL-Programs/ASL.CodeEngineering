@@ -154,10 +154,10 @@
 
 ## 5. Automated Knowledge Mining & Reporting
 
-- [ ] 5.1. Crawl open source, docs, StackOverflow, HN, Reddit, arxiv, etc. for all supported languages/technologies
-- [ ] 5.2. Continuously update both per-AI and unified knowledge bases
-- [ ] 5.3. Generate self-documenting code (docstrings/XMLDocs/Markdown), project milestone reports, and meta-learning summaries
-- [ ] 5.4. Visual dashboard: learning progress, knowledge graphs, AI/language/tool comparisons, and improvement trends
+- [x] 5.1. Crawl open source, docs, StackOverflow, HN, Reddit, arxiv, etc. for all supported languages/technologies
+- [x] 5.2. Continuously update both per-AI and unified knowledge bases
+- [x] 5.3. Generate self-documenting code (docstrings/XMLDocs/Markdown), project milestone reports, and meta-learning summaries
+- [x] 5.4. Visual dashboard: learning progress, knowledge graphs, AI/language/tool comparisons, and improvement trends
 
 ---
 

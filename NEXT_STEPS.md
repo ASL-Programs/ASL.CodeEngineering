@@ -141,3 +141,7 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Update AGENTS.md section 3 and reference files
 - [x] Run `dotnet test`
 - [ ] Implement ProjectPlanner to generate module plans and run builds
+- [ ] Implement DocumentationCrawler for gathering code snippets
+- [ ] Generate Markdown summaries from crawler output
+- [ ] Add DashboardWindow displaying knowledge graphs
+- [ ] Run `dotnet test`
