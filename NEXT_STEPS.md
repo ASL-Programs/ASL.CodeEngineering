@@ -140,11 +140,12 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Implement Task-Focused Conditional Learning Mode and UI controls
 - [x] Update AGENTS.md section 3 and reference files
 - [x] Run `dotnet test`
-- [ ] Implement ProjectPlanner to generate module plans and run builds
-- [ ] Implement DocumentationCrawler for gathering code snippets
-- [ ] Generate Markdown summaries from crawler output
-- [ ] Add DashboardWindow displaying knowledge graphs
-- [ ] Run `dotnet test`
+- [x] Implement ProjectPlanner to generate module plans and run builds
+- [x] Implement DocumentationCrawler for gathering code snippets
+- [x] Generate Markdown summaries from crawler output
+- [x] Add DashboardWindow displaying knowledge graphs
+- [x] Run `dotnet test`
+- [ ] Extend planner and dashboard with multi‑language support and deeper analytics
 - [x] Extend UI with learning progress grid and accept/rollback buttons
 - [x] Add persistent autonomous learning switch
 - [x] Implement VersionManager storing copies under data/versions
