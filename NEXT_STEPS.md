@@ -136,3 +136,7 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Update README and reference files
 - [x] Mark roadmap items 2.2 and 2.5 complete
 - [x] Run `dotnet test`
+- [x] Implement Full Autonomous Learning Mode with logging under knowledge_base/auto
+- [x] Implement Task-Focused Conditional Learning Mode and UI controls
+- [x] Update AGENTS.md section 3 and reference files
+- [x] Run `dotnet test`

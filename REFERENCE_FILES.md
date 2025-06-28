@@ -28,5 +28,6 @@ This list tracks documents, config files and other resources that may need to be
 | `src/ASL.CodeEngineering.AI/FeatureLanguageAnalyzer.cs` | Recommends languages for new features |
 | `src/ASL.CodeEngineering.AI/BenchmarkHarness.cs` | Builds sample projects and records performance |
 | `knowledge_base/benchmarks/benchmarks.jsonl` | Timing results from benchmark harness |
+| `src/ASL.CodeEngineering.AI/AutonomousLearningEngine.cs` | Background loop storing self-improvement suggestions |
 
 Add new entries in the table above with a short explanation of why the file might be needed again.

@@ -128,10 +128,10 @@
 
 ## 3. Dual-Mode Learning & Self-Improvement
 
-- [ ] 3.1. **Full Autonomous Learning Mode**
+- [x] 3.1. **Full Autonomous Learning Mode**
     - On “Start Learning”, the agent continuously explores, learns, and self-upgrades using online sources, AI chats, open-source mining, and self-analysis
     - Seeks to produce and propose better versions of itself—algorithms, workflows, refactorings, and documentation
-- [ ] 3.2. **Task-Focused Conditional Learning Mode**
+- [x] 3.2. **Task-Focused Conditional Learning Mode**
     - On “Pause” (or when autonomous learning is disabled), focus solely on user-assigned tasks (e.g., provided AGENTS.md, code review, project improvements)
     - While working, all actions (build, test, fix, optimize) are logged as new learning episodes
     - **If a problem/error cannot be solved using the local knowledge base, the system automatically resumes online research and AI queries—once solved, returns to focused task mode**

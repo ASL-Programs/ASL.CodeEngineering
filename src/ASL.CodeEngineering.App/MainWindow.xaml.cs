@@ -4,6 +4,7 @@ using System.IO;
 using System.Text.Json;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using ICSharpCode.AvalonEdit.Highlighting;
@@ -24,6 +25,8 @@ namespace ASL.CodeEngineering
         private ICodeRunnerPlugin? _runner;
         private IBuildTestRunner? _buildTestRunner;
         private string _projectRoot = AppContext.BaseDirectory;
+        private CancellationTokenSource? _learningCts;
+        private Task? _learningTask;
 
 
         public MainWindow()
@@ -334,6 +337,32 @@ namespace ASL.CodeEngineering
             {
                 TestButton.IsEnabled = true;
             }
+        }
+
+        private void StartLearningButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_learningTask is not null && !_learningTask.IsCompleted)
+                return;
+
+            _learningCts = new CancellationTokenSource();
+            _learningTask = Task.Run(() => AutonomousLearningEngine.RunAsync(() => _aiProvider, _learningCts.Token));
+            StatusTextBlock.Text = "Learning...";
+        }
+
+        private void PauseLearningButton_Click(object sender, RoutedEventArgs e)
+        {
+            _learningCts?.Cancel();
+            StatusTextBlock.Text = "Paused";
+        }
+
+        private void ResumeLearningButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_learningTask is not null && !_learningTask.IsCompleted)
+                return;
+
+            _learningCts = new CancellationTokenSource();
+            _learningTask = Task.Run(() => AutonomousLearningEngine.RunAsync(() => _aiProvider, _learningCts.Token));
+            StatusTextBlock.Text = "Learning...";
         }
 
         private void OpenProjectButton_Click(object sender, RoutedEventArgs e)
