@@ -187,3 +187,6 @@
 > - It develops and improves both itself and any project you give it, using the best tools, languages, and strategies—without limitations.
 > - All work is fully local, portable, and privacy-first as a Windows .exe.
 > - **Every function, module, and helper must be written in the optimal language and technology for its purpose—no language boundaries.**
+- [x] Build process archives new version for preview
+- [x] Preview Update button runs sandbox build
+- [x] Restoring preview on confirmation

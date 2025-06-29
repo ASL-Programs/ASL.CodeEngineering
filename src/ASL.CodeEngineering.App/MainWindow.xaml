@@ -46,6 +46,7 @@
                 <ComboBox x:Name="BuildTestRunnerComboBox" Width="150" SelectionChanged="BuildTestRunnerComboBox_SelectionChanged" />
                 <Button x:Name="BuildButton" Content="Build" Width="75" Margin="5 0 0 0" Click="BuildButton_Click" />
                 <Button x:Name="TestButton" Content="Test" Width="75" Margin="5 0 0 0" Click="TestButton_Click" />
+                <Button x:Name="PreviewUpdateButton" Content="Preview Update" Width="110" Margin="5 0 0 0" Click="PreviewUpdateButton_Click" />
             </StackPanel>
             <TextBox x:Name="PromptTextBox" Grid.Row="4" Margin="0 0 0 5" />
             <StackPanel Grid.Row="5" Orientation="Horizontal">

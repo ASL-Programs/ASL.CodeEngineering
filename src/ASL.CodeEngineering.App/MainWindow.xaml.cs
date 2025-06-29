@@ -34,6 +34,7 @@ namespace ASL.CodeEngineering
         private readonly string _learningStatePath;
         private readonly ObservableCollection<string> _packageNames = new();
         private readonly Dictionary<string, bool> _selectedPackages = new();
+        private string? _latestVersionPath;
 
 
         public MainWindow()
@@ -330,8 +331,8 @@ namespace ASL.CodeEngineering
             StatusTextBlock.Text = "Building...";
             try
             {
-                var result = await _buildTestRunner.BuildAsync(_projectRoot, CancellationToken.None);
-                ResponseTextBox.Text = result;
+                _latestVersionPath = await BuildProcess.BuildNewVersionAsync(_projectRoot, _buildTestRunner, CancellationToken.None);
+                ResponseTextBox.Text = _latestVersionPath;
                 StatusTextBlock.Text = "Done";
             }
             catch (Exception ex)
@@ -515,7 +516,7 @@ namespace ASL.CodeEngineering
         {
             if (LearningGrid.SelectedItem is LearningEntry entry)
             {
-                VersionManager.SaveVersion(_projectRoot);
+                _latestVersionPath = VersionManager.SaveVersion(_projectRoot);
                 string metaDir = Path.Combine(AppContext.BaseDirectory, "knowledge_base", "meta");
                 Directory.CreateDirectory(metaDir);
                 string path = Path.Combine(metaDir, "accepted.jsonl");
@@ -527,6 +528,27 @@ namespace ASL.CodeEngineering
         {
             VersionManager.RestoreLatest(_projectRoot);
             LoadProjectTree(_projectRoot);
+        }
+
+        private async void PreviewUpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(_latestVersionPath) || !Directory.Exists(_latestVersionPath))
+                return;
+
+            string project = Path.Combine(_latestVersionPath, "src", "ASL.CodeEngineering.App");
+            try
+            {
+                await ProcessRunner.RunAsync("dotnet", $"run --project \"{project}\" --no-build", Path.Combine(_latestVersionPath, "src"), "preview", CancellationToken.None);
+                if (MessageBox.Show("Apply this update?", "Preview", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    VersionManager.RestoreLatest(_projectRoot);
+                    LoadProjectTree(_projectRoot);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError("PreviewUpdate", ex);
+            }
         }
 
         private void LearningEnabledCheckBox_Checked(object sender, RoutedEventArgs e)

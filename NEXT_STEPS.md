@@ -179,3 +179,7 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Add unit tests for planner and dashboard updates
 - [x] Document enhanced analytics in README and REFERENCE_FILES
 - [x] Run `dotnet test`
+- [x] Implement build process archiving versions
+- [x] Add Preview Update button
+- [x] Document feature in README
+- [x] Run `dotnet test`
