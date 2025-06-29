@@ -29,61 +29,62 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="2*" />
                         <RowDefinition Height="2*" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-
-            <ComboBox x:Name="ProviderComboBox" Grid.Row="0" Margin="0 0 0 5" SelectionChanged="ProviderComboBox_SelectionChanged" />
-            <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <ComboBox x:Name="ProfileComboBox" Grid.Row="0" Margin="0 0 0 5" SelectionChanged="ProfileComboBox_SelectionChanged" />
+            <ComboBox x:Name="ProviderComboBox" Grid.Row="1" Margin="0 0 0 5" SelectionChanged="ProviderComboBox_SelectionChanged" />
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
                 <ComboBox x:Name="AnalyzerComboBox" Width="150" SelectionChanged="AnalyzerComboBox_SelectionChanged" />
                 <Button x:Name="AnalyzeButton" Content="Analyze" Width="75" Margin="5 0 0 0" Click="AnalyzeButton_Click" />
             </StackPanel>
-            <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <StackPanel Grid.Row="3" Orientation="Horizontal">
                 <ComboBox x:Name="RunnerComboBox" Width="150" SelectionChanged="RunnerComboBox_SelectionChanged" />
                 <Button x:Name="RunButton" Content="Run" Width="75" Margin="5 0 0 0" Click="RunButton_Click" />
             </StackPanel>
-            <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <StackPanel Grid.Row="4" Orientation="Horizontal">
                 <ComboBox x:Name="BuildTestRunnerComboBox" Width="150" SelectionChanged="BuildTestRunnerComboBox_SelectionChanged" />
                 <Button x:Name="BuildButton" Content="Build" Width="75" Margin="5 0 0 0" Click="BuildButton_Click" />
                 <Button x:Name="TestButton" Content="Test" Width="75" Margin="5 0 0 0" Click="TestButton_Click" />
                 <Button x:Name="PreviewUpdateButton" Content="Preview Update" Width="110" Margin="5 0 0 0" Click="PreviewUpdateButton_Click" />
             </StackPanel>
-            <TextBox x:Name="PromptTextBox" Grid.Row="4" Margin="0 0 0 5" />
-            <StackPanel Grid.Row="5" Orientation="Horizontal">
+            <TextBox x:Name="PromptTextBox" Grid.Row="5" Margin="0 0 0 5" />
+            <StackPanel Grid.Row="6" Orientation="Horizontal">
                 <Button x:Name="SendButton" Content="Send" Width="75" Click="SendButton_Click" />
                 <TextBlock x:Name="StatusTextBlock" Margin="10 0" VerticalAlignment="Center" />
             </StackPanel>
-            <StackPanel Grid.Row="6" Orientation="Horizontal">
+            <StackPanel Grid.Row="7" Orientation="Horizontal">
                 <Button x:Name="StartLearningButton" Content="Start Learning" Width="100" Click="StartLearningButton_Click" />
                 <Button x:Name="PauseLearningButton" Content="Pause" Width="75" Margin="5 0 0 0" Click="PauseLearningButton_Click" />
                 <Button x:Name="ResumeLearningButton" Content="Resume" Width="75" Margin="5 0 0 0" Click="ResumeLearningButton_Click" />
             </StackPanel>
-            <ItemsControl x:Name="PackageList" Grid.Row="7">
+            <ItemsControl x:Name="PackageList" Grid.Row="8">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <CheckBox Content="{Binding}" IsChecked="True" Checked="PackageCheckBox_Changed" Unchecked="PackageCheckBox_Changed" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <Button x:Name="DashboardButton" Content="Dashboard" Grid.Row="8" Width="90" Click="DashboardButton_Click" />
-            <TextBox x:Name="ResponseTextBox" Grid.Row="9" Margin="0 5 0 0" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" />
-            <avalonedit:TextEditor x:Name="CodeEditor" Grid.Row="10" ShowLineNumbers="True" SyntaxHighlighting="C#"/>
-            <DataGrid x:Name="LearningGrid" Grid.Row="11" AutoGenerateColumns="False">
+            <Button x:Name="DashboardButton" Content="Dashboard" Grid.Row="9" Width="90" Click="DashboardButton_Click" />
+            <TextBox x:Name="ResponseTextBox" Grid.Row="10" Margin="0 5 0 0" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" />
+            <avalonedit:TextEditor x:Name="CodeEditor" Grid.Row="11" ShowLineNumbers="True" SyntaxHighlighting="C#"/>
+            <DataGrid x:Name="LearningGrid" Grid.Row="12" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Time" Binding="{Binding Timestamp}" Width="120" />
                     <DataGridTextColumn Header="Provider" Binding="{Binding Provider}" Width="80" />
                     <DataGridTextColumn Header="Suggestion" Binding="{Binding Result}" Width="*" />
                 </DataGrid.Columns>
             </DataGrid>
-            <StackPanel Grid.Row="12" Orientation="Horizontal">
+            <StackPanel Grid.Row="13" Orientation="Horizontal">
                 <Button x:Name="AcceptSuggestionButton" Content="Accept" Width="75" Click="AcceptSuggestionButton_Click" />
                 <Button x:Name="RollbackSuggestionButton" Content="Rollback" Width="75" Margin="5 0 0 0" Click="RollbackSuggestionButton_Click" />
                 <CheckBox x:Name="LearningEnabledCheckBox" Content="Learning On" Margin="10 0" Checked="LearningEnabledCheckBox_Checked" Unchecked="LearningEnabledCheckBox_Unchecked" />
             </StackPanel>
-            <StackPanel Grid.Row="13" Orientation="Horizontal">
+            <StackPanel Grid.Row="14" Orientation="Horizontal">
                 <TextBox x:Name="ProjectDescriptionTextBox" Width="200" Margin="0 0 5 0" />
                 <TextBox x:Name="ProjectLanguageTextBox" Width="100" Margin="0 0 5 0" />
                 <Button x:Name="StartProjectButton" Content="Start New Project" Width="120" Click="StartProjectButton_Click" />

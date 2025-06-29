@@ -233,3 +233,8 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Add unit tests for HealthMonitor
 - [x] Update REFERENCE_FILES
 - [x] Run `dotnet test`
+- [x] Add UserProfile model and JSON serialization
+- [x] Save profiles under data/profiles/
+- [x] Update UI with profile dropdown
+- [x] Document profiles in README
+- [x] Run dotnet test
