@@ -140,7 +140,7 @@ Use `FeatureLanguageAnalyzer.Recommend` to choose a language for new features or
 string lang = FeatureLanguageAnalyzer.Recommend("Add statistical charts");
 ```
 
-Run `BenchmarkHarness.RunAsync()` to gather build timings for supported languages. Results are stored in `knowledge_base/benchmarks/benchmarks.jsonl`.
+Run `BenchmarkHarness.RunAsync()` to gather build timings along with CPU and memory usage for supported languages. Results are stored in `knowledge_base/benchmarks/benchmarks.jsonl`.
 
 ## Knowledge packages
 

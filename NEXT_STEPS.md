@@ -218,6 +218,11 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Run `dotnet test`
 
 ## Upcoming
+- [x] Extend BenchmarkHarness to record CPU and memory usage
+- [x] Update DashboardWindow with benchmark metrics
+- [x] Update MetaAnalyzer to aggregate CPU and memory
+- [x] Add tests for benchmark aggregation and dashboard
+- [x] Run `dotnet test`
 - [x] Add plugin/provider panel with enable/disable checkboxes and version info in MainWindow.xaml
 - [x] Update MainWindow.xaml.cs to refresh lists when toggled
 - [x] Document plugin panel usage in plugins/README.md and README.md

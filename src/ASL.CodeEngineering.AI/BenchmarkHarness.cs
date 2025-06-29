@@ -21,18 +21,26 @@ public static class BenchmarkHarness
         await RunRunnerAsync(new PythonBuildTestRunner(), CreatePythonSample(), resultPath, cancellationToken);
     }
 
-    private static async Task RunRunnerAsync(IBuildTestRunner runner, string projectPath, string resultPath, CancellationToken cancellationToken)
+    private static async Task RunRunnerAsync(object runner, string projectPath, string resultPath, CancellationToken cancellationToken)
     {
         var sw = Stopwatch.StartNew();
-        string output = await runner.BuildAsync(projectPath, cancellationToken);
+        (string Output, double CpuMs, long PeakMemory) metrics = runner switch
+        {
+            DotnetBuildTestRunner d => await d.BuildWithMetricsAsync(projectPath, cancellationToken),
+            PythonBuildTestRunner p => await p.BuildWithMetricsAsync(projectPath, cancellationToken),
+            IBuildTestRunner r => (await ProcessRunner.RunWithMetricsAsync(r.Name.ToLowerInvariant(), "build", projectPath, "build", cancellationToken)),
+            _ => ("", 0, 0)
+        };
         sw.Stop();
-        bool success = !output.Contains("Exit code", StringComparison.OrdinalIgnoreCase);
+        bool success = !metrics.Output.Contains("Exit code", StringComparison.OrdinalIgnoreCase);
         var entry = new
         {
             timestamp = DateTime.UtcNow,
-            language = runner.Name,
+            language = runner is IBuildTestRunner br ? br.Name : "Unknown",
             success,
-            milliseconds = sw.ElapsedMilliseconds
+            milliseconds = sw.ElapsedMilliseconds,
+            cpuMs = metrics.CpuMs,
+            memoryBytes = metrics.PeakMemory
         };
         string line = JsonSerializer.Serialize(entry);
         File.AppendAllText(resultPath, line + Environment.NewLine);
