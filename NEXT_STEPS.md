@@ -173,3 +173,4 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Document DocsUpdater in README
 - [x] Update REFERENCE_FILES with DocsUpdater entry
 - [x] Run `dotnet test`
+- [x] Add OfflineLearningTests verifying model save/load, training and archiving
