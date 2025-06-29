@@ -14,6 +14,13 @@ The UI uses WPF and therefore runs only on Windows systems.
 2. Or run `dotnet publish src/ASL.CodeEngineering.App -c Release`.
 
 The compiled `.exe` appears under `src/ASL.CodeEngineering.App/bin/Release/net7.0-windows/`.
+## Containerized build
+
+A `Dockerfile` shows how to build and run the WPF app using Windows containers. Build the image with `docker build -t aslcodeengine .` and run it with `docker run --rm aslcodeengine`. These images use Windows Server Core so Docker must run in Windows container mode.
+
+## Kubernetes deployment
+
+Optional manifests under `k8s/` demonstrate scaling the learning components with Kubernetes. After building a container image, apply the manifests with `kubectl apply -f k8s/` to run the engine inside a cluster.
 
 ## Testing
 
