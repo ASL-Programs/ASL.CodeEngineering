@@ -138,6 +138,11 @@ files and versions are archived under `data/models/`. Passing an
 `OfflineLearning.OfflineModel` instance to `AutonomousLearningEngine.RunAsync`
 will update the model with harmonized data during each cycle.
 
+## Documentation automation
+
+A `DocsUpdater` module watches learning cycles. Each time a cycle completes it copies `AGENTS.md` and `NEXT_STEPS.md` to `docs/archive/` with a timestamp and marks completed tasks `[x]`. It also appends a note to `AGENTS.md` for auditing.
+
+
 
 ## Choosing an AI provider
 

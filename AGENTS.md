@@ -159,6 +159,7 @@
 - [x] 5.3. Generate self-documenting code (docstrings/XMLDocs/Markdown), project milestone reports, and meta-learning summaries
 - [x] 5.4. Visual dashboard: learning progress, knowledge graphs, AI/language/tool comparisons, and improvement trends
 
+- [x] 5.5. Automatically update AGENTS.md and NEXT_STEPS.md after each learning cycle, archiving backups under docs/archive/
 ---
 
 ## 6. User Interaction & Control
