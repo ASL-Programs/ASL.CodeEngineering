@@ -167,3 +167,9 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Pass selected packages to AutonomousLearningEngine
 - [x] Document package toggles in README
 - [x] Run `dotnet test`
+
+- [x] Implement DocsUpdater for automatic documentation
+- [x] Archive docs under docs/archive
+- [x] Document DocsUpdater in README
+- [x] Update REFERENCE_FILES with DocsUpdater entry
+- [x] Run `dotnet test`
