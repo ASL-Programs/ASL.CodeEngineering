@@ -5,8 +5,8 @@ This document explains which programming languages and technologies are used acr
 ## Language & Technology Decisions
 
 ### 1. Main Application & AI Providers: C#
-- Reason: The WPF UI and the `IAIProvider` implementations are written in C#.
-  This provides deep Windows integration and leverages the rich .NET tooling.
+ - Reason: The WPF UI, `IAIProvider` implementations and the SignalR sync server are written in C#.
+   This provides deep Windows integration and leverages the rich .NET tooling for networking.
 
 ### 2. Glue Code & Build/Test Runners: Python
 - Reason: Flexible scripting and excellent interoperability. Python is used
