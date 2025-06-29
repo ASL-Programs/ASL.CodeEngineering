@@ -25,3 +25,7 @@ This document explains which programming languages and technologies are used acr
 - Initial runs show simple .NET and Python builds complete in under a second on the test machine.
 
 Add additional sections here whenever new languages or tools are adopted or plans change.
+
+### 6. API Server: ASP.NET Core
+- Reason: ASP.NET Core provides a small, cross-platform web server for exposing
+  build, test and log endpoints.

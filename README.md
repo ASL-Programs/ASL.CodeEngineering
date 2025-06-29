@@ -38,6 +38,7 @@ Initial structure for the autonomous polyglot code engineering system.
   - `ASL.CodeEngineering.App` – WPF application hosting the UI.
   - `ASL.CodeEngineering.AI` – library with the `IAIProvider` abstraction and
     sample providers (`EchoAIProvider`, `ReverseAIProvider`, `OpenAIProvider`, `LocalAIProvider`).
+  - `ASL.CodeEngineering.Api` – ASP.NET Core server exposing build, test and log endpoints.
 - `tests/` – unit tests for the provider library.
 - `knowledge_base/plans/` – outputs from `ProjectPlanner` that map open roadmap
   tasks to modules, including a recommended language for each module.
@@ -67,6 +68,8 @@ data and logs:
   changes to `AGENTS.md` and `NEXT_STEPS.md` for other clients.
 - `SYNC_SERVER_URL` – URL of a sync server to join for shared sessions. If
   unset or unreachable, the application falls back to local-only mode.
+- `API_KEY` – optional token required in the `X-Api-Key` header when calling the
+  API server.
 
 ## Extending AI providers
 
@@ -218,6 +221,19 @@ sending confidential or sensitive information. API keys can be stored locally in
 Enable `DISABLE_NETWORK_PROVIDERS` to force the application into an offline
 mode where only local providers are available and all data remains within the
 project directory.
+
+## API server
+
+Run `dotnet run --project src/ASL.CodeEngineering.Api` to start the API. The server
+listens on port 5000 by default and exposes the following endpoints:
+
+- `POST /build` – archive the current `src/` folder and build it using the default runner.
+- `POST /test` – run tests with the default runner.
+- `GET /logs` – list available log files under `LOGS_DIR`.
+- `GET /logs/{name}` – retrieve a single log file.
+
+Set the `API_KEY` environment variable to require clients to send the token in an
+`X-Api-Key` header.
 
 ## Roadmap
 
