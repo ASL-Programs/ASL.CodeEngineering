@@ -189,7 +189,7 @@ A login dialog now appears on startup to select a username and role. Roles contr
 
 ## Documentation automation
 
-A `DocsUpdater` module watches learning cycles. Each time a cycle completes it copies `AGENTS.md` and `NEXT_STEPS.md` to `docs/archive/` with a timestamp and marks completed tasks `[x]`. It also appends a note to `AGENTS.md` for auditing.
+A `DocsUpdater` module watches learning cycles. Each time a cycle completes it copies `AGENTS.md` and `NEXT_STEPS.md` to `docs/archive/` with a timestamp and marks completed tasks `[x]`. It also appends a note to `AGENTS.md` for auditing. When new versions are built the updater writes a Markdown report under `docs/releases/` summarizing code changes, API usage examples and recent training outcomes.
 `AutonomousLearningEngine` calls this updater after each iteration so documentation stays in sync during automated runs.
 
 ### Analytics dashboard

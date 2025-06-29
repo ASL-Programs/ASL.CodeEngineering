@@ -11,6 +11,14 @@ public static class BuildProcess
         string versionPath = VersionManager.SaveVersion(projectRoot);
         string srcPath = Path.Combine(versionPath, "src");
         await runner.BuildAsync(srcPath, cancellationToken);
+        try
+        {
+            DocsUpdater.GenerateReleaseReport(projectRoot, versionPath);
+        }
+        catch
+        {
+            // ignore report failures
+        }
         return versionPath;
     }
 }
