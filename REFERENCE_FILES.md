@@ -62,4 +62,7 @@ This list tracks documents, config files and other resources that may need to be
 | `src/ASL.CodeEngineering.AI/HealthMonitor.cs` | Restarts stalled components and writes health states |
 | `src/ASL.CodeEngineering.App/UserProfile.cs` | Stores per-user preferences and recent projects |
 | `src/ASL.CodeEngineering.App/Resources/Strings.resx` | UI translations for English, Azerbaijani, Russian and Turkish |
+| `src/ASL.CodeEngineering.App/Sync/SyncServer.cs` | SignalR server broadcasting file updates |
+| `src/ASL.CodeEngineering.App/Sync/SyncClient.cs` | Watches local files and syncs changes via SignalR |
+| `tests/ASL.CodeEngineering.Tests/SessionSharingTests.cs` | Ensures multiple clients share updates |
 Add new entries in the table above with a short explanation of why the file might be needed again.

@@ -123,6 +123,13 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Default to https://api.openai.com/v1/chat/completions when URL is empty
 - [x] Document OPENAI_API_URL in README
 - [x] Run dotnet test
+- [x] Add SyncServer and SyncClient using SignalR
+- [x] Start server and client from MainWindow when variables are set
+- [x] Add unit test verifying session sharing
+- [x] Document new variables in README
+- [x] Update REFERENCE_FILES and LANGUAGE_DECISIONS
+- [x] Mark roadmap item 8.6 complete in AGENTS.md
+- [x] Run `dotnet test`
 - [x] Extend InteropGenerator with Node wrapper
 - [x] Add InteropGenerator Node wrapper tests
 - [x] Document Node requirement in README

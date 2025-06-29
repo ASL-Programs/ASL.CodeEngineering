@@ -52,6 +52,8 @@ namespace ASL.CodeEngineering
         private string? _latestVersionPath;
         private CancellationTokenSource? _projectCts;
         private Task? _projectTask;
+        private SyncServer? _syncServer;
+        private SyncClient? _syncClient;
 
 
         public MainWindow()
@@ -237,6 +239,19 @@ namespace ASL.CodeEngineering
             {
                 LearningEnabledCheckBox.IsChecked = true;
                 StartLearningLoop();
+            }
+
+            if (Environment.GetEnvironmentVariable("ENABLE_SYNC_SERVER") == "1")
+            {
+                _syncServer = new SyncServer(6001);
+                try { _syncServer.StartAsync().Wait(); } catch { }
+            }
+
+            string url = Environment.GetEnvironmentVariable("SYNC_SERVER_URL");
+            if (!string.IsNullOrEmpty(url))
+            {
+                _syncClient = new SyncClient(url, AppContext.BaseDirectory);
+                try { _syncClient.StartAsync().Wait(); } catch { }
             }
         }
 
@@ -830,6 +845,13 @@ namespace ASL.CodeEngineering
             {
                 // ignore logging failures
             }
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            _syncClient?.DisposeAsync().AsTask().Wait();
+            _syncServer?.DisposeAsync().AsTask().Wait();
+            base.OnClosed(e);
         }
     }
 

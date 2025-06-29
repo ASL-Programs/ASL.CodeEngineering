@@ -62,6 +62,10 @@ data and logs:
 - `DISABLE_NETWORK_PROVIDERS` – set to `1` or `true` to remove providers that
   require internet access from the dropdown. Use this to enforce a fully offline
   workflow where all prompts stay inside the project directory.
+- `ENABLE_SYNC_SERVER` – set to `1` to start a local SignalR server that broadcasts
+  changes to `AGENTS.md` and `NEXT_STEPS.md` for other clients.
+- `SYNC_SERVER_URL` – URL of a sync server to join for shared sessions. If
+  unset or unreachable, the application falls back to local-only mode.
 
 ## Extending AI providers
 
