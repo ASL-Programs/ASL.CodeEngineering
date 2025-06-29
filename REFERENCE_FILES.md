@@ -70,4 +70,5 @@ This list tracks documents, config files and other resources that may need to be
 | `src/ASL.CodeEngineering.Api/ApiServer.cs` | Lightweight REST API for builds, tests and logs |
 | `Dockerfile` | Build Windows container for WPF app |
 | `k8s/` | Example Kubernetes manifests for learning components |
+| `src/ASL.CodeEngineering.AI/GpuDeviceManager.cs` | Detects and selects GPU devices |
 Add new entries in the table above with a short explanation of why the file might be needed again.
