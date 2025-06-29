@@ -203,7 +203,7 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Mark roadmap item 8.1 complete in AGENTS.md
 - [x] Run `dotnet test`
 
- - [x] Build initial self-training package
-- [ ] Implement meta-learning adjustments
-- [ ] Add version preview mode
-- [ ] Create project generator
+ - [x] Build self-training package initializing local model on first launch
+ - [x] Implement meta-learning adjustments
+ - [x] Add version preview mode
+ - [x] Create project generator
