@@ -179,6 +179,13 @@
  - [x] 7.2. Archive all previous versions/experiments for user review/comparison
  - [x] 7.3. Meta-analyze which languages, tools, AIs, or strategies produce the best results, and update future learning accordingly
 
+## 8. Planned Work
+
+ - [ ] 8.1. Integrate a dedicated self-training package that initializes a local model on first launch
+ - [ ] 8.2. Expand meta-learning (analysis of training outcomes, adjustment of packages, etc.)
+ - [ ] 8.3. Support version preview and rollback features
+ - [ ] 8.4. Document ability to scaffold new software projects
+
 ---
 
 ## Short Mission Statement
