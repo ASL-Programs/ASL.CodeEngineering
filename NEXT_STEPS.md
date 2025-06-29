@@ -196,7 +196,14 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Update REFERENCE_FILES with ProjectGenerator entry
 - [x] Run `dotnet test`
 
-- [ ] Build initial self-training package
+- [x] Create knowledge_base/offline_training with sample dataset
+- [x] Update ModelLoader to initialize from dataset when no model file exists
+- [x] Load initial model in AutonomousLearningEngine if modelPath is provided
+- [x] Document offline_training in README and REFERENCE_FILES
+- [x] Mark roadmap item 8.1 complete in AGENTS.md
+- [x] Run `dotnet test`
+
+ - [x] Build initial self-training package
 - [ ] Implement meta-learning adjustments
 - [ ] Add version preview mode
 - [ ] Create project generator

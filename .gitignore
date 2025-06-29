@@ -40,6 +40,8 @@ knowledge_base/*
 !knowledge_base/benchmarks/.gitkeep
 !knowledge_base/packages/
 !knowledge_base/packages/**
+!knowledge_base/offline_training/
+!knowledge_base/offline_training/**
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
