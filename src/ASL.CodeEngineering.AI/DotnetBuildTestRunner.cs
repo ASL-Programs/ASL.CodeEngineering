@@ -10,7 +10,13 @@ public class DotnetBuildTestRunner : IBuildTestRunner
 
     public async Task<string> BuildAsync(string projectPath, CancellationToken cancellationToken = default)
     {
-        return await ProcessRunner.RunAsync("dotnet", "build", projectPath, "build", cancellationToken);
+        var result = await BuildWithMetricsAsync(projectPath, cancellationToken);
+        return result.Output;
+    }
+
+    public async Task<(string Output, double CpuMs, long PeakMemory)> BuildWithMetricsAsync(string projectPath, CancellationToken cancellationToken = default)
+    {
+        return await ProcessRunner.RunWithMetricsAsync("dotnet", "build", projectPath, "build", cancellationToken);
     }
 
     public async Task<string> TestAsync(string projectPath, CancellationToken cancellationToken = default)

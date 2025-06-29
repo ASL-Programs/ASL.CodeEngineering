@@ -26,6 +26,9 @@ public class BenchmarkHarnessTests
         Assert.True(File.Exists(file));
         string[] lines = File.ReadAllLines(file);
         Assert.True(lines.Length >= 2);
+        var doc = System.Text.Json.JsonDocument.Parse(lines[0]).RootElement;
+        Assert.True(doc.TryGetProperty("cpuMs", out _));
+        Assert.True(doc.TryGetProperty("memoryBytes", out _));
 
         Environment.SetEnvironmentVariable("KB_DIR", null);
         Directory.Delete(kbDir, true);

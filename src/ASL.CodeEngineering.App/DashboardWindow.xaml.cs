@@ -20,6 +20,7 @@ public partial class DashboardWindow : Window
         string crawlFile = Path.Combine(metaDir, "crawl.jsonl");
         string planFile = Path.Combine(root, "knowledge_base", "plans", "plans.json");
         string insightsFile = Path.Combine(metaDir, "language_insights.json");
+        string benchFile = Path.Combine(root, "knowledge_base", "benchmarks", "benchmarks.jsonl");
 
         var plans = new List<ModulePlan>();
         if (File.Exists(planFile))
@@ -66,5 +67,29 @@ public partial class DashboardWindow : Window
             }
         }
         InsightGrid.ItemsSource = insights;
+
+        var benches = new List<dynamic>();
+        if (File.Exists(benchFile))
+        {
+            foreach (var line in File.ReadAllLines(benchFile))
+            {
+                try
+                {
+                    var doc = JsonDocument.Parse(line).RootElement;
+                    benches.Add(new
+                    {
+                        Language = doc.GetProperty("language").GetString(),
+                        Ms = doc.GetProperty("milliseconds").GetInt64(),
+                        CpuMs = doc.TryGetProperty("cpuMs", out var cpuEl) ? cpuEl.GetDouble() : 0,
+                        Memory = doc.TryGetProperty("memoryBytes", out var memEl) ? memEl.GetInt64() : 0
+                    });
+                }
+                catch
+                {
+                    // ignore
+                }
+            }
+        }
+        BenchmarkGrid.ItemsSource = benches;
     }
 }
