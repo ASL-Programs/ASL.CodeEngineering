@@ -55,4 +55,5 @@ This list tracks documents, config files and other resources that may need to be
 | `tests/ASL.CodeEngineering.Tests/AutonomousLearningEngineAdaptiveTests.cs` | Ensures training metrics alter learning rate and packages |
 | `tests/ASL.CodeEngineering.Tests/TrainingMetricsAnalyzerTests.cs` | Verifies metrics are recorded correctly |
 | `src/ASL.CodeEngineering.AI/ProjectGenerator.cs` | Scaffolds new projects based on description and language |
+| `docs/archive/` | Backups of `AGENTS.md` and `NEXT_STEPS.md` after each learning cycle |
 Add new entries in the table above with a short explanation of why the file might be needed again.
