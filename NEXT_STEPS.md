@@ -238,3 +238,8 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Update UI with profile dropdown
 - [x] Document profiles in README
 - [x] Run dotnet test
+- [x] Add resource files for multiple languages
+- [x] Replace hard-coded strings with resource bindings
+- [x] Add language selector in MainWindow
+- [x] Document translation files in REFERENCE_FILES
+- [x] Run dotnet test

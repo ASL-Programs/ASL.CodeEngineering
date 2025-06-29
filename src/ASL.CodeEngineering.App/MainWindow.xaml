@@ -2,7 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:avalonedit="http://icsharpcode.net/sharpdevelop/avalonedit"
-        Title="ASL.CodeEngineering" Height="600" Width="800">
+        xmlns:res="clr-namespace:ASL.CodeEngineering"
+        Title="{x:Static res:Strings.AppTitle}" Height="600" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />
@@ -11,15 +12,16 @@
 
         <!-- Project Explorer -->
         <DockPanel Grid.Column="0" LastChildFill="True">
-            <Button x:Name="OpenProjectButton" Content="Open Project" DockPanel.Dock="Top" Margin="5" Click="OpenProjectButton_Click"/>
+            <Button x:Name="OpenProjectButton" Content="{x:Static res:Strings.OpenProject}" DockPanel.Dock="Top" Margin="5" Click="OpenProjectButton_Click"/>
             <TreeView x:Name="ProjectTreeView" SelectedItemChanged="ProjectTreeView_SelectedItemChanged"/>
         </DockPanel>
 
         <!-- Main Content -->
         <TabControl Grid.Column="1" Margin="10">
-            <TabItem Header="Main">
+            <TabItem x:Name="MainTab" Header="{x:Static res:Strings.MainTab}">
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -36,95 +38,96 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-            <ComboBox x:Name="ProfileComboBox" Grid.Row="0" Margin="0 0 0 5" SelectionChanged="ProfileComboBox_SelectionChanged" />
-            <ComboBox x:Name="ProviderComboBox" Grid.Row="1" Margin="0 0 0 5" SelectionChanged="ProviderComboBox_SelectionChanged" />
-            <StackPanel Grid.Row="2" Orientation="Horizontal">
-                <ComboBox x:Name="AnalyzerComboBox" Width="150" SelectionChanged="AnalyzerComboBox_SelectionChanged" />
-                <Button x:Name="AnalyzeButton" Content="Analyze" Width="75" Margin="5 0 0 0" Click="AnalyzeButton_Click" />
-            </StackPanel>
+            <ComboBox x:Name="LanguageComboBox" Grid.Row="0" Margin="0 0 0 5" SelectionChanged="LanguageComboBox_SelectionChanged" />
+            <ComboBox x:Name="ProfileComboBox" Grid.Row="1" Margin="0 0 0 5" SelectionChanged="ProfileComboBox_SelectionChanged" />
+            <ComboBox x:Name="ProviderComboBox" Grid.Row="2" Margin="0 0 0 5" SelectionChanged="ProviderComboBox_SelectionChanged" />
             <StackPanel Grid.Row="3" Orientation="Horizontal">
-                <ComboBox x:Name="RunnerComboBox" Width="150" SelectionChanged="RunnerComboBox_SelectionChanged" />
-                <Button x:Name="RunButton" Content="Run" Width="75" Margin="5 0 0 0" Click="RunButton_Click" />
+                <ComboBox x:Name="AnalyzerComboBox" Width="150" SelectionChanged="AnalyzerComboBox_SelectionChanged" />
+                <Button x:Name="AnalyzeButton" Content="{x:Static res:Strings.Analyze}" Width="75" Margin="5 0 0 0" Click="AnalyzeButton_Click" />
             </StackPanel>
             <StackPanel Grid.Row="4" Orientation="Horizontal">
-                <ComboBox x:Name="BuildTestRunnerComboBox" Width="150" SelectionChanged="BuildTestRunnerComboBox_SelectionChanged" />
-                <Button x:Name="BuildButton" Content="Build" Width="75" Margin="5 0 0 0" Click="BuildButton_Click" />
-                <Button x:Name="TestButton" Content="Test" Width="75" Margin="5 0 0 0" Click="TestButton_Click" />
-                <Button x:Name="PreviewUpdateButton" Content="Preview Update" Width="110" Margin="5 0 0 0" Click="PreviewUpdateButton_Click" />
+                <ComboBox x:Name="RunnerComboBox" Width="150" SelectionChanged="RunnerComboBox_SelectionChanged" />
+                <Button x:Name="RunButton" Content="{x:Static res:Strings.Run}" Width="75" Margin="5 0 0 0" Click="RunButton_Click" />
             </StackPanel>
-            <TextBox x:Name="PromptTextBox" Grid.Row="5" Margin="0 0 0 5" />
-            <StackPanel Grid.Row="6" Orientation="Horizontal">
-                <Button x:Name="SendButton" Content="Send" Width="75" Click="SendButton_Click" />
+            <StackPanel Grid.Row="5" Orientation="Horizontal">
+                <ComboBox x:Name="BuildTestRunnerComboBox" Width="150" SelectionChanged="BuildTestRunnerComboBox_SelectionChanged" />
+                <Button x:Name="BuildButton" Content="{x:Static res:Strings.Build}" Width="75" Margin="5 0 0 0" Click="BuildButton_Click" />
+                <Button x:Name="TestButton" Content="{x:Static res:Strings.Test}" Width="75" Margin="5 0 0 0" Click="TestButton_Click" />
+                <Button x:Name="PreviewUpdateButton" Content="{x:Static res:Strings.PreviewUpdate}" Width="110" Margin="5 0 0 0" Click="PreviewUpdateButton_Click" />
+            </StackPanel>
+            <TextBox x:Name="PromptTextBox" Grid.Row="6" Margin="0 0 0 5" />
+            <StackPanel Grid.Row="7" Orientation="Horizontal">
+                <Button x:Name="SendButton" Content="{x:Static res:Strings.Send}" Width="75" Click="SendButton_Click" />
                 <TextBlock x:Name="StatusTextBlock" Margin="10 0" VerticalAlignment="Center" />
             </StackPanel>
-            <StackPanel Grid.Row="7" Orientation="Horizontal">
-                <Button x:Name="StartLearningButton" Content="Start Learning" Width="100" Click="StartLearningButton_Click" />
-                <Button x:Name="PauseLearningButton" Content="Pause" Width="75" Margin="5 0 0 0" Click="PauseLearningButton_Click" />
-                <Button x:Name="ResumeLearningButton" Content="Resume" Width="75" Margin="5 0 0 0" Click="ResumeLearningButton_Click" />
+            <StackPanel Grid.Row="8" Orientation="Horizontal">
+                <Button x:Name="StartLearningButton" Content="{x:Static res:Strings.StartLearning}" Width="100" Click="StartLearningButton_Click" />
+                <Button x:Name="PauseLearningButton" Content="{x:Static res:Strings.Pause}" Width="75" Margin="5 0 0 0" Click="PauseLearningButton_Click" />
+                <Button x:Name="ResumeLearningButton" Content="{x:Static res:Strings.Resume}" Width="75" Margin="5 0 0 0" Click="ResumeLearningButton_Click" />
             </StackPanel>
-            <ItemsControl x:Name="PackageList" Grid.Row="8">
+            <ItemsControl x:Name="PackageList" Grid.Row="9">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <CheckBox Content="{Binding}" IsChecked="True" Checked="PackageCheckBox_Changed" Unchecked="PackageCheckBox_Changed" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <Button x:Name="DashboardButton" Content="Dashboard" Grid.Row="9" Width="90" Click="DashboardButton_Click" />
-            <TextBox x:Name="ResponseTextBox" Grid.Row="10" Margin="0 5 0 0" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" />
-            <avalonedit:TextEditor x:Name="CodeEditor" Grid.Row="11" ShowLineNumbers="True" SyntaxHighlighting="C#"/>
-            <DataGrid x:Name="LearningGrid" Grid.Row="12" AutoGenerateColumns="False">
+            <Button x:Name="DashboardButton" Content="{x:Static res:Strings.Dashboard}" Grid.Row="10" Width="90" Click="DashboardButton_Click" />
+            <TextBox x:Name="ResponseTextBox" Grid.Row="11" Margin="0 5 0 0" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" />
+            <avalonedit:TextEditor x:Name="CodeEditor" Grid.Row="12" ShowLineNumbers="True" SyntaxHighlighting="C#"/>
+            <DataGrid x:Name="LearningGrid" Grid.Row="13" AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Time" Binding="{Binding Timestamp}" Width="120" />
-                    <DataGridTextColumn Header="Provider" Binding="{Binding Provider}" Width="80" />
-                    <DataGridTextColumn Header="Suggestion" Binding="{Binding Result}" Width="*" />
+                    <DataGridTextColumn x:Name="TimeColumn" Header="{x:Static res:Strings.TimeHeader}" Binding="{Binding Timestamp}" Width="120" />
+                    <DataGridTextColumn x:Name="ProviderColumn" Header="{x:Static res:Strings.ProviderHeader}" Binding="{Binding Provider}" Width="80" />
+                    <DataGridTextColumn x:Name="SuggestionColumn" Header="{x:Static res:Strings.SuggestionHeader}" Binding="{Binding Result}" Width="*" />
                 </DataGrid.Columns>
             </DataGrid>
-            <StackPanel Grid.Row="13" Orientation="Horizontal">
-                <Button x:Name="AcceptSuggestionButton" Content="Accept" Width="75" Click="AcceptSuggestionButton_Click" />
-                <Button x:Name="RollbackSuggestionButton" Content="Rollback" Width="75" Margin="5 0 0 0" Click="RollbackSuggestionButton_Click" />
-                <CheckBox x:Name="LearningEnabledCheckBox" Content="Learning On" Margin="10 0" Checked="LearningEnabledCheckBox_Checked" Unchecked="LearningEnabledCheckBox_Unchecked" />
-            </StackPanel>
             <StackPanel Grid.Row="14" Orientation="Horizontal">
+                <Button x:Name="AcceptSuggestionButton" Content="{x:Static res:Strings.Accept}" Width="75" Click="AcceptSuggestionButton_Click" />
+                <Button x:Name="RollbackSuggestionButton" Content="{x:Static res:Strings.Rollback}" Width="75" Margin="5 0 0 0" Click="RollbackSuggestionButton_Click" />
+                <CheckBox x:Name="LearningEnabledCheckBox" Content="{x:Static res:Strings.LearningOn}" Margin="10 0" Checked="LearningEnabledCheckBox_Checked" Unchecked="LearningEnabledCheckBox_Unchecked" />
+            </StackPanel>
+            <StackPanel Grid.Row="15" Orientation="Horizontal">
                 <TextBox x:Name="ProjectDescriptionTextBox" Width="200" Margin="0 0 5 0" />
                 <TextBox x:Name="ProjectLanguageTextBox" Width="100" Margin="0 0 5 0" />
-                <Button x:Name="StartProjectButton" Content="Start New Project" Width="120" Click="StartProjectButton_Click" />
-                <Button x:Name="StopProjectButton" Content="Stop" Width="75" Margin="5 0 0 0" Click="StopProjectButton_Click" IsEnabled="False" />
+                <Button x:Name="StartProjectButton" Content="{x:Static res:Strings.StartNewProject}" Width="120" Click="StartProjectButton_Click" />
+                <Button x:Name="StopProjectButton" Content="{x:Static res:Strings.Stop}" Width="75" Margin="5 0 0 0" Click="StopProjectButton_Click" IsEnabled="False" />
             </StackPanel>
                 </Grid>
             </TabItem>
-            <TabItem Header="Plugins">
+            <TabItem x:Name="PluginsTab" Header="{x:Static res:Strings.PluginsTab}">
                 <ScrollViewer>
                     <StackPanel>
-                        <TextBlock Text="Providers" FontWeight="Bold" Margin="0 0 0 5" />
+                        <TextBlock x:Name="ProvidersTextBlock" Text="{x:Static res:Strings.ProvidersHeader}" FontWeight="Bold" Margin="0 0 0 5" />
                         <DataGrid x:Name="ProviderGrid" AutoGenerateColumns="False" CellEditEnding="ProviderGrid_CellEditEnding">
                             <DataGrid.Columns>
-                                <DataGridCheckBoxColumn Binding="{Binding Enabled, Mode=TwoWay}" Header="Enabled" Width="60" />
-                                <DataGridTextColumn Binding="{Binding Name}" Header="Name" />
-                                <DataGridTextColumn Binding="{Binding Version}" Header="Version" />
+                                <DataGridCheckBoxColumn x:Name="ProviderEnabledColumn" Binding="{Binding Enabled, Mode=TwoWay}" Header="{x:Static res:Strings.EnabledColumn}" Width="60" />
+                                <DataGridTextColumn x:Name="ProviderNameColumn" Binding="{Binding Name}" Header="{x:Static res:Strings.NameColumn}" />
+                                <DataGridTextColumn x:Name="ProviderVersionColumn" Binding="{Binding Version}" Header="{x:Static res:Strings.VersionColumn}" />
                             </DataGrid.Columns>
                         </DataGrid>
-                        <TextBlock Text="Analyzers" FontWeight="Bold" Margin="10 5 0 5" />
+                        <TextBlock x:Name="AnalyzersTextBlock" Text="{x:Static res:Strings.AnalyzersHeader}" FontWeight="Bold" Margin="10 5 0 5" />
                         <DataGrid x:Name="AnalyzerGrid" AutoGenerateColumns="False" CellEditEnding="AnalyzerGrid_CellEditEnding">
                             <DataGrid.Columns>
-                                <DataGridCheckBoxColumn Binding="{Binding Enabled, Mode=TwoWay}" Header="Enabled" Width="60" />
-                                <DataGridTextColumn Binding="{Binding Name}" Header="Name" />
-                                <DataGridTextColumn Binding="{Binding Version}" Header="Version" />
+                                <DataGridCheckBoxColumn x:Name="AnalyzerEnabledColumn" Binding="{Binding Enabled, Mode=TwoWay}" Header="{x:Static res:Strings.EnabledColumn}" Width="60" />
+                                <DataGridTextColumn x:Name="AnalyzerNameColumn" Binding="{Binding Name}" Header="{x:Static res:Strings.NameColumn}" />
+                                <DataGridTextColumn x:Name="AnalyzerVersionColumn" Binding="{Binding Version}" Header="{x:Static res:Strings.VersionColumn}" />
                             </DataGrid.Columns>
                         </DataGrid>
-                        <TextBlock Text="Runners" FontWeight="Bold" Margin="10 5 0 5" />
+                        <TextBlock x:Name="RunnersTextBlock" Text="{x:Static res:Strings.RunnersHeader}" FontWeight="Bold" Margin="10 5 0 5" />
                         <DataGrid x:Name="RunnerGrid" AutoGenerateColumns="False" CellEditEnding="RunnerGrid_CellEditEnding">
                             <DataGrid.Columns>
-                                <DataGridCheckBoxColumn Binding="{Binding Enabled, Mode=TwoWay}" Header="Enabled" Width="60" />
-                                <DataGridTextColumn Binding="{Binding Name}" Header="Name" />
-                                <DataGridTextColumn Binding="{Binding Version}" Header="Version" />
+                                <DataGridCheckBoxColumn x:Name="RunnerEnabledColumn" Binding="{Binding Enabled, Mode=TwoWay}" Header="{x:Static res:Strings.EnabledColumn}" Width="60" />
+                                <DataGridTextColumn x:Name="RunnerNameColumn" Binding="{Binding Name}" Header="{x:Static res:Strings.NameColumn}" />
+                                <DataGridTextColumn x:Name="RunnerVersionColumn" Binding="{Binding Version}" Header="{x:Static res:Strings.VersionColumn}" />
                             </DataGrid.Columns>
                         </DataGrid>
-                        <TextBlock Text="Build/Test Runners" FontWeight="Bold" Margin="10 5 0 5" />
+                        <TextBlock x:Name="BuildTestTextBlock" Text="{x:Static res:Strings.BuildTestRunnersHeader}" FontWeight="Bold" Margin="10 5 0 5" />
                         <DataGrid x:Name="BuildTestGrid" AutoGenerateColumns="False" CellEditEnding="BuildTestGrid_CellEditEnding">
                             <DataGrid.Columns>
-                                <DataGridCheckBoxColumn Binding="{Binding Enabled, Mode=TwoWay}" Header="Enabled" Width="60" />
-                                <DataGridTextColumn Binding="{Binding Name}" Header="Name" />
-                                <DataGridTextColumn Binding="{Binding Version}" Header="Version" />
+                                <DataGridCheckBoxColumn x:Name="BuildEnabledColumn" Binding="{Binding Enabled, Mode=TwoWay}" Header="{x:Static res:Strings.EnabledColumn}" Width="60" />
+                                <DataGridTextColumn x:Name="BuildNameColumn" Binding="{Binding Name}" Header="{x:Static res:Strings.NameColumn}" />
+                                <DataGridTextColumn x:Name="BuildVersionColumn" Binding="{Binding Version}" Header="{x:Static res:Strings.VersionColumn}" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </StackPanel>

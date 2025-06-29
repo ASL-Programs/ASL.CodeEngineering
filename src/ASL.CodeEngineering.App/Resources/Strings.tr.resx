@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="AppTitle" xml:space="preserve"><value>ASL.CodeEngineering</value></data>
+  <data name="OpenProject" xml:space="preserve"><value>Projeyi Aç</value></data>
+  <data name="Analyze" xml:space="preserve"><value>Analiz Et</value></data>
+  <data name="Run" xml:space="preserve"><value>Çalıştır</value></data>
+  <data name="Build" xml:space="preserve"><value>Derle</value></data>
+  <data name="Test" xml:space="preserve"><value>Test Et</value></data>
+  <data name="PreviewUpdate" xml:space="preserve"><value>Güncellemeyi Önizle</value></data>
+  <data name="Send" xml:space="preserve"><value>Gönder</value></data>
+  <data name="StartLearning" xml:space="preserve"><value>Öğrenmeyi Başlat</value></data>
+  <data name="Pause" xml:space="preserve"><value>Duraklat</value></data>
+  <data name="Resume" xml:space="preserve"><value>Devam Et</value></data>
+  <data name="Dashboard" xml:space="preserve"><value>Gösterge Paneli</value></data>
+  <data name="Accept" xml:space="preserve"><value>Kabul Et</value></data>
+  <data name="Rollback" xml:space="preserve"><value>Geri Al</value></data>
+  <data name="LearningOn" xml:space="preserve"><value>Öğrenme Açık</value></data>
+  <data name="StartNewProject" xml:space="preserve"><value>Yeni Proje Başlat</value></data>
+  <data name="Stop" xml:space="preserve"><value>Durdur</value></data>
+  <data name="MainTab" xml:space="preserve"><value>Ana</value></data>
+  <data name="PluginsTab" xml:space="preserve"><value>Eklentiler</value></data>
+  <data name="ProvidersHeader" xml:space="preserve"><value>Sağlayıcılar</value></data>
+  <data name="AnalyzersHeader" xml:space="preserve"><value>Analizciler</value></data>
+  <data name="RunnersHeader" xml:space="preserve"><value>Çalıştırıcılar</value></data>
+  <data name="BuildTestRunnersHeader" xml:space="preserve"><value>Derleme/Test Çalıştırıcıları</value></data>
+  <data name="EnabledColumn" xml:space="preserve"><value>Etkin</value></data>
+  <data name="NameColumn" xml:space="preserve"><value>Ad</value></data>
+  <data name="VersionColumn" xml:space="preserve"><value>Sürüm</value></data>
+  <data name="TimeHeader" xml:space="preserve"><value>Zaman</value></data>
+  <data name="ProviderHeader" xml:space="preserve"><value>Sağlayıcı</value></data>
+  <data name="SuggestionHeader" xml:space="preserve"><value>Öneri</value></data>
+  <data name="DuplicateProvider" xml:space="preserve"><value>Yinelenen sağlayıcı: {0}</value></data>
+  <data name="DuplicateAnalyzer" xml:space="preserve"><value>Yinelenen analizci: {0}</value></data>
+  <data name="DuplicateRunner" xml:space="preserve"><value>Yinelenen çalıştırıcı: {0}</value></data>
+  <data name="DuplicateBuildTestRunner" xml:space="preserve"><value>Yinelenen derleme/test çalıştırıcı: {0}</value></data>
+  <data name="Sending" xml:space="preserve"><value>Gönderiliyor...</value></data>
+  <data name="Done" xml:space="preserve"><value>Tamam</value></data>
+  <data name="Error" xml:space="preserve"><value>Hata</value></data>
+  <data name="LogError" xml:space="preserve"><value>Günlük Hatası</value></data>
+  <data name="SummaryError" xml:space="preserve"><value>Özet Hatası</value></data>
+  <data name="Analyzing" xml:space="preserve"><value>Analiz ediliyor...</value></data>
+  <data name="Running" xml:space="preserve"><value>Çalıştırılıyor...</value></data>
+  <data name="Building" xml:space="preserve"><value>Derleniyor...</value></data>
+  <data name="Testing" xml:space="preserve"><value>Test ediliyor...</value></data>
+  <data name="Learning" xml:space="preserve"><value>Öğreniliyor...</value></data>
+  <data name="Paused" xml:space="preserve"><value>Duraklatıldı</value></data>
+  <data name="ApplyUpdateQuestion" xml:space="preserve"><value>Bu güncelleme uygulansın mı?</value></data>
+  <data name="PreviewCaption" xml:space="preserve"><value>Önizleme</value></data>
+  <data name="Cancelled" xml:space="preserve"><value>İptal edildi</value></data>
+  <data name="DashboardTitle" xml:space="preserve"><value>Gösterge Paneli</value></data>
+  <resheader name="accessmodifier"><value>public</value></resheader>
+</root>

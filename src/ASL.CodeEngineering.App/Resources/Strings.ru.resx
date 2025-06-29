@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="AppTitle" xml:space="preserve"><value>ASL.CodeEngineering</value></data>
+  <data name="OpenProject" xml:space="preserve"><value>Открыть проект</value></data>
+  <data name="Analyze" xml:space="preserve"><value>Анализ</value></data>
+  <data name="Run" xml:space="preserve"><value>Запуск</value></data>
+  <data name="Build" xml:space="preserve"><value>Сборка</value></data>
+  <data name="Test" xml:space="preserve"><value>Тест</value></data>
+  <data name="PreviewUpdate" xml:space="preserve"><value>Просмотр обновления</value></data>
+  <data name="Send" xml:space="preserve"><value>Отправить</value></data>
+  <data name="StartLearning" xml:space="preserve"><value>Начать обучение</value></data>
+  <data name="Pause" xml:space="preserve"><value>Пауза</value></data>
+  <data name="Resume" xml:space="preserve"><value>Возобновить</value></data>
+  <data name="Dashboard" xml:space="preserve"><value>Панель</value></data>
+  <data name="Accept" xml:space="preserve"><value>Принять</value></data>
+  <data name="Rollback" xml:space="preserve"><value>Откат</value></data>
+  <data name="LearningOn" xml:space="preserve"><value>Обучение включено</value></data>
+  <data name="StartNewProject" xml:space="preserve"><value>Начать новый проект</value></data>
+  <data name="Stop" xml:space="preserve"><value>Стоп</value></data>
+  <data name="MainTab" xml:space="preserve"><value>Главная</value></data>
+  <data name="PluginsTab" xml:space="preserve"><value>Плагины</value></data>
+  <data name="ProvidersHeader" xml:space="preserve"><value>Провайдеры</value></data>
+  <data name="AnalyzersHeader" xml:space="preserve"><value>Анализаторы</value></data>
+  <data name="RunnersHeader" xml:space="preserve"><value>Исполнители</value></data>
+  <data name="BuildTestRunnersHeader" xml:space="preserve"><value>Сборка/Тест исполнители</value></data>
+  <data name="EnabledColumn" xml:space="preserve"><value>Вкл</value></data>
+  <data name="NameColumn" xml:space="preserve"><value>Имя</value></data>
+  <data name="VersionColumn" xml:space="preserve"><value>Версия</value></data>
+  <data name="TimeHeader" xml:space="preserve"><value>Время</value></data>
+  <data name="ProviderHeader" xml:space="preserve"><value>Провайдер</value></data>
+  <data name="SuggestionHeader" xml:space="preserve"><value>Предложение</value></data>
+  <data name="DuplicateProvider" xml:space="preserve"><value>Дублирующий провайдер: {0}</value></data>
+  <data name="DuplicateAnalyzer" xml:space="preserve"><value>Дублирующий анализатор: {0}</value></data>
+  <data name="DuplicateRunner" xml:space="preserve"><value>Дублирующий исполнитель: {0}</value></data>
+  <data name="DuplicateBuildTestRunner" xml:space="preserve"><value>Дублирующий сбор/тест исполнитель: {0}</value></data>
+  <data name="Sending" xml:space="preserve"><value>Отправка...</value></data>
+  <data name="Done" xml:space="preserve"><value>Готово</value></data>
+  <data name="Error" xml:space="preserve"><value>Ошибка</value></data>
+  <data name="LogError" xml:space="preserve"><value>Ошибка журнала</value></data>
+  <data name="SummaryError" xml:space="preserve"><value>Ошибка сводки</value></data>
+  <data name="Analyzing" xml:space="preserve"><value>Анализ...</value></data>
+  <data name="Running" xml:space="preserve"><value>Запуск...</value></data>
+  <data name="Building" xml:space="preserve"><value>Сборка...</value></data>
+  <data name="Testing" xml:space="preserve"><value>Тестирование...</value></data>
+  <data name="Learning" xml:space="preserve"><value>Обучение...</value></data>
+  <data name="Paused" xml:space="preserve"><value>Приостановлено</value></data>
+  <data name="ApplyUpdateQuestion" xml:space="preserve"><value>Применить это обновление?</value></data>
+  <data name="PreviewCaption" xml:space="preserve"><value>Предпросмотр</value></data>
+  <data name="Cancelled" xml:space="preserve"><value>Отменено</value></data>
+  <data name="DashboardTitle" xml:space="preserve"><value>Панель</value></data>
+  <resheader name="accessmodifier"><value>public</value></resheader>
+</root>

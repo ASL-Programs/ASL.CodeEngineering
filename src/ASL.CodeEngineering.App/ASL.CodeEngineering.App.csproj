@@ -13,6 +13,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Strings.resx" />
+    <EmbeddedResource Include="Resources\Strings.az.resx" />
+    <EmbeddedResource Include="Resources\Strings.ru.resx" />
+    <EmbeddedResource Include="Resources\Strings.tr.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AvalonEdit" Version="6.1.0" />
   </ItemGroup>
 </Project>
