@@ -17,10 +17,15 @@ namespace ASL.CodeEngineering.AI;
 /// </summary>
 public static class AutonomousLearningEngine
 {
+    public static double LastLearningRate { get; private set; } = 0.001;
+    public static IReadOnlyList<string>? LastPackages => _lastPackages;
+    private static List<string>? _lastPackages;
+
     public static async Task RunAsync(Func<IAIProvider> getProvider, CancellationToken token,
                                       IEnumerable<string>? packages = null,
                                       OfflineLearning.OfflineModel? model = null,
-                                      string? modelPath = null)
+                                      string? modelPath = null,
+                                      double learningRate = 0.001)
     {
         string baseKb = Environment.GetEnvironmentVariable("KB_DIR") ??
                          Path.Combine(AppContext.BaseDirectory, "knowledge_base");
@@ -28,7 +33,11 @@ public static class AutonomousLearningEngine
         Directory.CreateDirectory(autoDir);
         string logPath = Path.Combine(autoDir, "auto.jsonl");
 
-        string packageText = LoadPackages(baseKb, packages);
+        var packageList = packages?.ToList();
+        string packageText = LoadPackages(baseKb, packageList);
+        double rate = learningRate;
+        LastLearningRate = rate;
+        _lastPackages = packageList == null ? null : new List<string>(packageList);
 
         int counter = 0;
         while (!token.IsCancellationRequested)
@@ -71,7 +80,34 @@ public static class AutonomousLearningEngine
                 {
                     var inputs = new List<double[]> { new[] { (double)result.Length } };
                     var targets = new List<double> { result.Length };
-                    OfflineLearning.GradientTrainer.Train(model, inputs, targets, 0.001, 1);
+                    OfflineLearning.GradientTrainer.Train(model, inputs, targets, rate, 1);
+                    double pred = model.Predict(inputs[0]);
+                    double loss = Math.Pow(pred - targets[0], 2);
+                    TrainingMetricsAnalyzer.Record(AppContext.BaseDirectory, loss);
+                    var avg = TrainingMetricsAnalyzer.GetAverages(AppContext.BaseDirectory);
+                    if (!double.IsNaN(avg.Loss))
+                    {
+                        if (avg.Loss < 0.5)
+                            rate *= 0.9;
+                        else
+                            rate *= 1.1;
+                        LastLearningRate = rate;
+                        if (packageList != null)
+                        {
+                            if (avg.Accuracy < 0.5)
+                            {
+                                if (!packageList.Contains("learn_to_learn"))
+                                    packageList.Add("learn_to_learn");
+                            }
+                            else
+                            {
+                                packageList.Remove("learn_to_learn");
+                            }
+                            _lastPackages = new List<string>(packageList);
+                        }
+                        packageText = LoadPackages(baseKb, packageList);
+                    }
+
                     if (modelPath != null)
                     {
                         OfflineLearning.ModelLoader.SavePt(model, modelPath);

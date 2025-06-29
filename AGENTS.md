@@ -182,8 +182,8 @@
 ## 8. Planned Work
 
  - [ ] 8.1. Integrate a dedicated self-training package that initializes a local model on first launch
- - [ ] 8.2. Expand meta-learning (analysis of training outcomes, adjustment of packages, etc.)
- - [ ] 8.3. Support version preview and rollback features
+ - [x] 8.2. Expand meta-learning (analysis of training outcomes, adjustment of packages, etc.)
+ - [x] 8.3. Support version preview and rollback features
  - [ ] 8.4. Document ability to scaffold new software projects
 
 ---
