@@ -206,6 +206,8 @@ This file captures the current and upcoming steps for the project. It acts as th
  - [x] Build self-training package initializing local model on first launch
  - [x] Implement meta-learning adjustments
  - [x] Add version preview mode
- - [x] Create project generator
+- [x] Create project generator
 - [x] Document WPF build instructions in README
+- [x] Run `dotnet test`
+- [x] Add BuildProcessTests verifying version archive and runner call
 - [x] Run `dotnet test`
