@@ -243,6 +243,9 @@ listens on port 5000 by default and exposes the following endpoints:
 - `POST /test` – run tests with the default runner.
 - `GET /logs` – list available log files under `LOGS_DIR`.
 - `GET /logs/{name}` – retrieve a single log file.
+- `GET /compliance` – validate stored user data against `configs/compliance.json`.
+- `POST /export-data` – download a ZIP archive of the `data/` folder.
+- `POST /erase-data` – delete the `data/` folder after exporting.
 
 Set the `API_KEY` environment variable to require clients to send the token in an
 `X-Api-Key` header.

@@ -189,7 +189,8 @@
 - [x] 8.6. Add SignalR sync server for session sharing
 - [x] 8.7. Implement role-based Permissions module
 - [x] 8.8. Provide ASP.NET Core API server for builds, tests and logs
- - [x] 8.9. Integrate CUDA/OpenCL GPU bindings with TensorFlow.NET, detect available GPUs and allow selection in training settings
+- [x] 8.9. Integrate CUDA/OpenCL GPU bindings with TensorFlow.NET, detect available GPUs and allow selection in training settings
+- [x] 8.10. Add ComplianceChecker with data export and erase commands
 
 ---
 

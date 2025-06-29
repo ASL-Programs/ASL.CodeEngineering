@@ -7,6 +7,8 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
+using System.IO.Compression;
 using System.Threading.Tasks;
 
 namespace ASL.CodeEngineering.Api;
@@ -67,6 +69,30 @@ public class ApiServer : IAsyncDisposable
                                 return;
                             }
                             await context.Response.SendFileAsync(file);
+                        });
+
+                        endpoints.MapGet("/compliance", async context =>
+                        {
+                            string configDir = Path.Combine(projectRoot, "configs");
+                            string file = Path.Combine(configDir, "compliance.json");
+                            CompliancePolicy policy = File.Exists(file)
+                                ? JsonSerializer.Deserialize<CompliancePolicy>(File.ReadAllText(file)) ?? new CompliancePolicy()
+                                : new CompliancePolicy();
+                            var result = ComplianceChecker.Check(projectRoot, policy);
+                            await context.Response.WriteAsJsonAsync(result);
+                        });
+
+                        endpoints.MapPost("/export-data", async context =>
+                        {
+                            string temp = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName() + ".zip");
+                            string path = UserDataManager.Export(projectRoot, temp);
+                            await context.Response.SendFileAsync(path);
+                        });
+
+                        endpoints.MapPost("/erase-data", context =>
+                        {
+                            UserDataManager.Erase(projectRoot);
+                            return context.Response.WriteAsync("ok");
                         });
                     });
                 });
