@@ -157,11 +157,11 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Document packages in README
 - [x] Update REFERENCE_FILES
 - [x] Run `dotnet test`
-- [ ] Add OfflineLearning module with tensor ops and trainer
-- [ ] Save model versions under data/models
-- [ ] Train offline model from AutonomousLearningEngine
-- [ ] Document offline learning in README and update references
-- [ ] Run dotnet test
+- [x] Add OfflineLearning module with tensor ops and trainer (implemented in commit 86fbbf0)
+- [x] Save model versions under data/models
+- [x] Train offline model from AutonomousLearningEngine
+- [x] Document offline learning in README and update references
+- [x] Run dotnet test
 
 - [x] Show packages in UI with enable/disable checkboxes
 - [x] Pass selected packages to AutonomousLearningEngine
