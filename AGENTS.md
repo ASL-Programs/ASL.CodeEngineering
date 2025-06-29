@@ -197,3 +197,4 @@
 - [x] Build process archives new version for preview
 - [x] Preview Update button runs sandbox build
 - [x] Restoring preview on confirmation
+- [x] Unit tests verify BuildProcess archives version and invokes runner
