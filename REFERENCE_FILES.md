@@ -58,6 +58,7 @@ This list tracks documents, config files and other resources that may need to be
 | `tests/ASL.CodeEngineering.Tests/TrainingMetricsAnalyzerTests.cs` | Verifies metrics are recorded correctly |
 | `src/ASL.CodeEngineering.AI/ProjectGenerator.cs` | Scaffolds new projects based on description and language |
 | `docs/archive/` | Backups of `AGENTS.md` and `NEXT_STEPS.md` after each learning cycle |
+| `docs/releases/` | Markdown reports summarizing code changes per version |
 | `tests/ASL.CodeEngineering.Tests/BuildProcessTests.cs` | Ensures BuildProcess archives versions and invokes runner |
 | `src/ASL.CodeEngineering.AI/HealthMonitor.cs` | Restarts stalled components and writes health states |
 | `src/ASL.CodeEngineering.App/UserProfile.cs` | Stores per-user preferences and recent projects |
