@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="xml:space" default="preserve" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppTitle" xml:space="preserve"><value>ASL.CodeEngineering</value></data>
+  <data name="OpenProject" xml:space="preserve"><value>Open Project</value></data>
+  <data name="Analyze" xml:space="preserve"><value>Analyze</value></data>
+  <data name="Run" xml:space="preserve"><value>Run</value></data>
+  <data name="Build" xml:space="preserve"><value>Build</value></data>
+  <data name="Test" xml:space="preserve"><value>Test</value></data>
+  <data name="PreviewUpdate" xml:space="preserve"><value>Preview Update</value></data>
+  <data name="Send" xml:space="preserve"><value>Send</value></data>
+  <data name="StartLearning" xml:space="preserve"><value>Start Learning</value></data>
+  <data name="Pause" xml:space="preserve"><value>Pause</value></data>
+  <data name="Resume" xml:space="preserve"><value>Resume</value></data>
+  <data name="Dashboard" xml:space="preserve"><value>Dashboard</value></data>
+  <data name="Accept" xml:space="preserve"><value>Accept</value></data>
+  <data name="Rollback" xml:space="preserve"><value>Rollback</value></data>
+  <data name="LearningOn" xml:space="preserve"><value>Learning On</value></data>
+  <data name="StartNewProject" xml:space="preserve"><value>Start New Project</value></data>
+  <data name="Stop" xml:space="preserve"><value>Stop</value></data>
+  <data name="MainTab" xml:space="preserve"><value>Main</value></data>
+  <data name="PluginsTab" xml:space="preserve"><value>Plugins</value></data>
+  <data name="ProvidersHeader" xml:space="preserve"><value>Providers</value></data>
+  <data name="AnalyzersHeader" xml:space="preserve"><value>Analyzers</value></data>
+  <data name="RunnersHeader" xml:space="preserve"><value>Runners</value></data>
+  <data name="BuildTestRunnersHeader" xml:space="preserve"><value>Build/Test Runners</value></data>
+  <data name="EnabledColumn" xml:space="preserve"><value>Enabled</value></data>
+  <data name="NameColumn" xml:space="preserve"><value>Name</value></data>
+  <data name="VersionColumn" xml:space="preserve"><value>Version</value></data>
+  <data name="TimeHeader" xml:space="preserve"><value>Time</value></data>
+  <data name="ProviderHeader" xml:space="preserve"><value>Provider</value></data>
+  <data name="SuggestionHeader" xml:space="preserve"><value>Suggestion</value></data>
+  <data name="DuplicateProvider" xml:space="preserve"><value>Duplicate provider: {0}</value></data>
+  <data name="DuplicateAnalyzer" xml:space="preserve"><value>Duplicate analyzer: {0}</value></data>
+  <data name="DuplicateRunner" xml:space="preserve"><value>Duplicate runner: {0}</value></data>
+  <data name="DuplicateBuildTestRunner" xml:space="preserve"><value>Duplicate build/test runner: {0}</value></data>
+  <data name="Sending" xml:space="preserve"><value>Sending...</value></data>
+  <data name="Done" xml:space="preserve"><value>Done</value></data>
+  <data name="Error" xml:space="preserve"><value>Error</value></data>
+  <data name="LogError" xml:space="preserve"><value>Log Error</value></data>
+  <data name="SummaryError" xml:space="preserve"><value>Summary Error</value></data>
+  <data name="Analyzing" xml:space="preserve"><value>Analyzing...</value></data>
+  <data name="Running" xml:space="preserve"><value>Running...</value></data>
+  <data name="Building" xml:space="preserve"><value>Building...</value></data>
+  <data name="Testing" xml:space="preserve"><value>Testing...</value></data>
+  <data name="Learning" xml:space="preserve"><value>Learning...</value></data>
+  <data name="Paused" xml:space="preserve"><value>Paused</value></data>
+  <data name="ApplyUpdateQuestion" xml:space="preserve"><value>Apply this update?</value></data>
+  <data name="PreviewCaption" xml:space="preserve"><value>Preview</value></data>
+  <data name="Cancelled" xml:space="preserve"><value>Cancelled</value></data>
+  <data name="DashboardTitle" xml:space="preserve"><value>Dashboard</value></data>
+  <resheader name="accessmodifier"><value>public</value></resheader>
+</root>

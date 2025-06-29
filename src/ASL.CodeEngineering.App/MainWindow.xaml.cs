@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Text.Json;
 using System.Linq;
@@ -38,6 +39,13 @@ namespace ASL.CodeEngineering
         private readonly ObservableCollection<PluginEntry> _analyzerEntries = new();
         private readonly ObservableCollection<PluginEntry> _runnerEntries = new();
         private readonly ObservableCollection<PluginEntry> _buildTestEntries = new();
+        private readonly Dictionary<string, string> _languageMap = new()
+        {
+            ["English"] = "en",
+            ["Azerbaijani"] = "az",
+            ["Russian"] = "ru",
+            ["Turkish"] = "tr"
+        };
         private readonly ObservableCollection<string> _profileNames = new();
         private readonly Dictionary<string, UserProfile> _profiles = new();
         private string _profilesDir = string.Empty;
@@ -49,6 +57,10 @@ namespace ASL.CodeEngineering
         public MainWindow()
         {
             InitializeComponent();
+
+            LanguageComboBox.ItemsSource = _languageMap.Keys;
+            LanguageComboBox.SelectedIndex = 0;
+            UpdateLanguage("en");
 
             LearningGrid.ItemsSource = _learningEntries;
             _learningStatePath = Path.Combine(AppContext.BaseDirectory, "data", "learning_enabled.txt");
@@ -117,7 +129,7 @@ namespace ASL.CodeEngineering
             {
                 if (_providerFactories.ContainsKey(pair.Key))
                 {
-                    StatusTextBlock.Text = $"Duplicate provider: {pair.Key}";
+                    StatusTextBlock.Text = string.Format(Strings.DuplicateProvider, pair.Key);
                     LogError("DuplicateProvider", new InvalidOperationException($"Duplicate provider name '{pair.Key}'"));
                 }
                 else
@@ -132,7 +144,7 @@ namespace ASL.CodeEngineering
             {
                 if (_analyzerFactories.ContainsKey(pair.Key))
                 {
-                    StatusTextBlock.Text = $"Duplicate analyzer: {pair.Key}";
+                    StatusTextBlock.Text = string.Format(Strings.DuplicateAnalyzer, pair.Key);
                     LogError("DuplicateAnalyzer", new InvalidOperationException($"Duplicate analyzer name '{pair.Key}'"));
                 }
                 else
@@ -147,7 +159,7 @@ namespace ASL.CodeEngineering
             {
                 if (_runnerFactories.ContainsKey(pair.Key))
                 {
-                    StatusTextBlock.Text = $"Duplicate runner: {pair.Key}";
+                    StatusTextBlock.Text = string.Format(Strings.DuplicateRunner, pair.Key);
                     LogError("DuplicateRunner", new InvalidOperationException($"Duplicate runner name '{pair.Key}'"));
                 }
                 else
@@ -162,7 +174,7 @@ namespace ASL.CodeEngineering
             {
                 if (_buildTestRunnerFactories.ContainsKey(pair.Key))
                 {
-                    StatusTextBlock.Text = $"Duplicate build/test runner: {pair.Key}";
+                    StatusTextBlock.Text = string.Format(Strings.DuplicateBuildTestRunner, pair.Key);
                     LogError("DuplicateBuildTestRunner", new InvalidOperationException($"Duplicate build/test runner name '{pair.Key}'"));
                 }
                 else
@@ -268,6 +280,15 @@ namespace ASL.CodeEngineering
             }
         }
 
+        private void LanguageComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (LanguageComboBox.SelectedItem is string name &&
+                _languageMap.TryGetValue(name, out var code))
+            {
+                UpdateLanguage(code);
+            }
+        }
+
         private void ProfileComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (ProfileComboBox.SelectedItem is string name &&
@@ -297,20 +318,20 @@ namespace ASL.CodeEngineering
                 return;
 
             SendButton.IsEnabled = false;
-            StatusTextBlock.Text = "Sending...";
+            StatusTextBlock.Text = Strings.Sending;
 
             string response;
             try
             {
                 response = await _aiProvider.SendChatAsync(prompt, CancellationToken.None);
                 ResponseTextBox.Text = response;
-                StatusTextBlock.Text = "Done";
+                StatusTextBlock.Text = Strings.Done;
             }
             catch (Exception ex)
             {
                 response = ex.Message;
                 ResponseTextBox.Text = ex.Message;
-                StatusTextBlock.Text = "Error";
+                StatusTextBlock.Text = Strings.Error;
                 LogError("SendChat", ex);
             }
 
@@ -331,7 +352,7 @@ namespace ASL.CodeEngineering
             catch (Exception ex)
             {
                 LogError("ChatLogWrite", ex);
-                StatusTextBlock.Text = "Log Error";
+                StatusTextBlock.Text = Strings.LogError;
             }
 
             // Generate a brief summary using the active provider and store it in the knowledge base
@@ -345,7 +366,7 @@ namespace ASL.CodeEngineering
             {
                 summary = $"[error: {ex.Message}]";
                 LogError("SummaryGeneration", ex);
-                StatusTextBlock.Text = "Summary Error";
+                StatusTextBlock.Text = Strings.SummaryError;
             }
 
             string baseKb = Environment.GetEnvironmentVariable("KB_DIR") ??
@@ -369,7 +390,7 @@ namespace ASL.CodeEngineering
             catch (Exception ex)
             {
                 LogError("SummaryWrite", ex);
-                StatusTextBlock.Text = "Log Error";
+                StatusTextBlock.Text = Strings.LogError;
             }
         }
 
@@ -382,17 +403,17 @@ namespace ASL.CodeEngineering
                 return;
 
             AnalyzeButton.IsEnabled = false;
-            StatusTextBlock.Text = "Analyzing...";
+            StatusTextBlock.Text = Strings.Analyzing;
             try
             {
                 var result = await _analyzer.AnalyzeAsync(code, CancellationToken.None);
                 ResponseTextBox.Text = result;
-                StatusTextBlock.Text = "Done";
+                StatusTextBlock.Text = Strings.Done;
             }
             catch (Exception ex)
             {
                 ResponseTextBox.Text = ex.Message;
-                StatusTextBlock.Text = "Error";
+                StatusTextBlock.Text = Strings.Error;
             }
             finally
             {
@@ -406,17 +427,17 @@ namespace ASL.CodeEngineering
                 return;
 
             RunButton.IsEnabled = false;
-            StatusTextBlock.Text = "Running...";
+            StatusTextBlock.Text = Strings.Running;
             try
             {
                 var result = await _runner.RunAsync(_projectRoot, CancellationToken.None);
                 ResponseTextBox.Text = result;
-                StatusTextBlock.Text = "Done";
+                StatusTextBlock.Text = Strings.Done;
             }
             catch (Exception ex)
             {
                 ResponseTextBox.Text = ex.Message;
-                StatusTextBlock.Text = "Error";
+                StatusTextBlock.Text = Strings.Error;
             }
             finally
             {
@@ -430,17 +451,17 @@ namespace ASL.CodeEngineering
                 return;
 
             BuildButton.IsEnabled = false;
-            StatusTextBlock.Text = "Building...";
+            StatusTextBlock.Text = Strings.Building;
             try
             {
                 _latestVersionPath = await BuildProcess.BuildNewVersionAsync(_projectRoot, _buildTestRunner, CancellationToken.None);
                 ResponseTextBox.Text = _latestVersionPath;
-                StatusTextBlock.Text = "Done";
+                StatusTextBlock.Text = Strings.Done;
             }
             catch (Exception ex)
             {
                 ResponseTextBox.Text = ex.Message;
-                StatusTextBlock.Text = "Error";
+                StatusTextBlock.Text = Strings.Error;
             }
             finally
             {
@@ -454,17 +475,17 @@ namespace ASL.CodeEngineering
                 return;
 
             TestButton.IsEnabled = false;
-            StatusTextBlock.Text = "Testing...";
+            StatusTextBlock.Text = Strings.Testing;
             try
             {
                 var result = await _buildTestRunner.TestAsync(_projectRoot, CancellationToken.None);
                 ResponseTextBox.Text = result;
-                StatusTextBlock.Text = "Done";
+                StatusTextBlock.Text = Strings.Done;
             }
             catch (Exception ex)
             {
                 ResponseTextBox.Text = ex.Message;
-                StatusTextBlock.Text = "Error";
+                StatusTextBlock.Text = Strings.Error;
             }
             finally
             {
@@ -549,14 +570,14 @@ namespace ASL.CodeEngineering
             var packages = _selectedPackages.Where(p => p.Value).Select(p => p.Key).ToArray();
             _learningTask = Task.Run(() => AutonomousLearningEngine.RunAsync(() => _aiProvider, _learningCts.Token, packages));
             StartMonitor();
-            StatusTextBlock.Text = "Learning...";
+            StatusTextBlock.Text = Strings.Learning;
         }
 
         private void PauseLearningLoop()
         {
             _learningCts?.Cancel();
             _monitorCts?.Cancel();
-            StatusTextBlock.Text = "Paused";
+            StatusTextBlock.Text = Strings.Paused;
         }
 
         private void StartMonitor()
@@ -670,7 +691,7 @@ namespace ASL.CodeEngineering
             try
             {
                 await ProcessRunner.RunAsync("dotnet", $"run --project \"{project}\" --no-build", Path.Combine(_latestVersionPath, "src"), "preview", CancellationToken.None);
-                if (MessageBox.Show("Apply this update?", "Preview", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show(Strings.ApplyUpdateQuestion, Strings.PreviewCaption, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     VersionManager.RestoreLatest(_projectRoot);
                     LoadProjectTree(_projectRoot);
@@ -716,7 +737,7 @@ namespace ASL.CodeEngineering
             }
             catch (OperationCanceledException)
             {
-                ResponseTextBox.Text = "Cancelled";
+                ResponseTextBox.Text = Strings.Cancelled;
             }
             finally
             {
@@ -728,6 +749,49 @@ namespace ASL.CodeEngineering
         private void StopProjectButton_Click(object sender, RoutedEventArgs e)
         {
             _projectCts?.Cancel();
+        }
+
+        private void UpdateLanguage(string code)
+        {
+            Strings.Culture = new CultureInfo(code);
+            Title = Strings.AppTitle;
+            OpenProjectButton.Content = Strings.OpenProject;
+            AnalyzeButton.Content = Strings.Analyze;
+            RunButton.Content = Strings.Run;
+            BuildButton.Content = Strings.Build;
+            TestButton.Content = Strings.Test;
+            PreviewUpdateButton.Content = Strings.PreviewUpdate;
+            SendButton.Content = Strings.Send;
+            StartLearningButton.Content = Strings.StartLearning;
+            PauseLearningButton.Content = Strings.Pause;
+            ResumeLearningButton.Content = Strings.Resume;
+            DashboardButton.Content = Strings.Dashboard;
+            AcceptSuggestionButton.Content = Strings.Accept;
+            RollbackSuggestionButton.Content = Strings.Rollback;
+            LearningEnabledCheckBox.Content = Strings.LearningOn;
+            StartProjectButton.Content = Strings.StartNewProject;
+            StopProjectButton.Content = Strings.Stop;
+            MainTab.Header = Strings.MainTab;
+            PluginsTab.Header = Strings.PluginsTab;
+            ProvidersTextBlock.Text = Strings.ProvidersHeader;
+            AnalyzersTextBlock.Text = Strings.AnalyzersHeader;
+            RunnersTextBlock.Text = Strings.RunnersHeader;
+            BuildTestTextBlock.Text = Strings.BuildTestRunnersHeader;
+            TimeColumn.Header = Strings.TimeHeader;
+            ProviderColumn.Header = Strings.ProviderHeader;
+            SuggestionColumn.Header = Strings.SuggestionHeader;
+            ProviderEnabledColumn.Header = Strings.EnabledColumn;
+            ProviderNameColumn.Header = Strings.NameColumn;
+            ProviderVersionColumn.Header = Strings.VersionColumn;
+            AnalyzerEnabledColumn.Header = Strings.EnabledColumn;
+            AnalyzerNameColumn.Header = Strings.NameColumn;
+            AnalyzerVersionColumn.Header = Strings.VersionColumn;
+            RunnerEnabledColumn.Header = Strings.EnabledColumn;
+            RunnerNameColumn.Header = Strings.NameColumn;
+            RunnerVersionColumn.Header = Strings.VersionColumn;
+            BuildEnabledColumn.Header = Strings.EnabledColumn;
+            BuildNameColumn.Header = Strings.NameColumn;
+            BuildVersionColumn.Header = Strings.VersionColumn;
         }
 
         private void SaveCurrentProfile()
