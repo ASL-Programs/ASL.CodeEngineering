@@ -9,16 +9,20 @@ namespace ASL.CodeEngineering.AI;
 
 public static class PluginLoader
 {
-    public static IDictionary<string, Func<IAnalyzerPlugin>> LoadAnalyzers(string? baseDirectory = null)
-        => LoadPlugins<IAnalyzerPlugin>(baseDirectory);
+    public static IDictionary<string, Func<IAnalyzerPlugin>> LoadAnalyzers(string? baseDirectory = null,
+        IDictionary<string, string>? versions = null)
+        => LoadPlugins<IAnalyzerPlugin>(baseDirectory, versions);
 
-    public static IDictionary<string, Func<ICodeRunnerPlugin>> LoadRunners(string? baseDirectory = null)
-        => LoadPlugins<ICodeRunnerPlugin>(baseDirectory);
+    public static IDictionary<string, Func<ICodeRunnerPlugin>> LoadRunners(string? baseDirectory = null,
+        IDictionary<string, string>? versions = null)
+        => LoadPlugins<ICodeRunnerPlugin>(baseDirectory, versions);
 
-    public static IDictionary<string, Func<IBuildTestRunner>> LoadBuildTestRunners(string? baseDirectory = null)
-        => LoadPlugins<IBuildTestRunner>(baseDirectory);
+    public static IDictionary<string, Func<IBuildTestRunner>> LoadBuildTestRunners(string? baseDirectory = null,
+        IDictionary<string, string>? versions = null)
+        => LoadPlugins<IBuildTestRunner>(baseDirectory, versions);
 
-    private static IDictionary<string, Func<T>> LoadPlugins<T>(string? baseDirectory)
+    private static IDictionary<string, Func<T>> LoadPlugins<T>(string? baseDirectory,
+        IDictionary<string, string>? versions)
     {
         baseDirectory ??= AppContext.BaseDirectory;
         var envPath = Environment.GetEnvironmentVariable("PLUGINS_DIR");
@@ -78,6 +82,7 @@ public static class PluginLoader
                     }
                     plugins[name!] = () => (T)Activator.CreateInstance(type)!;
                     sources[name!] = file;
+                    versions?[name!] = assembly.GetName().Version?.ToString() ?? string.Empty;
                 }
                 catch (Exception ex)
                 {
