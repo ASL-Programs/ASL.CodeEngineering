@@ -28,6 +28,7 @@ public class OpenAIProvider : IAIProvider
 
     public async Task<string> SendChatAsync(string prompt, CancellationToken cancellationToken = default)
     {
+        Permissions.Require(Role.Admin);
         if (string.IsNullOrWhiteSpace(prompt))
             return string.Empty;
 

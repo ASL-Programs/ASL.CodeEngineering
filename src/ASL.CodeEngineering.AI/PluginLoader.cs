@@ -24,6 +24,7 @@ public static class PluginLoader
     private static IDictionary<string, Func<T>> LoadPlugins<T>(string? baseDirectory,
         IDictionary<string, string>? versions)
     {
+        Permissions.Require(Role.Operator);
         baseDirectory ??= AppContext.BaseDirectory;
         var envPath = Environment.GetEnvironmentVariable("PLUGINS_DIR");
 

@@ -250,3 +250,10 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Add language selector in MainWindow
 - [x] Document translation files in REFERENCE_FILES
 - [x] Run dotnet test
+
+- [x] Implement Permissions module gating actions by role
+- [x] Encrypt role assignments in configs/permissions.enc
+- [x] Update MainWindow with login role selection
+- [x] Add tests for permissions
+- [x] Document permissions in README and REFERENCE_FILES
+- [x] Run `dotnet test`

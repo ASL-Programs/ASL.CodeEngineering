@@ -187,6 +187,7 @@
  - [x] 8.4. Document ability to scaffold new software projects
 - [x] 8.5. Introduce SecureLogger with AES-encrypted logs
  - [x] 8.6. Add SignalR sync server for session sharing
+- [x] 8.7. Implement role-based Permissions module
 
 ---
 

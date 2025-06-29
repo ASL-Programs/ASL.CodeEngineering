@@ -58,4 +58,6 @@ public static class Strings
     public static string PreviewCaption => _rm.GetString(nameof(PreviewCaption), Culture) ?? string.Empty;
     public static string Cancelled => _rm.GetString(nameof(Cancelled), Culture) ?? string.Empty;
     public static string DashboardTitle => _rm.GetString(nameof(DashboardTitle), Culture) ?? string.Empty;
+    public static string LoginTitle => _rm.GetString(nameof(LoginTitle), Culture) ?? string.Empty;
+    public static string Ok => _rm.GetString(nameof(Ok), Culture) ?? string.Empty;
 }

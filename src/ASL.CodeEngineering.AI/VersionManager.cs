@@ -19,6 +19,7 @@ public static class VersionManager
 
     public static void RestoreLatest(string projectRoot)
     {
+        Permissions.Require(Role.Operator);
         string baseData = Environment.GetEnvironmentVariable("DATA_DIR") ??
                             Path.Combine(projectRoot, "data");
         string versionsDir = Path.Combine(baseData, "versions");

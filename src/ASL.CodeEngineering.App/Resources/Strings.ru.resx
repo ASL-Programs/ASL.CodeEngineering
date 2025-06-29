@@ -52,5 +52,7 @@
   <data name="PreviewCaption" xml:space="preserve"><value>Предпросмотр</value></data>
   <data name="Cancelled" xml:space="preserve"><value>Отменено</value></data>
   <data name="DashboardTitle" xml:space="preserve"><value>Панель</value></data>
+  <data name="LoginTitle" xml:space="preserve"><value>Login</value></data>
+  <data name="Ok" xml:space="preserve"><value>OK</value></data>
   <resheader name="accessmodifier"><value>public</value></resheader>
 </root>
