@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,7 +18,9 @@ namespace ASL.CodeEngineering.AI;
 public static class AutonomousLearningEngine
 {
     public static async Task RunAsync(Func<IAIProvider> getProvider, CancellationToken token,
-                                      OfflineLearning.OfflineModel? model = null, string? modelPath = null)
+                                      IEnumerable<string>? packages = null,
+                                      OfflineLearning.OfflineModel? model = null,
+                                      string? modelPath = null)
     {
         string baseKb = Environment.GetEnvironmentVariable("KB_DIR") ??
                          Path.Combine(AppContext.BaseDirectory, "knowledge_base");
@@ -25,7 +28,7 @@ public static class AutonomousLearningEngine
         Directory.CreateDirectory(autoDir);
         string logPath = Path.Combine(autoDir, "auto.jsonl");
 
-        string packageText = LoadPackages(baseKb);
+        string packageText = LoadPackages(baseKb, packages);
 
         int counter = 0;
         while (!token.IsCancellationRequested)
@@ -105,23 +108,31 @@ public static class AutonomousLearningEngine
         }
     }
 
-    private static string LoadPackages(string baseKb)
+    private static string LoadPackages(string baseKb, IEnumerable<string>? packages)
     {
         try
         {
             string dir = Path.Combine(baseKb, "packages");
             if (!Directory.Exists(dir))
                 return string.Empty;
-            var files = Directory.GetFiles(dir, "*", SearchOption.AllDirectories);
+            IEnumerable<string> dirs = packages == null || !packages.Any()
+                ? Directory.GetDirectories(dir).Select(Path.GetFileName)!
+                : packages;
             var contents = new List<string>();
-            foreach (var f in files)
+            foreach (var pkg in dirs)
             {
-                try
+                string pkgDir = Path.Combine(dir, pkg);
+                if (!Directory.Exists(pkgDir))
+                    continue;
+                foreach (var f in Directory.GetFiles(pkgDir, "*", SearchOption.AllDirectories))
                 {
-                    contents.Add(File.ReadAllText(f));
-                }
-                catch
-                {
+                    try
+                    {
+                        contents.Add(File.ReadAllText(f));
+                    }
+                    catch
+                    {
+                    }
                 }
             }
             return string.Join("\n\n", contents);

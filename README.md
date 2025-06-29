@@ -125,8 +125,10 @@ The `knowledge_base/packages/` directory holds curated guides used by the
 - `software_languages` – notes on using C# and the .NET ecosystem.
 - `chat_interaction` – tips for effective conversations with AI.
 
-The contents of these packages are appended to the self-improvement prompt each
-time the learning engine runs.
+When the application starts, a list of these packages appears below the
+learning controls. Uncheck a package to disable it for the current session.
+The contents of the enabled packages are appended to the self-improvement prompt
+each time the learning engine runs.
 
 ## Offline learning
 

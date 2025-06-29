@@ -162,3 +162,8 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [ ] Train offline model from AutonomousLearningEngine
 - [ ] Document offline learning in README and update references
 - [ ] Run dotnet test
+
+- [x] Show packages in UI with enable/disable checkboxes
+- [x] Pass selected packages to AutonomousLearningEngine
+- [x] Document package toggles in README
+- [x] Run `dotnet test`

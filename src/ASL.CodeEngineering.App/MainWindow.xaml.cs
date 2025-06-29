@@ -32,6 +32,8 @@ namespace ASL.CodeEngineering
         private Task? _monitorTask;
         private readonly ObservableCollection<LearningEntry> _learningEntries = new();
         private readonly string _learningStatePath;
+        private readonly ObservableCollection<string> _packageNames = new();
+        private readonly Dictionary<string, bool> _selectedPackages = new();
 
 
         public MainWindow()
@@ -40,6 +42,20 @@ namespace ASL.CodeEngineering
 
             LearningGrid.ItemsSource = _learningEntries;
             _learningStatePath = Path.Combine(AppContext.BaseDirectory, "data", "learning_enabled.txt");
+
+            string baseKb = Environment.GetEnvironmentVariable("KB_DIR") ??
+                               Path.Combine(AppContext.BaseDirectory, "knowledge_base");
+            string pkgDir = Path.Combine(baseKb, "packages");
+            if (Directory.Exists(pkgDir))
+            {
+                foreach (var dir in Directory.GetDirectories(pkgDir))
+                {
+                    string name = Path.GetFileName(dir);
+                    _packageNames.Add(name);
+                    _selectedPackages[name] = true;
+                }
+            }
+            PackageList.ItemsSource = _packageNames;
 
             _providerFactories["Echo"] = () => new EchoAIProvider();
             _providerFactories["Reverse"] = () => new ReverseAIProvider();
@@ -426,7 +442,8 @@ namespace ASL.CodeEngineering
                 return;
 
             _learningCts = new CancellationTokenSource();
-            _learningTask = Task.Run(() => AutonomousLearningEngine.RunAsync(() => _aiProvider, _learningCts.Token));
+            var packages = _selectedPackages.Where(p => p.Value).Select(p => p.Key).ToArray();
+            _learningTask = Task.Run(() => AutonomousLearningEngine.RunAsync(() => _aiProvider, _learningCts.Token, packages));
             StartMonitor();
             StatusTextBlock.Text = "Learning...";
         }
@@ -445,6 +462,14 @@ namespace ASL.CodeEngineering
             string baseKb = Environment.GetEnvironmentVariable("KB_DIR") ?? Path.Combine(AppContext.BaseDirectory, "knowledge_base");
             string logPath = Path.Combine(baseKb, "auto", "auto.jsonl");
             _monitorTask = Task.Run(() => MonitorLogAsync(logPath, _monitorCts.Token));
+        }
+
+        private void PackageCheckBox_Changed(object sender, RoutedEventArgs e)
+        {
+            if (sender is CheckBox cb && cb.Content is string name)
+            {
+                _selectedPackages[name] = cb.IsChecked == true;
+            }
         }
 
         private async Task MonitorLogAsync(string path, CancellationToken token)
