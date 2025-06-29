@@ -8,6 +8,13 @@ Run `dotnet build ASL.CodeEngineering.sln` to build all projects (requires the .
 To launch the WPF application, run `dotnet run --project src/ASL.CodeEngineering.App`.
 The UI uses WPF and therefore runs only on Windows systems.
 
+## Building the WPF application
+
+1. Open `ASL.CodeEngineering.sln` in **Visual Studio** and choose **Build > Publish** to produce a Release build.
+2. Or run `dotnet publish src/ASL.CodeEngineering.App -c Release`.
+
+The compiled `.exe` appears under `src/ASL.CodeEngineering.App/bin/Release/net7.0-windows/`.
+
 ## Testing
 
 Unit tests are run with `dotnet test` from the repository root. You need a working .NET SDK, Python and Node.js installation. Because the test project targets `net7.0-windows`, tests must run on Windows. Individual tests skip automatically when required tools such as `dotnet`, `python` or `node` are missing.
