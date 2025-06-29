@@ -33,6 +33,18 @@ public static class AutonomousLearningEngine
         Directory.CreateDirectory(autoDir);
         string logPath = Path.Combine(autoDir, "auto.jsonl");
 
+        if (model == null && modelPath != null)
+        {
+            try
+            {
+                model = OfflineLearning.ModelLoader.LoadPt(modelPath);
+            }
+            catch
+            {
+                // ignore model load failures
+            }
+        }
+
         var packageList = packages?.ToList();
         string packageText = LoadPackages(baseKb, packageList);
         double rate = learningRate;
