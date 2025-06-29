@@ -207,3 +207,5 @@ This file captures the current and upcoming steps for the project. It acts as th
  - [x] Implement meta-learning adjustments
  - [x] Add version preview mode
  - [x] Create project generator
+- [x] Document WPF build instructions in README
+- [x] Run `dotnet test`
