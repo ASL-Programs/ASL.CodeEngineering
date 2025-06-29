@@ -257,3 +257,8 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Add tests for permissions
 - [x] Document permissions in README and REFERENCE_FILES
 - [x] Run `dotnet test`
+- [x] Add ASP.NET Core ApiServer project with build/test/log endpoints
+- [x] Add unit tests for ApiServer
+- [x] Document API usage and API_KEY in README
+- [x] Update REFERENCE_FILES
+- [x] Run `dotnet test`
