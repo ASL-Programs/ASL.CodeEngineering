@@ -94,6 +94,15 @@ public static class AutonomousLearningEngine
             }
 
             counter++;
+            try
+            {
+                DocsUpdater.RecordCycle(AppContext.BaseDirectory, null, counter);
+            }
+            catch
+            {
+                // ignore documentation update failures
+            }
+
             if (counter % 5 == 0)
             {
                 try
