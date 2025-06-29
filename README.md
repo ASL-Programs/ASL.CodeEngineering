@@ -173,6 +173,14 @@ Use the **Preview Update** button to launch the most recent archive in an
 isolated process. If the preview looks correct, confirm the prompt to switch the
 working `src/` directory via `VersionManager.RestoreLatest`.
 
+## User profiles
+
+Profiles allow different users to keep their own preferences. Each profile stores
+the selected provider, analyzer and runners together with the last opened
+project and a list of recent projects. Profile files are JSON documents saved
+under `data/profiles/`. The dropdown at the top of the main tab lets you switch
+between profiles at runtime and settings are loaded automatically on startup.
+
 ## Documentation automation
 
 A `DocsUpdater` module watches learning cycles. Each time a cycle completes it copies `AGENTS.md` and `NEXT_STEPS.md` to `docs/archive/` with a timestamp and marks completed tasks `[x]`. It also appends a note to `AGENTS.md` for auditing.

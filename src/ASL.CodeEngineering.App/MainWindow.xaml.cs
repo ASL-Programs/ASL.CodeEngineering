@@ -38,6 +38,9 @@ namespace ASL.CodeEngineering
         private readonly ObservableCollection<PluginEntry> _analyzerEntries = new();
         private readonly ObservableCollection<PluginEntry> _runnerEntries = new();
         private readonly ObservableCollection<PluginEntry> _buildTestEntries = new();
+        private readonly ObservableCollection<string> _profileNames = new();
+        private readonly Dictionary<string, UserProfile> _profiles = new();
+        private string _profilesDir = string.Empty;
         private string? _latestVersionPath;
         private CancellationTokenSource? _projectCts;
         private Task? _projectTask;
@@ -49,6 +52,32 @@ namespace ASL.CodeEngineering
 
             LearningGrid.ItemsSource = _learningEntries;
             _learningStatePath = Path.Combine(AppContext.BaseDirectory, "data", "learning_enabled.txt");
+
+            string baseData = Environment.GetEnvironmentVariable("DATA_DIR") ??
+                                Path.Combine(AppContext.BaseDirectory, "data");
+            _profilesDir = Path.Combine(baseData, "profiles");
+            Directory.CreateDirectory(_profilesDir);
+            foreach (var file in Directory.GetFiles(_profilesDir, "*.json"))
+            {
+                try
+                {
+                    var prof = JsonSerializer.Deserialize<UserProfile>(File.ReadAllText(file));
+                    if (prof != null)
+                    {
+                        _profiles[prof.Name] = prof;
+                        _profileNames.Add(prof.Name);
+                    }
+                }
+                catch { }
+            }
+            if (_profileNames.Count == 0)
+            {
+                var def = new UserProfile { Name = "Default" };
+                _profiles[def.Name] = def;
+                _profileNames.Add(def.Name);
+            }
+            ProfileComboBox.ItemsSource = _profileNames;
+            ProfileComboBox.SelectedIndex = 0;
 
             string baseKb = Environment.GetEnvironmentVariable("KB_DIR") ??
                                Path.Combine(AppContext.BaseDirectory, "knowledge_base");
@@ -170,6 +199,21 @@ namespace ASL.CodeEngineering
             BuildTestRunnerComboBox.ItemsSource = _buildTestEntries.Where(b => b.Enabled).Select(b => b.Name);
             BuildTestRunnerComboBox.SelectedIndex = BuildTestRunnerComboBox.Items.Count > 0 ? 0 : -1;
 
+            if (ProfileComboBox.SelectedItem is string pname &&
+                _profiles.TryGetValue(pname, out var prof))
+            {
+                if (!string.IsNullOrEmpty(prof.Provider))
+                    ProviderComboBox.SelectedItem = prof.Provider;
+                if (!string.IsNullOrEmpty(prof.Analyzer))
+                    AnalyzerComboBox.SelectedItem = prof.Analyzer;
+                if (!string.IsNullOrEmpty(prof.Runner))
+                    RunnerComboBox.SelectedItem = prof.Runner;
+                if (!string.IsNullOrEmpty(prof.BuildTestRunner))
+                    BuildTestRunnerComboBox.SelectedItem = prof.BuildTestRunner;
+                if (!string.IsNullOrEmpty(prof.LastProject) && Directory.Exists(prof.LastProject))
+                    _projectRoot = prof.LastProject;
+            }
+
             ProviderGrid.ItemsSource = _providerEntries;
             AnalyzerGrid.ItemsSource = _analyzerEntries;
             RunnerGrid.ItemsSource = _runnerEntries;
@@ -190,6 +234,7 @@ namespace ASL.CodeEngineering
                 _providerFactories.TryGetValue(key, out var factory))
             {
                 _aiProvider = factory();
+                SaveCurrentProfile();
             }
         }
 
@@ -199,6 +244,7 @@ namespace ASL.CodeEngineering
                 _analyzerFactories.TryGetValue(key, out var factory))
             {
                 _analyzer = factory();
+                SaveCurrentProfile();
             }
         }
 
@@ -208,6 +254,7 @@ namespace ASL.CodeEngineering
                 _runnerFactories.TryGetValue(key, out var factory))
             {
                 _runner = factory();
+                SaveCurrentProfile();
             }
         }
 
@@ -217,6 +264,28 @@ namespace ASL.CodeEngineering
                 _buildTestRunnerFactories.TryGetValue(key, out var factory))
             {
                 _buildTestRunner = factory();
+                SaveCurrentProfile();
+            }
+        }
+
+        private void ProfileComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ProfileComboBox.SelectedItem is string name &&
+                _profiles.TryGetValue(name, out var prof))
+            {
+                if (!string.IsNullOrEmpty(prof.Provider))
+                    ProviderComboBox.SelectedItem = prof.Provider;
+                if (!string.IsNullOrEmpty(prof.Analyzer))
+                    AnalyzerComboBox.SelectedItem = prof.Analyzer;
+                if (!string.IsNullOrEmpty(prof.Runner))
+                    RunnerComboBox.SelectedItem = prof.Runner;
+                if (!string.IsNullOrEmpty(prof.BuildTestRunner))
+                    BuildTestRunnerComboBox.SelectedItem = prof.BuildTestRunner;
+                if (!string.IsNullOrEmpty(prof.LastProject) && Directory.Exists(prof.LastProject))
+                {
+                    _projectRoot = prof.LastProject;
+                    LoadProjectTree(_projectRoot);
+                }
             }
         }
 
@@ -433,6 +502,7 @@ namespace ASL.CodeEngineering
             {
                 _projectRoot = dialog.SelectedPath;
                 LoadProjectTree(_projectRoot);
+                SaveCurrentProfile();
             }
         }
 
@@ -658,6 +728,32 @@ namespace ASL.CodeEngineering
         private void StopProjectButton_Click(object sender, RoutedEventArgs e)
         {
             _projectCts?.Cancel();
+        }
+
+        private void SaveCurrentProfile()
+        {
+            if (ProfileComboBox.SelectedItem is not string name ||
+                !_profiles.TryGetValue(name, out var prof))
+                return;
+
+            prof.Provider = ProviderComboBox.SelectedItem as string;
+            prof.Analyzer = AnalyzerComboBox.SelectedItem as string;
+            prof.Runner = RunnerComboBox.SelectedItem as string;
+            prof.BuildTestRunner = BuildTestRunnerComboBox.SelectedItem as string;
+            prof.LastProject = _projectRoot;
+            if (!string.IsNullOrEmpty(_projectRoot))
+            {
+                if (!prof.RecentProjects.Contains(_projectRoot))
+                    prof.RecentProjects.Add(_projectRoot);
+                while (prof.RecentProjects.Count > 5)
+                    prof.RecentProjects.RemoveAt(0);
+            }
+
+            string path = Path.Combine(_profilesDir, $"{name}.json");
+            File.WriteAllText(path, JsonSerializer.Serialize(prof, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            }));
         }
 
         private static void LogError(string operation, Exception ex)
