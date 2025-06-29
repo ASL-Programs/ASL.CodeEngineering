@@ -29,3 +29,9 @@ Add additional sections here whenever new languages or tools are adopted or plan
 ### 6. API Server: ASP.NET Core
 - Reason: ASP.NET Core provides a small, cross-platform web server for exposing
   build, test and log endpoints.
+
+### 7. GPU Acceleration: TensorFlow.NET
+- Reason: TensorFlow.NET exposes CUDA and OpenCL bindings, enabling optional GPU
+  acceleration for offline training. The engine detects available GPUs and the
+  user can select which device to use via the `TRAINING_GPU` environment
+  variable.

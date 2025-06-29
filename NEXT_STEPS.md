@@ -267,3 +267,10 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Mention Docker and Kubernetes deployment options in README
 - [x] Update REFERENCE_FILES with Dockerfile and k8s manifests
 - [x] Run `dotnet test`
+- [x] Integrate TensorFlow.NET package for GPU support
+- [x] Implement GpuDeviceManager listing GPUs and setting active device
+- [x] Allow GPU selection in AutonomousLearningEngine via TRAINING_GPU variable
+- [x] Document GPU settings in README and LANGUAGE_DECISIONS
+- [x] Add unit tests for GpuDeviceManager
+- [x] Update REFERENCE_FILES
+- [x] Run `dotnet test`

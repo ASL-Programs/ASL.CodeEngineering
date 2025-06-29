@@ -77,6 +77,8 @@ data and logs:
   unset or unreachable, the application falls back to local-only mode.
 - `API_KEY` – optional token required in the `X-Api-Key` header when calling the
   API server.
+- `TRAINING_GPU` – optional GPU device name to use for offline learning. Leave
+  unset to run on CPU. Available devices are listed in the training settings.
 
 ## Extending AI providers
 
@@ -179,7 +181,10 @@ files and versions are archived under `data/models/`. Passing an
 `OfflineLearning.OfflineModel` instance to `AutonomousLearningEngine.RunAsync`
 will update the model with harmonized data during each cycle.
 On first run, `ModelLoader` looks for `knowledge_base/offline_training/data.csv`
-to create an initial model if no saved weights exist.
+to create an initial model if no saved weights exist. Available GPUs are
+detected through TensorFlow.NET and shown in the training settings. Set
+`TRAINING_GPU` to a device name to enable acceleration; unset the variable to
+train on CPU.
 
 ## Previewing updates
 

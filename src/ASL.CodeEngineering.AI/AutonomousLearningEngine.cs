@@ -27,6 +27,10 @@ public static class AutonomousLearningEngine
                                       string? modelPath = null,
                                       double learningRate = 0.001)
     {
+        string gpuName = Environment.GetEnvironmentVariable("TRAINING_GPU") ?? string.Empty;
+        if (!string.IsNullOrWhiteSpace(gpuName))
+            GpuDeviceManager.UseGpu(gpuName);
+
         string baseKb = Environment.GetEnvironmentVariable("KB_DIR") ??
                          Path.Combine(AppContext.BaseDirectory, "knowledge_base");
         string autoDir = Path.Combine(baseKb, "auto");
