@@ -5,7 +5,7 @@ namespace ASL.CodeEngineering.AI;
 
 public static class VersionManager
 {
-    public static void SaveVersion(string projectRoot)
+    public static string SaveVersion(string projectRoot)
     {
         string baseData = Environment.GetEnvironmentVariable("DATA_DIR") ??
                             Path.Combine(projectRoot, "data");
@@ -14,6 +14,7 @@ public static class VersionManager
         string stamp = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss");
         string dest = Path.Combine(versionsDir, stamp);
         CopyDirectory(Path.Combine(projectRoot, "src"), Path.Combine(dest, "src"));
+        return dest;
     }
 
     public static void RestoreLatest(string projectRoot)

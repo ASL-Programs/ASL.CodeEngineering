@@ -38,6 +38,7 @@ This list tracks documents, config files and other resources that may need to be
 | `knowledge_base/meta/crawl_summary.md` | Human readable crawl summary |
 | `src/ASL.CodeEngineering.App/DashboardWindow.xaml.cs` | Displays dashboard of crawl results, plan languages and benchmark insights |
 | `src/ASL.CodeEngineering.AI/VersionManager.cs` | Saves and restores versions under `data/versions` |
+| `src/ASL.CodeEngineering.AI/BuildProcess.cs` | Builds a copy in `data/versions` for previewing updates |
 | `src/ASL.CodeEngineering.AI/MetaAnalyzer.cs` | Generates `language_insights.json` from benchmarks |
 | `src/ASL.CodeEngineering.App/MainWindow.xaml.cs` | Shows learning suggestions and persistent toggle |
 | `knowledge_base/packages/` | Markdown guides read by the learning engine |
