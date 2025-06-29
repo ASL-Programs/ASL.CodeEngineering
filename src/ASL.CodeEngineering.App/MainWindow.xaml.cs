@@ -35,6 +35,8 @@ namespace ASL.CodeEngineering
         private readonly ObservableCollection<string> _packageNames = new();
         private readonly Dictionary<string, bool> _selectedPackages = new();
         private string? _latestVersionPath;
+        private CancellationTokenSource? _projectCts;
+        private Task? _projectTask;
 
 
         public MainWindow()
@@ -561,6 +563,42 @@ namespace ASL.CodeEngineering
         {
             File.WriteAllText(_learningStatePath, "0");
             PauseLearningLoop();
+        }
+
+        private async void StartProjectButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_projectTask is not null && !_projectTask.IsCompleted)
+                return;
+
+            string desc = ProjectDescriptionTextBox.Text;
+            string lang = ProjectLanguageTextBox.Text;
+            if (string.IsNullOrWhiteSpace(desc) || string.IsNullOrWhiteSpace(lang))
+                return;
+
+            string projectsDir = Path.Combine(AppContext.BaseDirectory, "projects");
+            _projectCts = new CancellationTokenSource();
+            StartProjectButton.IsEnabled = false;
+            StopProjectButton.IsEnabled = true;
+            try
+            {
+                _projectTask = ProjectGenerator.GenerateAsync(desc, lang, projectsDir, _projectCts.Token);
+                string path = await (Task<string>)_projectTask;
+                ResponseTextBox.Text = path;
+            }
+            catch (OperationCanceledException)
+            {
+                ResponseTextBox.Text = "Cancelled";
+            }
+            finally
+            {
+                StartProjectButton.IsEnabled = true;
+                StopProjectButton.IsEnabled = false;
+            }
+        }
+
+        private void StopProjectButton_Click(object sender, RoutedEventArgs e)
+        {
+            _projectCts?.Cancel();
         }
 
         private static void LogError(string operation, Exception ex)

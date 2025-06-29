@@ -187,3 +187,11 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Add unit tests for metric recording and adaptation
 - [x] Run `dotnet test`
 
+- [x] Introduce ProjectGenerator module accepting project descriptions and language choices
+- [x] Integrate New Project mode in MainWindow with start/stop controls
+- [x] Save generated projects under projects/
+- [x] Add unit tests for ProjectGenerator
+- [x] Document ProjectGenerator usage in README
+- [x] Mark roadmap item 8.4 complete in AGENTS.md
+- [x] Update REFERENCE_FILES with ProjectGenerator entry
+- [x] Run `dotnet test`
