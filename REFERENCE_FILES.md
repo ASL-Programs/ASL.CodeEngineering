@@ -16,6 +16,7 @@ This list tracks documents, config files and other resources that may need to be
 | `src/ASL.CodeEngineering.App/MainWindow.xaml` | Lists knowledge packages for enabling/disabling |
 | `src/ASL.CodeEngineering.AI/PythonBuildTestRunner.cs` | Logs to LOGS_DIR with fallback to executable directory |
 | `src/ASL.CodeEngineering.AI/ProcessRunner.cs` | Helper to execute processes and write logs respecting LOGS_DIR; handles log write errors |
+| `src/ASL.CodeEngineering.AI/SecureLogger.cs` | Writes encrypted logs when LOG_ENCRYPTION_KEY is set |
 | `src/ASL.CodeEngineering.AI/AIProviderLoader.cs` | Loads AI providers and logs duplicate names |
 | `src/ASL.CodeEngineering.AI/PluginLoader.cs` | Loads plugins and logs duplicate names |
 | `.github/labeler.yml` | Label definitions applied by Labeler workflow |

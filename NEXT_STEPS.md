@@ -211,3 +211,8 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Run `dotnet test`
 - [x] Add BuildProcessTests verifying version archive and runner call
 - [x] Run `dotnet test`
+
+- [x] Introduce SecureLogger for AES-encrypted logs
+- [x] Replace logging helpers to use SecureLogger
+- [x] Document audit trail and update references
+- [x] Run `dotnet test`
