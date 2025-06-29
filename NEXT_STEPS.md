@@ -274,3 +274,6 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Add unit tests for GpuDeviceManager
 - [x] Update REFERENCE_FILES
 - [x] Run `dotnet test`
+- [x] Add ComplianceChecker with export and erase commands
+- [x] Document API endpoints in README and update references
+- [x] Run `dotnet test`
