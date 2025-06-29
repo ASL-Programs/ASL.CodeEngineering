@@ -199,3 +199,4 @@
 - [x] Preview Update button runs sandbox build
 - [x] Restoring preview on confirmation
 - [x] Unit tests verify BuildProcess archives version and invokes runner
+- [x] Implement HealthMonitor service with restart logic and recovery state

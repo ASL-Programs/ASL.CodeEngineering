@@ -223,3 +223,8 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Document plugin panel usage in plugins/README.md and README.md
 - [x] Update REFERENCE_FILES with new MainWindow notes
 - [x] Run `dotnet test`
+- [x] Implement HealthMonitor service monitoring components
+- [x] Persist recovery state under data/health
+- [x] Add unit tests for HealthMonitor
+- [x] Update REFERENCE_FILES
+- [x] Run `dotnet test`
