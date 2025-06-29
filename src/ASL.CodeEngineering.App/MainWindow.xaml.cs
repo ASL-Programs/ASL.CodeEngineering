@@ -603,29 +603,13 @@ namespace ASL.CodeEngineering
 
         private static void LogError(string operation, Exception ex)
         {
-            string logsDir = Environment.GetEnvironmentVariable("LOGS_DIR") ??
-                              Path.Combine(AppContext.BaseDirectory, "logs");
-
-            if (!TryWrite(logsDir))
+            try
             {
-                string fallback = Path.Combine(AppContext.BaseDirectory, "logs");
-                if (fallback != logsDir)
-                    TryWrite(fallback);
+                SecureLogger.Write(operation, ex.ToString());
             }
-
-            bool TryWrite(string dir)
+            catch
             {
-                try
-                {
-                    Directory.CreateDirectory(dir);
-                    var file = Path.Combine(dir, $"{operation}_{DateTime.UtcNow:yyyyMMdd_HHmmss}.log");
-                    File.WriteAllText(file, ex.ToString());
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
+                // ignore logging failures
             }
         }
     }
