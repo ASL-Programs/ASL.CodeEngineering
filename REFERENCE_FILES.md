@@ -49,4 +49,8 @@ This list tracks documents, config files and other resources that may need to be
 | `tests/ASL.CodeEngineering.Tests/DashboardWindowTests.cs` | Ensures dashboard displays plans and insights |
 | `src/ASL.CodeEngineering.AI/DocsUpdater.cs` | Updates AGENTS and NEXT_STEPS with backups |
 | `tests/ASL.CodeEngineering.Tests/AutonomousLearningEngineDocsUpdaterTests.cs` | Verifies DocsUpdater is invoked from AutonomousLearningEngine |
+| `src/ASL.CodeEngineering.AI/TrainingMetricsAnalyzer.cs` | Records and aggregates offline training metrics |
+| `knowledge_base/meta/training_metrics.jsonl` | Stored metrics used for adaptive learning |
+| `tests/ASL.CodeEngineering.Tests/AutonomousLearningEngineAdaptiveTests.cs` | Ensures training metrics alter learning rate and packages |
+| `tests/ASL.CodeEngineering.Tests/TrainingMetricsAnalyzerTests.cs` | Verifies metrics are recorded correctly |
 Add new entries in the table above with a short explanation of why the file might be needed again.
