@@ -216,3 +216,10 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Replace logging helpers to use SecureLogger
 - [x] Document audit trail and update references
 - [x] Run `dotnet test`
+
+## Upcoming
+- [x] Add plugin/provider panel with enable/disable checkboxes and version info in MainWindow.xaml
+- [x] Update MainWindow.xaml.cs to refresh lists when toggled
+- [x] Document plugin panel usage in plugins/README.md and README.md
+- [x] Update REFERENCE_FILES with new MainWindow notes
+- [x] Run `dotnet test`

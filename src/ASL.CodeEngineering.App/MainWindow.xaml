@@ -16,23 +16,25 @@
         </DockPanel>
 
         <!-- Main Content -->
-        <Grid Grid.Column="1" Margin="10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+        <TabControl Grid.Column="1" Margin="10">
+            <TabItem Header="Main">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
             <ComboBox x:Name="ProviderComboBox" Grid.Row="0" Margin="0 0 0 5" SelectionChanged="ProviderComboBox_SelectionChanged" />
             <StackPanel Grid.Row="1" Orientation="Horizontal">
@@ -87,7 +89,47 @@
                 <Button x:Name="StartProjectButton" Content="Start New Project" Width="120" Click="StartProjectButton_Click" />
                 <Button x:Name="StopProjectButton" Content="Stop" Width="75" Margin="5 0 0 0" Click="StopProjectButton_Click" IsEnabled="False" />
             </StackPanel>
-        </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Plugins">
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock Text="Providers" FontWeight="Bold" Margin="0 0 0 5" />
+                        <DataGrid x:Name="ProviderGrid" AutoGenerateColumns="False" CellEditEnding="ProviderGrid_CellEditEnding">
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn Binding="{Binding Enabled, Mode=TwoWay}" Header="Enabled" Width="60" />
+                                <DataGridTextColumn Binding="{Binding Name}" Header="Name" />
+                                <DataGridTextColumn Binding="{Binding Version}" Header="Version" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBlock Text="Analyzers" FontWeight="Bold" Margin="10 5 0 5" />
+                        <DataGrid x:Name="AnalyzerGrid" AutoGenerateColumns="False" CellEditEnding="AnalyzerGrid_CellEditEnding">
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn Binding="{Binding Enabled, Mode=TwoWay}" Header="Enabled" Width="60" />
+                                <DataGridTextColumn Binding="{Binding Name}" Header="Name" />
+                                <DataGridTextColumn Binding="{Binding Version}" Header="Version" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBlock Text="Runners" FontWeight="Bold" Margin="10 5 0 5" />
+                        <DataGrid x:Name="RunnerGrid" AutoGenerateColumns="False" CellEditEnding="RunnerGrid_CellEditEnding">
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn Binding="{Binding Enabled, Mode=TwoWay}" Header="Enabled" Width="60" />
+                                <DataGridTextColumn Binding="{Binding Name}" Header="Name" />
+                                <DataGridTextColumn Binding="{Binding Version}" Header="Version" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBlock Text="Build/Test Runners" FontWeight="Bold" Margin="10 5 0 5" />
+                        <DataGrid x:Name="BuildTestGrid" AutoGenerateColumns="False" CellEditEnding="BuildTestGrid_CellEditEnding">
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn Binding="{Binding Enabled, Mode=TwoWay}" Header="Enabled" Width="60" />
+                                <DataGridTextColumn Binding="{Binding Name}" Header="Name" />
+                                <DataGridTextColumn Binding="{Binding Version}" Header="Version" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
 
     </Grid>
 </Window>

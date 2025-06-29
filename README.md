@@ -99,6 +99,10 @@ automatically loads all plugins found in this folder at startup. Set the
 `PLUGINS_DIR` environment variable if your plugins are located in a custom
 directory. If a plugin uses the same name as a built-in component or another plugin,
 the duplicate is ignored and a warning is logged.
+
+Loaded plugins and providers are listed under the **Plugins** tab of the main window.
+Each entry shows its version string with a checkbox to enable or disable the plugin
+for the current session.
 ## Generating interop wrappers
 
 Use `InteropGenerator` to scaffold small cross-language projects. To create a .NET wrapper that executes a Python script:

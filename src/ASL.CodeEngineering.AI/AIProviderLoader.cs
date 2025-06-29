@@ -14,7 +14,8 @@ public static class AIProviderLoader
     /// returns factories for all discovered <see cref="IAIProvider"/> types.
     /// </summary>
     /// <param name="baseDirectory">Directory to search from, typically <see cref="AppContext.BaseDirectory"/>.</param>
-    public static IDictionary<string, Func<IAIProvider>> LoadProviders(string? baseDirectory = null)
+    public static IDictionary<string, Func<IAIProvider>> LoadProviders(string? baseDirectory = null,
+        IDictionary<string, string>? versions = null)
     {
         baseDirectory ??= AppContext.BaseDirectory;
         var envPath = Environment.GetEnvironmentVariable("AI_PROVIDERS_DIR");
@@ -76,6 +77,7 @@ public static class AIProviderLoader
 
                     providers[name] = () => (IAIProvider)Activator.CreateInstance(type)!;
                     sourceFiles[name] = file;
+                    versions?[name] = assembly.GetName().Version?.ToString() ?? string.Empty;
                 }
                 catch (Exception ex)
                 {

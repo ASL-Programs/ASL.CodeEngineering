@@ -34,6 +34,10 @@ namespace ASL.CodeEngineering
         private readonly string _learningStatePath;
         private readonly ObservableCollection<string> _packageNames = new();
         private readonly Dictionary<string, bool> _selectedPackages = new();
+        private readonly ObservableCollection<PluginEntry> _providerEntries = new();
+        private readonly ObservableCollection<PluginEntry> _analyzerEntries = new();
+        private readonly ObservableCollection<PluginEntry> _runnerEntries = new();
+        private readonly ObservableCollection<PluginEntry> _buildTestEntries = new();
         private string? _latestVersionPath;
         private CancellationTokenSource? _projectCts;
         private Task? _projectTask;
@@ -60,17 +64,27 @@ namespace ASL.CodeEngineering
             }
             PackageList.ItemsSource = _packageNames;
 
+            string builtInVersion = typeof(EchoAIProvider).Assembly.GetName().Version?.ToString() ?? string.Empty;
+
             _providerFactories["Echo"] = () => new EchoAIProvider();
+            _providerEntries.Add(new PluginEntry { Name = "Echo", Version = builtInVersion });
+
             _providerFactories["Reverse"] = () => new ReverseAIProvider();
+            _providerEntries.Add(new PluginEntry { Name = "Reverse", Version = builtInVersion });
+
             _providerFactories["Local"] = () => new LocalAIProvider();
+            _providerEntries.Add(new PluginEntry { Name = "Local", Version = builtInVersion });
+
             _providerFactories["OpenAI"] = () => new OpenAIProvider();
+            _providerEntries.Add(new PluginEntry { Name = "OpenAI", Version = builtInVersion });
 
             _analyzerFactories["Todo"] = () => new TodoAnalyzer();
             _runnerFactories["DotnetVersion"] = () => new DotnetVersionRunner();
             _buildTestRunnerFactories["Dotnet"] = () => new DotnetBuildTestRunner();
             _buildTestRunnerFactories["Python"] = () => new PythonBuildTestRunner();
 
-            foreach (var pair in AIProviderLoader.LoadProviders(AppContext.BaseDirectory))
+            var providerVersions = new Dictionary<string, string>();
+            foreach (var pair in AIProviderLoader.LoadProviders(AppContext.BaseDirectory, providerVersions))
             {
                 if (_providerFactories.ContainsKey(pair.Key))
                 {
@@ -80,10 +94,12 @@ namespace ASL.CodeEngineering
                 else
                 {
                     _providerFactories[pair.Key] = pair.Value;
+                    _providerEntries.Add(new PluginEntry { Name = pair.Key, Version = providerVersions.GetValueOrDefault(pair.Key, string.Empty) });
                 }
             }
 
-            foreach (var pair in PluginLoader.LoadAnalyzers(AppContext.BaseDirectory))
+            var analyzerVersions = new Dictionary<string, string>();
+            foreach (var pair in PluginLoader.LoadAnalyzers(AppContext.BaseDirectory, analyzerVersions))
             {
                 if (_analyzerFactories.ContainsKey(pair.Key))
                 {
@@ -93,10 +109,12 @@ namespace ASL.CodeEngineering
                 else
                 {
                     _analyzerFactories[pair.Key] = pair.Value;
+                    _analyzerEntries.Add(new PluginEntry { Name = pair.Key, Version = analyzerVersions.GetValueOrDefault(pair.Key, string.Empty) });
                 }
             }
 
-            foreach (var pair in PluginLoader.LoadRunners(AppContext.BaseDirectory))
+            var runnerVersions = new Dictionary<string, string>();
+            foreach (var pair in PluginLoader.LoadRunners(AppContext.BaseDirectory, runnerVersions))
             {
                 if (_runnerFactories.ContainsKey(pair.Key))
                 {
@@ -106,10 +124,12 @@ namespace ASL.CodeEngineering
                 else
                 {
                     _runnerFactories[pair.Key] = pair.Value;
+                    _runnerEntries.Add(new PluginEntry { Name = pair.Key, Version = runnerVersions.GetValueOrDefault(pair.Key, string.Empty) });
                 }
             }
 
-            foreach (var pair in PluginLoader.LoadBuildTestRunners(AppContext.BaseDirectory))
+            var buildVersions = new Dictionary<string, string>();
+            foreach (var pair in PluginLoader.LoadBuildTestRunners(AppContext.BaseDirectory, buildVersions))
             {
                 if (_buildTestRunnerFactories.ContainsKey(pair.Key))
                 {
@@ -119,6 +139,7 @@ namespace ASL.CodeEngineering
                 else
                 {
                     _buildTestRunnerFactories[pair.Key] = pair.Value;
+                    _buildTestEntries.Add(new PluginEntry { Name = pair.Key, Version = buildVersions.GetValueOrDefault(pair.Key, string.Empty) });
                 }
             }
 
@@ -131,18 +152,28 @@ namespace ASL.CodeEngineering
                 {
                     var provider = _providerFactories[key]();
                     if (provider.RequiresNetwork)
+                    {
                         _providerFactories.Remove(key);
+                        var entry = _providerEntries.FirstOrDefault(p => p.Name == key);
+                        if (entry != null)
+                            _providerEntries.Remove(entry);
+                    }
                 }
             }
 
-            ProviderComboBox.ItemsSource = _providerFactories.Keys;
-            ProviderComboBox.SelectedIndex = 0;
-            AnalyzerComboBox.ItemsSource = _analyzerFactories.Keys;
-            AnalyzerComboBox.SelectedIndex = _analyzerFactories.Count > 0 ? 0 : -1;
-            RunnerComboBox.ItemsSource = _runnerFactories.Keys;
-            RunnerComboBox.SelectedIndex = _runnerFactories.Count > 0 ? 0 : -1;
-            BuildTestRunnerComboBox.ItemsSource = _buildTestRunnerFactories.Keys;
-            BuildTestRunnerComboBox.SelectedIndex = _buildTestRunnerFactories.Count > 0 ? 0 : -1;
+            ProviderComboBox.ItemsSource = _providerEntries.Where(p => p.Enabled).Select(p => p.Name);
+            ProviderComboBox.SelectedIndex = ProviderComboBox.Items.Count > 0 ? 0 : -1;
+            AnalyzerComboBox.ItemsSource = _analyzerEntries.Where(a => a.Enabled).Select(a => a.Name);
+            AnalyzerComboBox.SelectedIndex = AnalyzerComboBox.Items.Count > 0 ? 0 : -1;
+            RunnerComboBox.ItemsSource = _runnerEntries.Where(r => r.Enabled).Select(r => r.Name);
+            RunnerComboBox.SelectedIndex = RunnerComboBox.Items.Count > 0 ? 0 : -1;
+            BuildTestRunnerComboBox.ItemsSource = _buildTestEntries.Where(b => b.Enabled).Select(b => b.Name);
+            BuildTestRunnerComboBox.SelectedIndex = BuildTestRunnerComboBox.Items.Count > 0 ? 0 : -1;
+
+            ProviderGrid.ItemsSource = _providerEntries;
+            AnalyzerGrid.ItemsSource = _analyzerEntries;
+            RunnerGrid.ItemsSource = _runnerEntries;
+            BuildTestGrid.ItemsSource = _buildTestEntries;
 
             LoadProjectTree(_projectRoot);
 
@@ -475,6 +506,34 @@ namespace ASL.CodeEngineering
             }
         }
 
+        private void ProviderGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            ProviderComboBox.ItemsSource = _providerEntries.Where(p => p.Enabled).Select(p => p.Name);
+            if (ProviderComboBox.SelectedItem == null && ProviderComboBox.Items.Count > 0)
+                ProviderComboBox.SelectedIndex = 0;
+        }
+
+        private void AnalyzerGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            AnalyzerComboBox.ItemsSource = _analyzerEntries.Where(a => a.Enabled).Select(a => a.Name);
+            if (AnalyzerComboBox.SelectedItem == null && AnalyzerComboBox.Items.Count > 0)
+                AnalyzerComboBox.SelectedIndex = 0;
+        }
+
+        private void RunnerGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            RunnerComboBox.ItemsSource = _runnerEntries.Where(r => r.Enabled).Select(r => r.Name);
+            if (RunnerComboBox.SelectedItem == null && RunnerComboBox.Items.Count > 0)
+                RunnerComboBox.SelectedIndex = 0;
+        }
+
+        private void BuildTestGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            BuildTestRunnerComboBox.ItemsSource = _buildTestEntries.Where(b => b.Enabled).Select(b => b.Name);
+            if (BuildTestRunnerComboBox.SelectedItem == null && BuildTestRunnerComboBox.Items.Count > 0)
+                BuildTestRunnerComboBox.SelectedIndex = 0;
+        }
+
         private async Task MonitorLogAsync(string path, CancellationToken token)
         {
             while (!token.IsCancellationRequested)
@@ -619,5 +678,12 @@ namespace ASL.CodeEngineering
         public DateTime Timestamp { get; set; }
         public string Provider { get; set; } = string.Empty;
         public string Result { get; set; } = string.Empty;
+    }
+
+    public class PluginEntry
+    {
+        public string Name { get; set; } = string.Empty;
+        public string Version { get; set; } = string.Empty;
+        public bool Enabled { get; set; } = true;
     }
 }

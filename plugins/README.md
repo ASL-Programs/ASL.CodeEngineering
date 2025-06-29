@@ -5,6 +5,10 @@ Assemblies in this directory extend the application. A plugin implements `IAnaly
 The loader scans this folder on startup and registers every plugin found here.
 If a plugin uses the same name as a built-in component or another plugin, the duplicate is ignored and a warning is logged.
 
+Loaded plugins appear under the **Plugins** tab of the main window. Each entry shows
+its version string and includes a checkbox to enable or disable the plugin for the
+current session.
+
 ## Minimal analyzer example
 
 ```bash
