@@ -31,7 +31,7 @@ Initial structure for the autonomous polyglot code engineering system.
     sample providers (`EchoAIProvider`, `ReverseAIProvider`, `OpenAIProvider`, `LocalAIProvider`).
 - `tests/` – unit tests for the provider library.
 - `knowledge_base/plans/` – outputs from `ProjectPlanner` that map open roadmap
-  tasks to modules.
+  tasks to modules, including a recommended language for each module.
 - `.editorconfig` – formatting rules for C#, Markdown and other files. Visual
   Studio and `dotnet format` automatically apply these settings.
 
@@ -142,6 +142,12 @@ will update the model with harmonized data during each cycle.
 
 A `DocsUpdater` module watches learning cycles. Each time a cycle completes it copies `AGENTS.md` and `NEXT_STEPS.md` to `docs/archive/` with a timestamp and marks completed tasks `[x]`. It also appends a note to `AGENTS.md` for auditing.
 `AutonomousLearningEngine` calls this updater after each iteration so documentation stays in sync during automated runs.
+
+### Analytics dashboard
+
+`ProjectPlanner.GeneratePlans` recommends a language for each module based on open tasks.
+The **Dashboard** window displays these recommendations together with crawl summaries and
+benchmark insights produced by `MetaAnalyzer`.
 
 
 

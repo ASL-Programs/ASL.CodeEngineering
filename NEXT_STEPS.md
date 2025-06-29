@@ -145,7 +145,7 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Generate Markdown summaries from crawler output
 - [x] Add DashboardWindow displaying knowledge graphs
 - [x] Run `dotnet test`
-- [ ] Extend planner and dashboard with multi‑language support and deeper analytics
+- [x] Extend planner and dashboard with multi-language support and deeper analytics
 - [x] Extend UI with learning progress grid and accept/rollback buttons
 - [x] Add persistent autonomous learning switch
 - [x] Implement VersionManager storing copies under data/versions
@@ -174,3 +174,8 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Update REFERENCE_FILES with DocsUpdater entry
 - [x] Run `dotnet test`
 - [x] Add OfflineLearningTests verifying model save/load, training and archiving
+- [x] Update ProjectPlanner.GeneratePlans with recommended language output
+- [x] Extend DashboardWindow to show language recommendations and meta insights
+- [x] Add unit tests for planner and dashboard updates
+- [x] Document enhanced analytics in README and REFERENCE_FILES
+- [x] Run `dotnet test`
