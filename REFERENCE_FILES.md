@@ -13,6 +13,7 @@ This list tracks documents, config files and other resources that may need to be
 | `src/ASL.CodeEngineering.AI/PathHelpers.cs` | Helper for sanitizing provider names |
 | `src/ASL.CodeEngineering.AI/LocalAIProvider.cs` | Lightweight offline provider used in tests |
 | `src/ASL.CodeEngineering.App/MainWindow.xaml.cs` | Paths respect environment directories; duplicate plugin/provider names log warnings; handles log write errors; offline mode filter; writes shared summaries |
+| `src/ASL.CodeEngineering.App/MainWindow.xaml` | Lists knowledge packages for enabling/disabling |
 | `src/ASL.CodeEngineering.AI/PythonBuildTestRunner.cs` | Logs to LOGS_DIR with fallback to executable directory |
 | `src/ASL.CodeEngineering.AI/ProcessRunner.cs` | Helper to execute processes and write logs respecting LOGS_DIR; handles log write errors |
 | `src/ASL.CodeEngineering.AI/AIProviderLoader.cs` | Loads AI providers and logs duplicate names |
