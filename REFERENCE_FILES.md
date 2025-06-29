@@ -43,5 +43,6 @@ This list tracks documents, config files and other resources that may need to be
 | `src/ASL.CodeEngineering.AI/OfflineLearning/ModelLoader.cs` | Loads and saves simple `.pt` and `.onnx` models |
 | `src/ASL.CodeEngineering.AI/OfflineLearning/GradientTrainer.cs` | Performs basic gradient descent training |
 | `src/ASL.CodeEngineering.AI/OfflineLearning/ModelVersionManager.cs` | Archives trained models under `data/models` |
+| `tests/ASL.CodeEngineering.Tests/OfflineLearningTests.cs` | Verifies model save/load, training, and version archiving |
 | `src/ASL.CodeEngineering.AI/DocsUpdater.cs` | Updates AGENTS and NEXT_STEPS with backups |
 Add new entries in the table above with a short explanation of why the file might be needed again.
