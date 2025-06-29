@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ASL.CodeEngineering.AI;
 
-public record ModulePlan(string Name, List<string> Tasks);
+public record ModulePlan(string Name, List<string> Tasks, string Language);
 
 /// <summary>
 /// Reads AGENTS.md and the source directories to generate per-module plans.
@@ -44,7 +44,8 @@ public static class ProjectPlanner
                 .ToList();
             if (related.Count == 0)
                 related.Add("No specific tasks");
-            plans.Add(new ModulePlan(module!, related));
+            string lang = FeatureLanguageAnalyzer.Recommend(string.Join(" ", related));
+            plans.Add(new ModulePlan(module!, related, lang));
         }
 
         string planDir = Path.Combine(projectRoot, "knowledge_base", "plans");

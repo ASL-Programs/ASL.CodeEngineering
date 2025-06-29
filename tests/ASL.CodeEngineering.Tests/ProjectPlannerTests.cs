@@ -20,6 +20,7 @@ public class ProjectPlannerTests
             string planPath = Path.Combine(temp.FullName, "knowledge_base", "plans", "plans.json");
             Assert.True(File.Exists(planPath));
             Assert.Contains(plans, p => p.Name == "Module");
+            Assert.All(plans, p => Assert.False(string.IsNullOrWhiteSpace(p.Language)));
         }
         finally
         {
