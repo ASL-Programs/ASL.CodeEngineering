@@ -262,3 +262,8 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Document API usage and API_KEY in README
 - [x] Update REFERENCE_FILES
 - [x] Run `dotnet test`
+- [x] Add Dockerfile for building WPF app using Windows container
+- [x] Add optional k8s manifests for scaled learning components
+- [x] Mention Docker and Kubernetes deployment options in README
+- [x] Update REFERENCE_FILES with Dockerfile and k8s manifests
+- [x] Run `dotnet test`

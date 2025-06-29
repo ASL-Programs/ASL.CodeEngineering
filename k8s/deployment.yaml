@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: asl-learning-engine
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: asl-learning-engine
+  template:
+    metadata:
+      labels:
+        app: asl-learning-engine
+    spec:
+      containers:
+      - name: engine
+        image: yourrepo/asl-codeengineering:latest
+        imagePullPolicy: IfNotPresent
+        command: ["ASL.CodeEngineering.App.exe"]
