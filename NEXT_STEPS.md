@@ -195,3 +195,8 @@ This file captures the current and upcoming steps for the project. It acts as th
 - [x] Mark roadmap item 8.4 complete in AGENTS.md
 - [x] Update REFERENCE_FILES with ProjectGenerator entry
 - [x] Run `dotnet test`
+
+- [ ] Build initial self-training package
+- [ ] Implement meta-learning adjustments
+- [ ] Add version preview mode
+- [ ] Create project generator
