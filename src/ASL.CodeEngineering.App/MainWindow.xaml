@@ -31,6 +31,7 @@
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <ComboBox x:Name="ProviderComboBox" Grid.Row="0" Margin="0 0 0 5" SelectionChanged="ProviderComboBox_SelectionChanged" />
@@ -79,6 +80,12 @@
                 <Button x:Name="AcceptSuggestionButton" Content="Accept" Width="75" Click="AcceptSuggestionButton_Click" />
                 <Button x:Name="RollbackSuggestionButton" Content="Rollback" Width="75" Margin="5 0 0 0" Click="RollbackSuggestionButton_Click" />
                 <CheckBox x:Name="LearningEnabledCheckBox" Content="Learning On" Margin="10 0" Checked="LearningEnabledCheckBox_Checked" Unchecked="LearningEnabledCheckBox_Unchecked" />
+            </StackPanel>
+            <StackPanel Grid.Row="13" Orientation="Horizontal">
+                <TextBox x:Name="ProjectDescriptionTextBox" Width="200" Margin="0 0 5 0" />
+                <TextBox x:Name="ProjectLanguageTextBox" Width="100" Margin="0 0 5 0" />
+                <Button x:Name="StartProjectButton" Content="Start New Project" Width="120" Click="StartProjectButton_Click" />
+                <Button x:Name="StopProjectButton" Content="Stop" Width="75" Margin="5 0 0 0" Click="StopProjectButton_Click" IsEnabled="False" />
             </StackPanel>
         </Grid>
 

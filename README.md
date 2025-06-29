@@ -105,6 +105,16 @@ string path = InteropGenerator.CreateNodeWrapper("MyWrapper", outputDir);
 
 This produces `outputDir/MyWrapper/` with `MyWrapper.csproj`, `Program.cs` and `script.js`. Build it with `dotnet build` or the `DotnetBuildTestRunner`.
 
+## Generating new projects
+
+Use `ProjectGenerator.GenerateAsync` to scaffold a basic project. Provide a description, the target language and an output directory:
+
+```csharp
+string path = await ProjectGenerator.GenerateAsync("My App", "C#", projectsDir);
+```
+
+When triggered from the UI's **New Project** mode, projects are stored under `projects/` and generation can be stopped with the **Stop** button.
+
 
 ## Analyzing feature requests
 
