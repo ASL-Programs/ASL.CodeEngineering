@@ -60,6 +60,17 @@ namespace ASL.CodeEngineering
         {
             InitializeComponent();
 
+            Permissions.Load(AppContext.BaseDirectory);
+            var login = new LoginWindow();
+            if (login.ShowDialog() != true)
+            {
+                Close();
+                return;
+            }
+            Permissions.AssignRole(login.UserName, login.SelectedRole);
+            Permissions.SetCurrentUser(login.UserName);
+            Permissions.Save(AppContext.BaseDirectory);
+
             LanguageComboBox.ItemsSource = _languageMap.Keys;
             LanguageComboBox.SelectedIndex = 0;
             UpdateLanguage("en");

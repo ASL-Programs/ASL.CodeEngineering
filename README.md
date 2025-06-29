@@ -57,6 +57,7 @@ data and logs:
   directory cannot be written to, logs fall back to a `logs/` folder located
   beside the executable.
 - `LOG_ENCRYPTION_KEY` – optional key enabling AES-encrypted log files. When set,
+- `PERMISSIONS_KEY` – AES key used to decrypt and save role assignments under `configs/permissions.enc`.
   `SecureLogger` stores each log with a prepended IV so the audit trail remains
   confidential.
 - `DISABLE_NETWORK_PROVIDERS` – set to `1` or `true` to remove providers that
@@ -184,6 +185,7 @@ the selected provider, analyzer and runners together with the last opened
 project and a list of recent projects. Profile files are JSON documents saved
 under `data/profiles/`. The dropdown at the top of the main tab lets you switch
 between profiles at runtime and settings are loaded automatically on startup.
+A login dialog now appears on startup to select a username and role. Roles control plugin loading, version restore and external provider access.
 
 ## Documentation automation
 

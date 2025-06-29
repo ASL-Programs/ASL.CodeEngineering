@@ -17,6 +17,7 @@ public static class AIProviderLoader
     public static IDictionary<string, Func<IAIProvider>> LoadProviders(string? baseDirectory = null,
         IDictionary<string, string>? versions = null)
     {
+        Permissions.Require(Role.Operator);
         baseDirectory ??= AppContext.BaseDirectory;
         var envPath = Environment.GetEnvironmentVariable("AI_PROVIDERS_DIR");
 
